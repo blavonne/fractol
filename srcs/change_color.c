@@ -1,0 +1,79 @@
+#include "fractol.h"
+
+static void	rgb_color_plus(int key, t_argb *argb)
+{
+	if (key == RED)
+	{
+		if (argb->channel[1] + 10 < 255)
+			argb->channel[1] += 10;
+		else
+			(argb->channel[1] = 0);
+	}
+	if (key == BLUE)
+	{
+		if (argb->channel[3] + 10 < 255)
+			argb->channel[3] += 10;
+		else
+			(argb->channel[3] = 0);
+	}
+	if (key == GREEN)
+	{
+		if (argb->channel[2] + 10 < 255)
+			argb->channel[2] += 10;
+		else
+			(argb->channel[2] = 0);
+	}
+}
+
+static void	rgb_color_minus(int key, t_argb *argb)
+{
+	if (key == RED)
+	{
+		if (argb->channel[1] - 10 > 0)
+			argb->channel[1] -= 10;
+		else
+			(argb->channel[1] = 255);
+	}
+	if (key == BLUE)
+	{
+		if (argb->channel[3] - 10 > 0)
+			argb->channel[3] -= 10;
+		else
+			(argb->channel[3] = 255);
+	}
+	if (key == GREEN)
+	{
+		if (argb->channel[2] - 10 > 0)
+			argb->channel[2] -= 10;
+		else
+			(argb->channel[2] = 255);
+	}
+}
+
+static void	alpha_color(int key, t_argb *argb, char flag)
+{
+	if (key == ALPHA && flag)
+	{
+		if (argb->channel[0] - 10 > 0)
+			argb->channel[0] -= 10;
+		else
+			(argb->channel[0] = 0);
+	}
+	else if (key == ALPHA)
+	{
+		if (argb->channel[0] + 10 < 255)
+			argb->channel[0] += 10;
+		else
+			(argb->channel[0] = 255 - 1);
+	}
+}
+
+void		increase_img_color(int key, t_fractol *fractol)
+{
+	if (fractol->g.sign)
+		rgb_color_plus(key, &fractol->g.argb);
+	else
+		rgb_color_minus(key, &fractol->g.argb);
+	alpha_color(key, &fractol->g.argb, fractol->g.sign);
+	ft_memset(fractol->mlx.image.img, 255, WIDTH * HEIGHT * sizeof(int));
+}
