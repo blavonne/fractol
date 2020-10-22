@@ -27,7 +27,7 @@ static void		sketch(t_fractol *fractol, t_point cur, int steep)
 		ft_swap(&cur.x, &cur.y);
 	i = (cur.x * fractol->mlx.image.bps / 8) + (cur.y *\
 	fractol->mlx.image.size_line);
-	if (i >= 0 && i < WIDTH * HEIGHT * sizeof(int))
+	if (i >= 0 && i < WIDTH * HEIGHT * (int)sizeof(int))
 	{
 		//bgra
 		fractol->mlx.image.img[i] = fractol->g.argb.channel[3];

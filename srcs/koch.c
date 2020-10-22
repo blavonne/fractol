@@ -1,6 +1,7 @@
 #include "fractol.h"
 
-static void			traf(t_complex start, t_complex end, t_geometric *g, int r)
+static void			traf(t_complex start, t_complex end, t_geometric *g,\
+		size_t r)
 {
 	if (r > g->size - 1)
 		geometric_resize(g);
@@ -87,8 +88,7 @@ void			create_koch(t_fractol *fractol)
 	fractol->help ? help_g(&fractol->mlx) : 0;
 }
 
-static void		fract_snow(t_fractol *fractol, t_complex *coord, t_complex *kn,\
-		int *m)
+static void		fract_snow(t_fractol *fractol, t_complex *kn, int *m)
 {
 	while (m[0] < fractol->g.n)
 	{
@@ -128,7 +128,7 @@ void			create_snow(t_fractol *fractol)
 	traf(coord[1], coord[0], &fractol->g, 0);
 	traf(coord[0], coord[2], &fractol->g, 4);
 	traf(coord[2], coord[1], &fractol->g, 8);
-	fract_snow(fractol, coord, kn, m);
+	fract_snow(fractol, kn, m);
 	m[1] = 0;
 	while (m[1] < 4 * m[2] || (!fractol->g.n && m[1] < 12))
 	{

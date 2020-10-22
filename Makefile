@@ -46,7 +46,7 @@ all: $(LIBFT) $(MLX) $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(L_ROOT)
 $(MLX):
-	$(MAKE) -C $(MLX)
+	$(MAKE) -C $(MLX_ROOT)
 
 # build fractol-----------------------------------------------------------------
 $(NAME): $(LIBFT) $(MLX) $(OBJ)

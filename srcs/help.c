@@ -62,16 +62,11 @@ static void		print_text_a(void *m, void *w)
 
 void			help_a(t_mlx *mlx)
 {
-	t_argb	color;
 	int		i;
 	int		width;
 
 	i = 0;
 	width = (int)(WIDTH - ft_min(WIDTH, HEIGHT)) / 2;
-	color.channel[0] = 150;
-	color.channel[1] = 0xd5;
-	color.channel[2] = 0xfa;
-	color.channel[3] = 0x02;
 	if (!mlx->help.ptr)
 	{
 		if (!(mlx->help.ptr = mlx_new_image(mlx->mlx_ptr, width, HEIGHT)))

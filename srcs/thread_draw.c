@@ -19,8 +19,9 @@ void		draw_a(void *data)
 		point.re = thread->fractol->a.min.re * thread->fractol->a.c.re;
 		while (cur.x < thread->fractol->a.img_size)
 		{
-			color_init(cur, thread->fractol->a.draw_a[thread->fractol->a.type]
-					(thread->fractol, point), thread->fractol);
+			color_init(cur,\
+			thread->fractol->a.draw_a[(int)thread->fractol->a.type]\
+			(thread->fractol, point), thread->fractol);
 			cur.x++;
 			point.re += step.re;
 		}
@@ -41,6 +42,7 @@ int			set_julia_c(int x, int y, t_fractol *fractol)
 	fractol->a.c.im = y * fractol->a.size / fractol->a.img_size + min.im;
 	printf("c re %f, c im %f\n", fractol->a.c.re, fractol->a.c.im);
 	thread_draw(fractol);
+	return (0);
 }
 
 void		thread_draw(void *data)

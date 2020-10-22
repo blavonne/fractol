@@ -59,7 +59,7 @@ int				deal_key(int key, t_fractol *fractol)
 		fractol->help = 1;
 		fractol->type ? help_g(&fractol->mlx) : help_a(&fractol->mlx);
 	}
-	fractol->type ? fractol->g.draw_geometric[fractol->g.type](fractol) :\
+	fractol->type ? fractol->g.draw_geometric[(int)fractol->g.type](fractol) :\
 	thread_draw(fractol);
 	return (0);
 }

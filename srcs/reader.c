@@ -39,7 +39,7 @@ int			read_argv(char *type, t_fractol *fractol)
 		fractol->type = 1;
 		geometric_init(&fractol->g);
 		create_image(&fractol->mlx, WIDTH, HEIGHT);
-		fractol->g.draw_geometric[fractol->g.type](fractol);
+		fractol->g.draw_geometric[(int)fractol->g.type](fractol);
 	}
 	else if (ft_strequ(type, "-Burn"))
 	{

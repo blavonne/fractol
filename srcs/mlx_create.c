@@ -33,7 +33,7 @@ void			colorize(unsigned char *img, int width, int heigh,\
 	argb.channel[1] = color >> 16u;
 	argb.channel[2] = color >> 8u;
 	argb.channel[3] = color;
-	while (i < width * heigh * sizeof(int))
+	while (i < width * heigh * (int)sizeof(int))
 	{
 		img[i++] = argb.channel[3];
 		img[i++] = argb.channel[2];
