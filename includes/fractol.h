@@ -93,7 +93,6 @@ void			draw_a(void *info);
 void			thread_draw(void *data);
 int				mandelbrot_iter(t_fractol *fractol, t_complex c);
 int				julia_iter(t_fractol *fractol, t_complex z);
-void			julia(void *info);
 void			color_init(t_point cur, int iter, t_fractol *fractol);
 int				deal_key(int key, t_fractol *fractol);
 t_complex		complex_init(double re, double im);
@@ -121,5 +120,7 @@ void			put_img_to_window_a(t_mlx *mlx, int x, int y);
 void			create_koch(t_fractol *fractol);
 void			create_snow(t_fractol *fractol);
 void			draw_line(t_point start, t_point end, t_fractol *fractol);
+
+int			set_julia_c(int x, int y, t_fractol *fractol);
 
 #endif

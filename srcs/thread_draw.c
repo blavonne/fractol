@@ -11,11 +11,12 @@ void		draw_a(void *data)
 	cur = point_init(0, thread->start);
 	step.re = thread->fractol->a.size / thread->fractol->a.img_size;
 	step.im = thread->fractol->a.size / thread->fractol->a.img_size;
-	point.im = thread->fractol->a.min.im + thread->start * step.im;
+	point.im = thread->fractol->a.min.im + thread->start * step.im *
+			thread->fractol->a.c.im;
 	while (cur.y < thread->finish)
 	{
 		cur.x = 0;
-		point.re = thread->fractol->a.min.re;
+		point.re = thread->fractol->a.min.re * thread->fractol->a.c.re;
 		while (cur.x < thread->fractol->a.img_size)
 		{
 			color_init(cur, thread->fractol->a.draw_a[thread->fractol->a.type]
@@ -30,11 +31,14 @@ void		draw_a(void *data)
 
 int			set_julia_c(int x, int y, t_fractol *fractol)
 {
+	t_complex	min;
+
+	min = fractol->a.min;
 	x = x - (WIDTH - fractol->a.img_size) / 2;
 	y = y - (HEIGHT - fractol->a.img_size) / 2;
 //	Делишь на img_size, умножаешь на size, добавляешь min
-	fractol->a.c.re = x * fractol->a.size / fractol->a.img_size;
-	fractol->a.c.im = y * fractol->a.size / fractol->a.img_size;
+	fractol->a.c.re = x * fractol->a.size / fractol->a.img_size + min.re;
+	fractol->a.c.im = y * fractol->a.size / fractol->a.img_size + min.im;
 }
 
 void		thread_draw(void *data)
@@ -46,8 +50,6 @@ void		thread_draw(void *data)
 
 	i = 0;
 	fractol = data;
-//	if (fractol->a.type == 1)
-//		mlx_hook(fractol->mlx.win_ptr, 6, 1L << 6, set_julia_c, fractol);
 	while (i < THREADS)
 	{
 		info[i].fractol = fractol;

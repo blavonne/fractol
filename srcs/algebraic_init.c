@@ -13,6 +13,7 @@ void	algebaic_init(t_algebraic *fractol)
 	fractol->max.re = 2.0;
 	fractol->max.im = 2.0;
 	fractol->size = fractol->max.re - fractol->min.re; // размер поля вывода
+	fractol->c = complex_init(1, 1);
 }
 
 void	restore_to_default_a(t_fractol *fractol)
