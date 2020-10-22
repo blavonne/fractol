@@ -1,15 +1,5 @@
 #include "fractol.h"
 
-int			mouse_cords(int x, int y, void *data)
-{
-	t_fractol	*fractol;
-
-	fractol = data;
-	fractol->a.c.re += fractol->a.size / fractol->a.img_size * x;
-	fractol->a.c.im += fractol->a.size / fractol->a.img_size * y;
-	return (0);
-}
-
 int			read_argv(char *type, t_fractol *fractol)
 {
 	fractol_init(fractol);
@@ -22,7 +12,9 @@ int			read_argv(char *type, t_fractol *fractol)
 		algebaic_init(&fractol->a);
 		create_image(&fractol->mlx, fractol->a.img_size, fractol->a.img_size);
 		fractol->a.type = 1;
-		mlx_hook(fractol->mlx.win_ptr, 6, 1L << 6, &mouse_cords, fractol);
+		fractol->a.c = complex_init(0, 0);
+//		thread_draw(fractol);
+		julia(fractol);
 	}
 	else if (ft_strequ(type, "-M"))
 	{

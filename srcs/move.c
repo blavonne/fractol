@@ -32,13 +32,13 @@
 void		move_a(int key, t_fractol *fractol)
 {
 	if (key == ARROW_RIGHT)
-		fractol->a.min.re -= 0.05;
+		fractol->a.min.re -= 0.005;
 	else if (key == ARROW_LEFT)
-		fractol->a.min.re += 0.05;
+		fractol->a.min.re += 0.005;
 	else if (key == ARROW_DOWN)
-		fractol->a.min.im -= 0.05;
+		fractol->a.min.im -= 0.005;
 	else if (key == ARROW_UP)
-		fractol->a.min.im += 0.05;
+		fractol->a.min.im += 0.005;
 //	fractol->a.draw_algebraic[fractol->a.type](fractol);
 }
 

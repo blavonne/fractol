@@ -9,6 +9,7 @@ void		zoom_g(t_fractol *fractol, int key)
 			fractol->g.n++;
 		else if (key == MAIN_MINUS && fractol->g.n > 0)
 			fractol->g.n--;
+		printf("zoom: %d\n", fractol->g.n);
 	}
 }
 

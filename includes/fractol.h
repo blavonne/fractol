@@ -2,7 +2,7 @@
 # define FRACTOL_H
 
 # define THREADS		16
-# define BUF			1000
+# define BUF			4
 # define SCALE			0.9
 # define COLORS			10
 # define IRIS			0x7000fa
@@ -90,6 +90,7 @@ void			check_argv(int argc, char **str);
 int				read_argv(char *type, t_fractol *fractol);
 void			mandelbrot(void *info);
 void			thread_draw(void *data);
+int				iter_count(t_fractol *fractol, t_complex z, t_complex c);
 void			julia(void *info);
 void			color_init(t_point cur, int iter, t_fractol *fractol);
 int				deal_key(int key, t_fractol *fractol);

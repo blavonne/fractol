@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-static int	iter_count(t_fractol *fractol, t_complex z, t_complex c)
+int			iter_count(t_fractol *fractol, t_complex z, t_complex c)
 {
 	int		iter;
 
@@ -71,31 +71,4 @@ void		mandelbrot(void *data)
 		cur.y++;
 		c.im += step;
 	}
-}
-
-void		thread_draw(void *data)
-{
-	t_fractol	*fractol;
-	pthread_t	thread[THREADS];
-	t_thread	info[THREADS];
-	int			i;
-
-	i = 0;
-	fractol = data;
-	while (i < THREADS)
-	{
-		info[i].fractol = fractol;
-		info[i].start = i * (fractol->a.img_size / THREADS);
-		info[i].finish = (i + 1) * (fractol->a.img_size / THREADS);
-		if (pthread_create(thread + i, NULL,\
-			(void *)fractol->a.draw_algebraic[fractol->a.type],\
-			info + i))
-			exit(1);
-		i++;
-	}
-	while (i-- > 0)
-		if (pthread_join(thread[i], NULL))
-			clean_exit(fractol);
-	put_img_to_window_a(&fractol->mlx, 0, 0);
-	fractol->help ? help_a(&fractol->mlx) : 0;
 }

@@ -2,25 +2,25 @@
 
 static void			traf(t_complex start, t_complex end, t_geometric *g, int r)
 {
-	if (r > g->size)
+	if (r > g->size - 1)
 		geometric_resize(g);
 	g->kn[r].re = start.re;
 	g->kn[r].im = start.im;
-	if (r + 1 > g->size)
+	if (r + 1 > g->size - 1)
 		geometric_resize(g);
 	g->kn[r + 1].re = (2 * start.re + end.re) / 3;
 	g->kn[r + 1].im = (2 * start.im + end.im) / 3;
-	if (r + 2 > g->size)
+	if (r + 2 > g->size - 1)
 		geometric_resize(g);
 	g->kn[r + 2].re = (start.re + end.re) / 2 + (start.im - end.im) / (2 *\
 	sqrt(3.0));
 	g->kn[r + 2].im = (end.im + start.im) / 2 + (end.re - start.re) / (2 *\
 	sqrt(3.0));
-	if (r + 3 > g->size)
+	if (r + 3 > g->size - 1)
 		geometric_resize(g);
 	g->kn[r + 3].re =  (start.re + 2 * end.re) / 3;
 	g->kn[r + 3].im = (start.im + 2 * end.im) / 3;
-	if (r + 4 > g->size)
+	if (r + 4 > g->size - 1)
 		geometric_resize(g);
 	g->kn[r + 4].re = end.re;
 	g->kn[r + 4].im = end.im;
