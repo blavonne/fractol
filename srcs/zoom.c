@@ -18,6 +18,8 @@ int				zoom_a(int key, int x, int y, t_fractol *fractol)
 	double		wx;
 	double		wy;
 
+	if (fractol->a.type)
+		return (0);
 	if (x < (WIDTH - fractol->a.img_size) / 2 || x > (WIDTH + fractol->a
 	.img_size) / 2)
 		return (0);

@@ -1,16 +1,20 @@
 #include "fractol.h"
 
-int			iter_count(t_fractol *fractol, t_complex z, t_complex c)
+int			mandelbrot_iter(t_fractol *fractol, t_complex c)
 {
-	int		iter;
+	int			iter;
+	t_complex	z;
+	double		r;
 
 	iter = 0;
+	z = complex_init(0, 0);
 	while (iter < fractol->a.max_iter)
 	{
 		iter++;
 		z = complex_square(z);
 		z = complex_sum(z, c);
-		if (z.re * z.re + z.im * z.im > 4)
+		r = z.re * z.re + z.im * z.im;
+		if (r > 4)
 			break ;
 	}
 	return (iter);
@@ -44,31 +48,68 @@ int			iter_count(t_fractol *fractol, t_complex z, t_complex c)
 //	fractol->help ? help_a(&fractol->mlx) : 0;
 //}
 
-void		mandelbrot(void *data)
+int			julia_iter(t_fractol *fractol, t_complex z)
 {
-	t_thread	*info;
-	t_point		cur;
 	t_complex	c;
-	t_complex	z;
-	double		step;
+	double		r;
+	int			iter;
 
-	info = data;
-	cur = point_init(0, info->start);
-	step = info->fractol->a.size / info->fractol->a.img_size;
-	c = complex_init(info->fractol->a.min.re, info->fractol->a.min.im +\
-	info->start * step);
-	while (cur.y < info->finish)
+	c = complex_init(-0.55, -0.55);
+	while (iter < fractol->a.max_iter)
+	{
+		z = complex_square(z);
+		z = complex_sum(z, c);
+		r = z.re * z.re + z.im * z.im;
+		if (r > 4)
+			break ;
+		iter++;
+	}
+	return (iter);
+}
+
+//var
+//		a,b,x,y,x2,y2,xy: real;
+//r:real;
+//speed,k: integer;
+//begin
+//		r:=1;
+//a:=-0.55; b:=-0.55;
+//x:=x0; y:=y0; //это z
+//k:=100;
+//while (k>0)and(r<4) do
+//begin
+//x2:=x*x;
+//y2:=y*y;
+//xy:=x*y;
+//x:=x2-y2+a;
+//y:=2*xy+b;
+//r:=x2+y2;
+//dec(k)
+
+void		draw_a(void *data)
+{
+	t_thread	*thread;
+	t_point		cur;
+	t_complex	point;
+	t_complex	step;
+
+	thread = data;
+	cur = point_init(0, thread->start);
+	step.re = thread->fractol->a.size / thread->fractol->a.img_size;
+	step.im = thread->fractol->a.size / thread->fractol->a.img_size;
+	point.im = thread->fractol->a.min.im + thread->start * step.im;
+	while (cur.y < thread->finish)
 	{
 		cur.x = 0;
-		c.re = info->fractol->a.min.re;
-		while (cur.x < info->fractol->a.img_size)
+		point.re = thread->fractol->a.min.re;
+		while (cur.x < thread->fractol->a.img_size)
 		{
-			z = complex_init(0, 0);
-			color_init(cur, iter_count(info->fractol, z, c), info->fractol);
+			color_init(cur, thread->fractol->a.draw_a[thread->fractol->a.type]
+			(thread->fractol, point), thread->fractol);
 			cur.x++;
-			c.re += step;
+			point.re += step.re;
 		}
 		cur.y++;
-		c.im += step;
+		point.im += step.im;
 	}
 }

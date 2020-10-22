@@ -19,16 +19,14 @@ void		thread_draw(void *data)
 
 	i = 0;
 	fractol = data;
-	if (fractol->a.type == 1)
-		mlx_hook(fractol->mlx.win_ptr, 6, 1L << 6, set_julia_c, fractol);
+//	if (fractol->a.type == 1)
+//		mlx_hook(fractol->mlx.win_ptr, 6, 1L << 6, set_julia_c, fractol);
 	while (i < THREADS)
 	{
 		info[i].fractol = fractol;
 		info[i].start = i * (fractol->a.img_size / THREADS);
 		info[i].finish = (i + 1) * (fractol->a.img_size / THREADS);
-		if (pthread_create(thread + i, NULL,\
-			(void *)fractol->a.draw_algebraic[fractol->a.type],\
-			info + i))
+		if (pthread_create(thread + i, NULL, (void *)draw_a, info + i))
 			exit(1);
 		i++;
 	}

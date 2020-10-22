@@ -12,9 +12,8 @@ int			read_argv(char *type, t_fractol *fractol)
 		algebaic_init(&fractol->a);
 		create_image(&fractol->mlx, fractol->a.img_size, fractol->a.img_size);
 		fractol->a.type = 1;
-		fractol->a.c = complex_init(0, 0);
-//		thread_draw(fractol);
-		julia(fractol);
+		fractol->a.c = complex_init(0.285, 0.01);
+		thread_draw(fractol);
 	}
 	else if (ft_strequ(type, "-M"))
 	{
