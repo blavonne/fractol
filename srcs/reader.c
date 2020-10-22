@@ -1,5 +1,19 @@
 #include "fractol.h"
 
+void		check_argv(int argc, char **argv)
+{
+	int		i;
+
+	if (argc != 2)
+		put_usage();
+	i = 0;
+	if (ft_strequ(argv[1], "-J") || ft_strequ(argv[1], "-M") ||\
+	ft_strequ(argv[1], "-Koch") || ft_strequ(argv[1], "-Snow") ||\
+	ft_strequ(argv[1], "-Burn"))
+		i = 1;
+	(!i) ? put_usage() : 0;
+}
+
 int			read_argv(char *type, t_fractol *fractol)
 {
 	fractol_init(fractol);
@@ -27,6 +41,13 @@ int			read_argv(char *type, t_fractol *fractol)
 		geometric_init(&fractol->g);
 		create_image(&fractol->mlx, WIDTH, HEIGHT);
 		fractol->g.draw_geometric[fractol->g.type](fractol);
+	}
+	else if (ft_strequ(type, "-Burn"))
+	{
+		algebaic_init(&fractol->a);
+		create_image(&fractol->mlx, fractol->a.img_size, fractol->a.img_size);
+		fractol->a.type = 2;
+		thread_draw(fractol);
 	}
 	return (1);
 }

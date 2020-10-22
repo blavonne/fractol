@@ -39,7 +39,7 @@ typedef struct	s_algebraic
 	t_complex	min;
 	t_complex	max; //не нужной в моей реализации
 	double 		size;
-	int			(*draw_a[2])(struct s_fractol *fractol, t_complex point);
+	int			(*draw_a[3])(struct s_fractol *fractol, t_complex point);
 	int			color_shift;
 	int			max_iter;
 	int 		img_size;
@@ -91,8 +91,9 @@ void			check_argv(int argc, char **str);
 int				read_argv(char *type, t_fractol *fractol);
 void			draw_a(void *info);
 void			thread_draw(void *data);
-int				mandelbrot_iter(t_fractol *fractol, t_complex c);
-int				julia_iter(t_fractol *fractol, t_complex z);
+int				mandelbrot(t_fractol *fractol, t_complex c);
+int				julia(t_fractol *fractol, t_complex z);
+int				burning(t_fractol *fractol, t_complex c);
 void			color_init(t_point cur, int iter, t_fractol *fractol);
 int				deal_key(int key, t_fractol *fractol);
 t_complex		complex_init(double re, double im);
