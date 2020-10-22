@@ -11,7 +11,7 @@ int			mandelbrot(t_fractol *fractol, t_complex c)
 	while (iter < fractol->a.max_iter)
 	{
 		iter++;
-		z = complex_square(z);
+		z = complex_power(z, fractol->a.power);
 		z = complex_sum(z, c);
 		r = z.re * z.re + z.im * z.im;
 		if (r > 4)
@@ -29,7 +29,7 @@ int			julia(t_fractol *fractol, t_complex z)
 	iter = 0;
 	while (iter < fractol->a.max_iter)
 	{
-		z = complex_square(z);
+		z = complex_power(z, fractol->a.power);
 		z = complex_sum(z, c);
 		r = z.re * z.re + z.im * z.im;
 		if (r > 4)

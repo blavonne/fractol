@@ -43,6 +43,7 @@ typedef struct	s_algebraic
 	int			color_shift;
 	int			max_iter;
 	int 		img_size;
+	int			power;
 	char		type;
 }				t_algebraic;
 

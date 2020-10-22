@@ -20,10 +20,8 @@ int				deal_key(int key, t_fractol *fractol)
 	else if ((key == BLUE || key == RED || key == GREEN || key == ALPHA) &&\
 	fractol->type)
 		increase_img_color(key, fractol);
-	else if (fractol->type && key == NUM_PLUS)
-		fractol->g.sign = 1;
-	else if (fractol->type && key == NUM_MINUS)
-		fractol->g.sign = 0;
+	else if (fractol->type && (key == NUM_PLUS || key == NUM_MINUS))
+		fractol->g.sign = (key == NUM_PLUS) ? 1 : 0;
 	else if (fractol->type && (key == MAIN_MINUS || key == MAIN_PLUS))
 		zoom_g(fractol, key);
 	else if (fractol->type && (key == ONE || key == TWO))
@@ -58,6 +56,18 @@ int				deal_key(int key, t_fractol *fractol)
 	{
 		fractol->help = 1;
 		fractol->type ? help_g(&fractol->mlx) : help_a(&fractol->mlx);
+	}
+	else if (!fractol->type && (key == NUM_MINUS || key == NUM_PLUS))
+	{
+		key == NUM_MINUS && fractol->a.power > 2 ? fractol->a.power-- : 0;
+		key == NUM_PLUS && fractol->a.power < 6 ? fractol->a.power++ : 0;
+	}
+	else if (!fractol->type && (key >= ONE && key <= THREE))
+	{
+		key == ONE ? fractol->a.type = 0 : 0;
+		key == TWO ? fractol->a.type = 1 : 0;
+		key == THREE ? fractol->a.type = 2 : 0;
+		restore_to_default_a(fractol);
 	}
 	fractol->type ? fractol->g.draw_geometric[(int)fractol->g.type](fractol) :\
 	thread_draw(fractol);

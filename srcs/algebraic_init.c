@@ -13,6 +13,7 @@ void	algebaic_init(t_algebraic *fractol, char type)
 	fractol->min.im = -2.0; // координаты левого верхнего угла поля вывода
 	fractol->max.re = 2.0;
 	fractol->max.im = 2.0;
+	fractol->power = 2;
 	fractol->size = fractol->max.re - fractol->min.re; // размер поля вывода
 	fractol->c = complex_init(1, 1);
 }
@@ -23,7 +24,12 @@ void	restore_to_default_a(t_fractol *fractol)
 	fractol->a.color_shift = 0;
 	fractol->a.min.re = -2.0; //
 	fractol->a.min.im = -2.0; // координаты левого верхнего угла поля вывода
-	fractol->a.size = 4.0; // размер поля вывода
+	fractol->a.max.re = 2.0;
+	fractol->a.max.im = 2.0;
+	fractol->a.power = 2;
+	fractol->a.size = fractol->a.max.re - fractol->a.min.re; // размер поля вывода
+	fractol->a.c = complex_init(1, 1);
+	fractol->a.power = 2;
 	ft_memset(fractol->mlx.image.img, 255, fractol->a.img_size *\
 	fractol->a.img_size * sizeof(int));
 }

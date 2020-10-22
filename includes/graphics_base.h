@@ -55,8 +55,9 @@ void				colorize(unsigned char *img, int width, int height,\
 					unsigned int color);
 t_point				point_init(int x, int y);
 t_complex			complex_init(double re, double im);
-t_complex			complex_square(t_complex z);
 t_complex			complex_sum(t_complex z, t_complex c);
 t_complex			abs_square_sum(t_complex z, t_complex c);
+t_complex			complex_multiply(t_complex a, t_complex b);
+t_complex			complex_power(t_complex z, int power);
 
 #endif
