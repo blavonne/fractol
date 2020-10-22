@@ -1,7 +1,5 @@
 #include "fractol.h"
 
-int			k = 0;
-
 int			mandelbrot_iter(t_fractol *fractol, t_complex c)
 {
 	int			iter;
@@ -13,8 +11,6 @@ int			mandelbrot_iter(t_fractol *fractol, t_complex c)
 	while (iter < fractol->a.max_iter)
 	{
 		iter++;
-		k++;
-		printf("z.re %f z.im %f k %d\n", z.re, z.im, k);
 		z = complex_square(z);
 		z = complex_sum(z, c);
 		r = z.re * z.re + z.im * z.im;

@@ -2,7 +2,7 @@
 
 void	algebaic_init(t_algebraic *fractol)
 {
-	fractol->max_iter = 50;
+	fractol->max_iter = 255;
 	fractol->color_shift = 0;
 	fractol->type = 0;
 	fractol->draw_a[0] = &mandelbrot_iter;
