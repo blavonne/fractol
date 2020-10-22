@@ -18,7 +18,7 @@ void	algebaic_init(t_algebraic *fractol)
 
 void	restore_to_default_a(t_fractol *fractol)
 {
-	fractol->a.max_iter = 155;
+	fractol->a.max_iter = 255;
 	fractol->a.color_shift = 0;
 	fractol->a.min.re = -2.0; //
 	fractol->a.min.im = -2.0; // координаты левого верхнего угла поля вывода

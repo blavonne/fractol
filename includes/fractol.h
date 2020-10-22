@@ -3,7 +3,7 @@
 
 # define THREADS		16
 # define BUF			4
-# define SCALE			0.3
+# define SCALE			0.6
 # define COLORS			10
 # define IRIS			0x7000fa
 # define LILAC			0x5b008c

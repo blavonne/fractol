@@ -32,12 +32,14 @@ int				zoom_a(int key, int x, int y, t_fractol *fractol)
 		fractol->a.min.re = wx + (fractol->a.min.re - wx) * SCALE;
 		fractol->a.min.im = wy + (fractol->a.min.im - wy) * SCALE;
 		fractol->a.size *= SCALE;
+		fractol->a.max_iter + 10 > 0 ? fractol->a.max_iter += 10 : 0;
 	}
 	if (key == MOUSE_SCROLL_UP)
 	{
 		fractol->a.min.re = wx + (fractol->a.min.re - wx) / SCALE;
 		fractol->a.min.im = wy + (fractol->a.min.im - wy) / SCALE;
 		fractol->a.size /= SCALE;
+		fractol->a.max_iter - 10 > 0 ? fractol->a.max_iter -= 10 : 0;
 	}
 	thread_draw(fractol);
 	return (0);
