@@ -48,7 +48,7 @@ $(LIBFT):
 $(MLX):
 	$(MAKE) -C $(MLX)
 
-# build checker-----------------------------------------------------------------
+# build fractol-----------------------------------------------------------------
 $(NAME): $(LIBFT) $(MLX) $(OBJ)
 	gcc $(OBJ) -o $(NAME) $(I_FLAGS) $(FLAGS) $(L_LIB) $(MLX_LIB) $(LIBS)
 %.o: %.c $(INC_DIR)fractol.h $(INC_DIR)keyboard.h $(INC_DIR)graphics_base.h
