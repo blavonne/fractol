@@ -84,7 +84,7 @@ typedef struct	s_thread
 
 void			put_usage(void);
 void			fractol_init(t_fractol *fractol);
-void			algebaic_init(t_algebraic *fractol);
+void			algebaic_init(t_algebraic *fractol, char type);
 void			geometric_init(t_geometric *fractol);
 void			geometric_resize(t_geometric *fractol);
 void			check_argv(int argc, char **str);

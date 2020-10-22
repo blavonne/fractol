@@ -28,21 +28,12 @@ t_complex	complex_sum(t_complex z, t_complex c)
 	return (sum);
 }
 
-t_complex	complex_square_abs(t_complex z)
+t_complex	abs_square_sum(t_complex z, t_complex c)
 {
-	double	a;
+	double	t;
 
-	a = fabs(z.re * z.re - z.im * z.im);
-	z.im = fabs(2 * z.re * z.im);
-	z.re = a;
+	t = fabs(z.re * z.re - z.im * z.im + c.re);
+	z.im = fabs(2 * z.re * z.im + c.im);
+	z.re = t;
 	return (z);
-}
-
-t_complex	complex_sum_abs(t_complex z, t_complex c)
-{
-	t_complex	sum;
-
-	sum.re = fabs(z.re + c.re);
-	sum.im = fabs(z.im + c.im);
-	return (sum);
 }

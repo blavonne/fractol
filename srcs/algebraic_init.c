@@ -1,10 +1,10 @@
 #include "fractol.h"
 
-void	algebaic_init(t_algebraic *fractol)
+void	algebaic_init(t_algebraic *fractol, char type)
 {
 	fractol->max_iter = 255;
 	fractol->color_shift = 0;
-	fractol->type = 0;
+	fractol->type = type;
 	fractol->draw_a[0] = &mandelbrot;
 	fractol->draw_a[1] = &julia;
 	fractol->draw_a[2] = &burning;

@@ -57,7 +57,6 @@ t_point				point_init(int x, int y);
 t_complex			complex_init(double re, double im);
 t_complex			complex_square(t_complex z);
 t_complex			complex_sum(t_complex z, t_complex c);
-t_complex			complex_square_abs(t_complex z);
-t_complex			complex_sum_abs(t_complex z, t_complex c);
+t_complex			abs_square_sum(t_complex z, t_complex c);
 
 #endif
