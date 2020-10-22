@@ -12,6 +12,10 @@ static int	gradient(int start, int finish, double k)
 	return ((r << 16) | (g << 8) | b);
 }
 
+/*
+** если цвета в этом коде расположить 01 12 23 34, то будет плавный переход
+*/
+
 static int	set_color(int color_shift, int iter, int maxiter)
 {
 	double				k;
