@@ -39,6 +39,8 @@ int			set_julia_c(int x, int y, t_fractol *fractol)
 //	Делишь на img_size, умножаешь на size, добавляешь min
 	fractol->a.c.re = x * fractol->a.size / fractol->a.img_size + min.re;
 	fractol->a.c.im = y * fractol->a.size / fractol->a.img_size + min.im;
+	printf("c re %f, c im %f\n", fractol->a.c.re, fractol->a.c.im);
+	thread_draw(fractol);
 }
 
 void		thread_draw(void *data)
