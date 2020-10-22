@@ -43,17 +43,3 @@ void		geometric_resize(t_geometric *fractol)
 	fractol->kn = kn;
 	fractol->size = fractol->size + BUF;
 }
-
-void		restore_to_default_g(t_fractol *fractol)
-{
-	fractol->g.argb.channel[0] = 0; //a
-	fractol->g.argb.channel[1] = 120; //r
-	fractol->g.argb.channel[2] = 197; //g
-	fractol->g.argb.channel[3] = 212; //b
-	fractol->g.n = 0;
-	fractol->g.offset.x = 0;
-	fractol->g.offset.y = 0;
-	fractol->g.sign = 1;
-	fractol->g.scale = 1;
-	ft_memset(fractol->mlx.image.img, 255, WIDTH * HEIGHT * sizeof(int));
-}

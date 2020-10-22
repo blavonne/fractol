@@ -49,8 +49,19 @@ int				deal_key(int key, t_fractol *fractol)
 	}
 	else if (key == SPACE)
 	{
-		fractol->type ? restore_to_default_g(fractol) :\
-		restore_to_default_a(fractol);
+		if (fractol->type)
+		{
+			ft_memset(fractol->mlx.image.img, 255, WIDTH * HEIGHT * sizeof(int));
+			geometric_init(&fractol->g);
+		}
+		else
+		{
+			ft_memset(fractol->mlx.image.img, 255, fractol->a.img_size *\
+				fractol->a.img_size * sizeof(int));
+			algebaic_init(&fractol->a, fractol->a.type);
+		}
+//		fractol->type ? restore_to_default_g(fractol) :\
+//		restore_to_default_a(fractol);
 	}
 	else if (key == HELP && !fractol->help)
 	{
@@ -67,7 +78,7 @@ int				deal_key(int key, t_fractol *fractol)
 		key == ONE ? fractol->a.type = 0 : 0;
 		key == TWO ? fractol->a.type = 1 : 0;
 		key == THREE ? fractol->a.type = 2 : 0;
-		restore_to_default_a(fractol);
+		deal_key(SPACE, fractol);
 	}
 	fractol->type ? fractol->g.draw_geometric[(int)fractol->g.type](fractol) :\
 	thread_draw(fractol);

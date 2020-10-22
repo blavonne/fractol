@@ -1,7 +1,7 @@
 #ifndef GRAPHICS_BASE_H
 # define GRAPHICS_BASE_H
 
-# define WIDTH			1600
+# define WIDTH			1024
 # define HEIGHT			1024
 
 # include <stdlib.h>
