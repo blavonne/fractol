@@ -31,7 +31,7 @@ SRC = main.c\
 	$(SRC_DIR)put_img_and_background.c\
 	$(SRC_DIR)zoom.c\
 	$(SRC_DIR)color.c\
-	$(SRC_DIR)thread_draw.c\
+	$(SRC_DIR)thread_draw.c
 OBJ = $(SRC:%.c=%.o)
 # flags-------------------------------------------------------------------------
 FLAGS = -Wall -Werror -Wextra
@@ -50,7 +50,7 @@ $(MLX):
 
 # build fractol-----------------------------------------------------------------
 $(NAME): $(LIBFT) $(MLX) $(OBJ)
-	gcc $(OBJ) -o $(NAME) $(I_FLAGS) $(FLAGS) $(L_LIB) $(MLX_LIB) $(LIBS)
+	gcc -o $(NAME) $(OBJ) $(I_FLAGS) $(FLAGS) $(L_LIB) $(MLX_LIB) $(LIBS)
 %.o: %.c $(INC_DIR)fractol.h $(INC_DIR)keyboard.h $(INC_DIR)graphics_base.h
 	gcc -c $< -o $@ $(I_FLAGS) $(FLAGS)
 
