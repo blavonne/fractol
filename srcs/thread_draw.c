@@ -29,25 +29,23 @@ void		draw_a(void *data)
 	}
 }
 
-int			set_julia_c(int x, int y, t_fractol *fractol)
+int			motion(int x, int y, t_fractol *fractol)
 {
 	t_complex  min;
 
 	min = fractol->a.min;
 	x = x - (WIDTH - fractol->a.img_size) / 2;
 	y = y - (HEIGHT - fractol->a.img_size) / 2;
-//  Делишь на img_size, умножаешь на size, добавляешь min
 	if (x >= 0 && y >= 0 && x < fractol->a.img_size && y < fractol->a.img_size)
 	{
 		fractol->a.c.re = x * fractol->a.size / fractol->a.img_size + min.re;
 		fractol->a.c.im = y * fractol->a.size / fractol->a.img_size + min.im;
 	}
-	printf("c re %f, c im %f\n", fractol->a.c.re, fractol->a.c.im);
-	thread_draw(fractol);
+	rendering(fractol);
 	return (0);
 }
 
-void		thread_draw(void *data)
+int			rendering(void *data)
 {
 	t_fractol	*fractol;
 	pthread_t	thread[THREADS];
@@ -70,4 +68,5 @@ void		thread_draw(void *data)
 			clean_exit(fractol);
 	put_img_to_window_a(&fractol->mlx, 0, 0);
 	fractol->help ? help_a(&fractol->mlx) : 0;
+	return (0);
 }

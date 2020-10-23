@@ -1,19 +1,8 @@
 #include "graphics_base.h"
 
-void			create_image(t_mlx *mlx, int width, int height)
-{
-	if (!(mlx->image.ptr = mlx_new_image(mlx->mlx_ptr, width, height)))
-		exit(1);
-	if (!(mlx->image.img = (unsigned char *)mlx_get_data_addr(\
-	mlx->image.ptr, &mlx->image.bps, &mlx->image.size_line,\
-	&mlx->image.endian)))
-		exit(1);
-	ft_memset(mlx->image.img, 255, width * height * sizeof(int));
-}
-
 void			create_background(t_mlx *mlx, int width, int height, int color)
 {
-	if (!(mlx->background.ptr = mlx_new_image(mlx->mlx_ptr, width, height)))
+	if (!(mlx->background.ptr = mlx_new_image(mlx->mlx, width, height)))
 		exit(1);
 	if (!(mlx->background.img = (unsigned char *)mlx_get_data_addr(\
 	mlx->background.ptr, &mlx->background.bps, &mlx->background.size_line,\
@@ -42,8 +31,33 @@ void			colorize(unsigned char *img, int width, int heigh,\
 	}
 }
 
-void			create_window(t_mlx *mlx, int width, int height, char *name)
+void			*create_mlx(void)
 {
-	if (!(mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, width, height, name)))
+	void		*mlx;
+
+	if (!(mlx = mlx_init()))
 		exit(1);
+	return (mlx);
+}
+
+void			*create_win(t_mlx *mlx, int width, int height, char *name)
+{
+	void	*window;
+
+	if (!(window = mlx_new_window(mlx->mlx, width, height, name)))
+		exit(1);
+	return (window);
+}
+
+t_image			create_img(t_mlx *mlx, int width, int height)
+{
+	t_image		img;
+
+	if (!(img.ptr = mlx_new_image(mlx->mlx, width, height)))
+		exit(1);
+	if (!(img.img = (unsigned char *)mlx_get_data_addr(img.ptr, &img.bps,\
+	&img.size_line, &img.endian)))
+		exit(1);
+	ft_memset(img.img, 255, width * height * sizeof(int));
+	return (img);
 }

@@ -1,8 +1,8 @@
 #ifndef GRAPHICS_BASE_H
 # define GRAPHICS_BASE_H
 
-# define WIDTH			1600
-# define HEIGHT			1024
+# define WIDTH			1024
+# define HEIGHT			512
 
 # include <stdlib.h>
 # include "mlx.h"
@@ -38,21 +38,21 @@ typedef struct		s_argb
 
 typedef struct		s_mlx
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
+	void			*mlx;
+	void			*win;
 	t_image			help;
 	t_image			image;
 	t_image			background;
-	t_image			button;
 }					t_mlx;
 
-void				mlx_create(t_mlx *mlx, int width, int height);
-void				create_image(t_mlx *mlx, int width, int height);
+void				*create_mlx(void);
+t_image				create_img(t_mlx *mlx, int width, int height);
 void				create_background(t_mlx *mlx, int width, int height, int\
 					color);
-void				create_window(t_mlx *mlx, int width, int height, char *name);
+void				*create_win(t_mlx *mlx, int width, int height, char *name);
 void				colorize(unsigned char *img, int width, int height,\
 					unsigned int color);
+void				set_color_pixel(unsigned char *img, int i, int argb);
 t_point				point_init(int x, int y);
 t_complex			complex_init(double re, double im);
 t_complex			complex_sum(t_complex z, t_complex c);

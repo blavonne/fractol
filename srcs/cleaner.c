@@ -2,18 +2,18 @@
 
 void	win_destroy(t_mlx *mlx)
 {
-	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	mlx_destroy_window(mlx->mlx, mlx->win);
 }
 
 void	mlx_destroy(t_mlx *mlx)
 {
-	free(mlx->mlx_ptr);
+	free(mlx->mlx);
 }
 
 void	img_destroy(t_mlx *mlx)
 {
-	mlx_destroy_image(mlx->mlx_ptr, mlx->image.ptr);
-	mlx_destroy_image(mlx->mlx_ptr, mlx->background.ptr);
+	mlx_destroy_image(mlx->mlx, mlx->image.ptr);
+	mlx_destroy_image(mlx->mlx, mlx->background.ptr);
 }
 
 void	destroy_fractol(t_fractol *fractol)

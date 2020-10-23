@@ -17,35 +17,43 @@ void		check_argv(int argc, char **argv)
 int			read_argv(char *type, t_fractol *fractol)
 {
 	fractol_init(fractol);
-	if (!(fractol->mlx.mlx_ptr = mlx_init()))
-		exit(1);
-	create_window(&fractol->mlx, WIDTH, HEIGHT, "Mama ja hudozhnik");
+	fractol->mlx.mlx = create_mlx();
+	fractol->mlx.win = create_win(&fractol->mlx, WIDTH, HEIGHT, "Risovach");
 	create_background(&fractol->mlx, WIDTH, HEIGHT, 0xffffff);
 	if (ft_strequ(type, "-J"))
 	{
 		algebaic_init(&fractol->a, 1);
-		create_image(&fractol->mlx, fractol->a.img_size, fractol->a.img_size);
-//		mlx_hook(fractol->mlx.win_ptr, 6, 1L << 6, set_julia_c, fractol);
-		thread_draw(fractol);
+		fractol->mlx.image = create_img(&fractol->mlx, fractol->a.img_size,\
+		fractol->a.img_size);
+//		mlx_hook(fractol->mlx.win, 6, 1L << 6, motion, fractol);
+		rendering(fractol);
 	}
 	else if (ft_strequ(type, "-M"))
 	{
 		algebaic_init(&fractol->a, 0);
-		create_image(&fractol->mlx, fractol->a.img_size, fractol->a.img_size);
-		thread_draw(fractol);
+		fractol->mlx.image = create_img(&fractol->mlx, fractol->a.img_size,\
+		fractol->a.img_size);
+//		rendering(fractol);
 	}
 	else if (ft_strequ(type, "-Koch"))
 	{
 		fractol->type = 1;
 		geometric_init(&fractol->g);
-		create_image(&fractol->mlx, WIDTH, HEIGHT);
+		fractol->mlx.image = create_img(&fractol->mlx, WIDTH, HEIGHT);
 		fractol->g.draw_geometric[(int)fractol->g.type](fractol);
 	}
 	else if (ft_strequ(type, "-Burn"))
 	{
 		algebaic_init(&fractol->a, 2);
-		create_image(&fractol->mlx, fractol->a.img_size, fractol->a.img_size);
-		thread_draw(fractol);
+		fractol->mlx.image = create_img(&fractol->mlx, fractol->a.img_size,\
+		fractol->a.img_size);
+		rendering(fractol);
 	}
+//	if (!fractol->type)
+//	{
+//		fractol->mlx.image = create_img(&fractol->mlx, fractol->a.img_size,\
+//		fractol->a.img_size);
+//		rendering(fractol);
+//	}
 	return (1);
 }

@@ -19,32 +19,20 @@ static void		print_text_g(void *m, void *w)
 
 void			help_g(t_mlx *mlx)
 {
-	t_argb	color;
 	int		i;
+	int		width;
 
 	i = 0;
-	color.channel[0] = 200;
-	color.channel[1] = 0x02;
-	color.channel[2] = 0xC4;
-	color.channel[3] = 0xFA;
-	if (!(mlx->help.ptr = mlx_new_image(mlx->mlx_ptr, WIDTH * 0.2, HEIGHT)))
-		exit(1);
-	if (!(mlx->help.img = (unsigned char *)mlx_get_data_addr(\
-	mlx->help.ptr, &mlx->help.bps, &mlx->help.size_line,\
-	&mlx->help.endian)))
-		exit(1);
-	ft_memset(mlx->help.img, 0, WIDTH * 0.2 * HEIGHT * sizeof(int));
-	while (i < WIDTH * HEIGHT * 0.2 * sizeof(int))
+	width = (int)(WIDTH - ft_min(WIDTH, HEIGHT)) / 2;
+	mlx->help = create_img(mlx, width, HEIGHT);
+	while (i < width * HEIGHT * sizeof(int))
 	{
-		mlx->help.img[i] = color.channel[3];
-		mlx->help.img[i + 1] = color.channel[2];
-		mlx->help.img[i + 2] = color.channel[1];
-		mlx->help.img[i + 3] = color.channel[0];
+		set_color_pixel(mlx->help.img, i, ORCHID);
 		i += 4;
 	}
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr,\
+	mlx_put_image_to_window(mlx->mlx, mlx->win,\
 	mlx->help.ptr, 0, 0);
-	print_text_g(mlx->mlx_ptr, mlx->win_ptr);
+	print_text_g(mlx->mlx, mlx->win);
 }
 
 static void		print_text_a(void *m, void *w)
@@ -54,11 +42,10 @@ static void		print_text_a(void *m, void *w)
 	mlx_string_put(m, w, 10, 5 * 15, 0, "* Main \"-\" and \"+\" to");
 	mlx_string_put(m, w, 10, 7 * 15, 0, "change iteration's count;");
 	mlx_string_put(m, w, 10, 9 * 15, 0, "* NUM \"-\" and \"+\" to");
-	mlx_string_put(m, w, 10, 11 * 15, 0, "change color;");
+	mlx_string_put(m, w, 10, 11 * 15, 0, "change power;");
 	mlx_string_put(m, w, 10, 13 * 15, 0, "* Scroll mouse to zoom;");
 	mlx_string_put(m, w, 10, 15 * 15, 0, "* Space to reset;");
 }
-
 
 void			help_a(t_mlx *mlx)
 {
@@ -69,23 +56,14 @@ void			help_a(t_mlx *mlx)
 	width = (int)(WIDTH - ft_min(WIDTH, HEIGHT)) / 2;
 	if (!mlx->help.ptr)
 	{
-		if (!(mlx->help.ptr = mlx_new_image(mlx->mlx_ptr, width, HEIGHT)))
-			exit(1);
-		if (!(mlx->help.img = (unsigned char *)mlx_get_data_addr(\
-	mlx->help.ptr, &mlx->help.bps, &mlx->help.size_line,\
-	&mlx->help.endian)))
-			exit(1);
-		ft_memset(mlx->help.img, 0, width * HEIGHT * sizeof(int));
-		while (i < WIDTH * HEIGHT * 0.2 * sizeof(int))
+		mlx->help = create_img(mlx, width, HEIGHT);
+		while (i < width * HEIGHT * sizeof(int))
 		{
-			mlx->help.img[i] = (char)ORCHID;
-			mlx->help.img[i + 1] = (char)((unsigned)ORCHID >> 8u);
-			mlx->help.img[i + 2] = (char)((unsigned)ORCHID >> 16u);
-			mlx->help.img[i + 3] = 150;
+			set_color_pixel(mlx->help.img, i, ORCHID);
 			i += 4;
 		}
 	}
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr,\
+	mlx_put_image_to_window(mlx->mlx, mlx->win,\
 	mlx->help.ptr, 0, 0);
-	print_text_a(mlx->mlx_ptr, mlx->win_ptr);
+	print_text_a(mlx->mlx, mlx->win);
 }

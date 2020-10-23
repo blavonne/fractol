@@ -26,7 +26,6 @@ int			julia(t_fractol *fractol, t_complex z)
 	int				iter;
 
 	iter = 0;
-	fractol->a.c = complex_init(-0.55, -0.55);//del
 	while (iter < fractol->a.max_iter)
 	{
 		z = complex_power(z, fractol->a.power);

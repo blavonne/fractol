@@ -52,7 +52,7 @@ void			draw_line(t_point start, t_point end, t_fractol *fractol)
 	offset_y = start.y < end.y ? 1 : -1;
 	cur = start;
 	if (!fractol->mlx.image.ptr)
-		create_image(&fractol->mlx, WIDTH, HEIGHT);
+		fractol->mlx.image = create_img(&fractol->mlx, WIDTH, HEIGHT);
 	while (cur.x <= end.x)
 	{
 		sketch(fractol, cur, steep);

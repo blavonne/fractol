@@ -6,7 +6,7 @@ int				clean_exit(void *param)
 	exit(0);
 }
 
-int				deal_key(int key, t_fractol *fractol)
+int				key_pressed(int key, t_fractol *fractol)
 {
 	printf("deal_key %d\n", key);//del
 	if (key == ESC)
@@ -28,10 +28,10 @@ int				deal_key(int key, t_fractol *fractol)
 	{
 		if ((key == ONE && !fractol->g.type) ||(key == TWO && fractol->g.type))
 			return (0);
-		mlx_destroy_image(fractol->mlx.mlx_ptr, fractol->mlx.image.ptr);
+		mlx_destroy_image(fractol->mlx.mlx, fractol->mlx.image.ptr);
 		fractol->g.offset.x = 0;
 		fractol->g.offset.y = 0;
-		if (!(fractol->mlx.image.ptr = mlx_new_image(fractol->mlx.mlx_ptr,\
+		if (!(fractol->mlx.image.ptr = mlx_new_image(fractol->mlx.mlx,\
 		WIDTH, HEIGHT)))
 			exit(1);
 		if (!(fractol->mlx.image.img = (unsigned char *)mlx_get_data_addr(\
@@ -44,7 +44,7 @@ int				deal_key(int key, t_fractol *fractol)
 	else if (key == HELP && fractol->help)
 	{
 		fractol->help = 0;
-		mlx_destroy_image(fractol->mlx.mlx_ptr, fractol->mlx.help.ptr);
+		mlx_destroy_image(fractol->mlx.mlx, fractol->mlx.help.ptr);
 		fractol->mlx.help.ptr = NULL;
 	}
 	else if (key == SPACE)
@@ -60,8 +60,6 @@ int				deal_key(int key, t_fractol *fractol)
 				fractol->a.img_size * sizeof(int));
 			algebaic_init(&fractol->a, fractol->a.type);
 		}
-//		fractol->type ? restore_to_default_g(fractol) :\
-//		restore_to_default_a(fractol);
 	}
 	else if (key == HELP && !fractol->help)
 	{
@@ -78,9 +76,9 @@ int				deal_key(int key, t_fractol *fractol)
 		key == ONE ? fractol->a.type = 0 : 0;
 		key == TWO ? fractol->a.type = 1 : 0;
 		key == THREE ? fractol->a.type = 2 : 0;
-		deal_key(SPACE, fractol);
+		key_pressed(SPACE, fractol);
 	}
-	fractol->type ? fractol->g.draw_geometric[(int)fractol->g.type](fractol) :\
-	thread_draw(fractol);
+	fractol->type ? fractol->g.draw_geometric[(int)fractol->g.type](fractol) : \
+    rendering(fractol);
 	return (0);
 }
