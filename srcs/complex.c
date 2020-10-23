@@ -18,15 +18,17 @@ t_complex	complex_sum(t_complex z, t_complex c)
 	return (sum);
 }
 
-t_complex	abs_square_sum(t_complex z, t_complex c)
+t_complex	abs_pow_sum(t_complex z, t_complex c, int power)
 {
 	double	t;
 
-	t = fabs(z.re * z.re - z.im * z.im + c.re);
-	z.im = fabs(2 * z.re * z.im + c.im);
+	z = complex_power(z, power);
+	t = fabs(z.re + c.re);
+	z.im = fabs(z.im + c.im);
 	z.re = t;
 	return (z);
 }
+
 t_complex	complex_multiply(t_complex a, t_complex b)
 {
 	t_complex	res;

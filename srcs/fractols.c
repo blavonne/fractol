@@ -49,7 +49,7 @@ int			burning(t_fractol *fractol, t_complex c)
 	while (iter < fractol->a.max_iter)
 	{
 		iter++;
-		z = abs_square_sum(z, c);
+		z = abs_pow_sum(z, c, fractol->a.power);
 		r = z.re * z.re + z.im * z.im;
 		if (r > 4)
 			break ;

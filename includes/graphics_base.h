@@ -60,4 +60,6 @@ t_complex			abs_square_sum(t_complex z, t_complex c);
 t_complex			complex_multiply(t_complex a, t_complex b);
 t_complex			complex_power(t_complex z, int power);
 
+t_complex	abs_pow_sum(t_complex z, t_complex c, int power);
+
 #endif
