@@ -4,17 +4,19 @@
 # define THREADS		16
 # define BUF			4
 # define SCALE			0.6
-# define COLORS			10
+# define COLORS			8
 # define IRIS			0x7000fa
-# define LILAC			0x5b008c
-# define AZURE			0x007dfa
-# define ROSE			0x4d00ff
-# define GRASS			0xad5757
-# define SKY			0x944e71
+# define BLUE			0x02107a
+# define VIOLET			0x4e02ab
+# define ROSE			0x944e71
+# define PEACH			0xad5757
 # define LINDEN			0xadaa66
-# define ORCHID			0xbf656a
-# define WHITE			0xffffff
+
+# define PURPLE			0x421e01
+# define ORCHID			0x6b401d
+
 # define JADE			0xdaede1
+# define WHITE			0xffffff
 # define BLACK			0x000000
 
 # include "mlx.h"

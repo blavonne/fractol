@@ -19,24 +19,30 @@ static int	gradient(int start, int finish, double k)
 static int	set_color(int color_shift, int iter, int maxiter)
 {
 	double				k;
-	static const int	pal[COLORS] = {IRIS, LILAC, AZURE, ROSE, GRASS, SKY,\
-	LINDEN, ORCHID, WHITE};
+	static const int	pal[COLORS] = {IRIS, BLUE, VIOLET, ROSE, PEACH, \
+	LINDEN, PURPLE, ORCHID};
 
-	k = (double)maxiter / 5;
+	k = (double)maxiter / 7;
 	if (iter < k)
 		return (gradient(WHITE, pal[color_shift % COLORS], iter / k));
 	else if (iter < 2 * k)
-		return (gradient(pal[color_shift % COLORS + 1],\
-				pal[color_shift % COLORS + 2], (iter - k) / k));
+		return (gradient(pal[color_shift % COLORS],\
+				pal[color_shift % COLORS + 1], (iter - k) / k));
 	else if (iter < 3 * k)
-		return (gradient(pal[color_shift % COLORS + 3],\
-				pal[color_shift % COLORS + 4], (iter - 2 * k) / k));
+		return (gradient(pal[color_shift % COLORS + 1],\
+				pal[color_shift % COLORS + 2], (iter - 2 * k) / k));
 	else if (iter < 4 * k)
-		return (gradient(pal[color_shift % COLORS + 5],\
-				pal[color_shift % COLORS + 6], (iter - 3 * k) / k));
+		return (gradient(pal[color_shift % COLORS + 2],\
+				pal[color_shift % COLORS + 3], (iter - 3 * k) / k));
+	else if (iter < 5 * k)
+		return (gradient(pal[color_shift % COLORS + 3],\
+				pal[color_shift % COLORS + 4], (iter - 4 * k) / k));
+	else if (iter < 6 * k)
+		return (gradient(pal[color_shift % COLORS + 4],\
+				pal[color_shift % COLORS + 5], (iter - 5 * k) / k));
 	else
-		return (gradient(pal[color_shift % COLORS + 7],\
-				JADE, (iter - 4 * k) / k));
+		return (gradient(pal[color_shift % COLORS + 5],\
+				JADE, (iter - 6 * k) / k));
 }
 
 void		color_init(t_point cur, int iter, t_fractol *fractol)

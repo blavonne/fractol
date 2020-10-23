@@ -25,8 +25,8 @@ int			read_argv(char *type, t_fractol *fractol)
 	{
 		algebaic_init(&fractol->a, 1);
 		create_image(&fractol->mlx, fractol->a.img_size, fractol->a.img_size);
-		mlx_hook(fractol->mlx.win_ptr, 6, 1L << 6, set_julia_c, fractol);
-//		thread_draw(fractol);
+//		mlx_hook(fractol->mlx.win_ptr, 6, 1L << 6, set_julia_c, fractol);
+		thread_draw(fractol);
 	}
 	else if (ft_strequ(type, "-M"))
 	{

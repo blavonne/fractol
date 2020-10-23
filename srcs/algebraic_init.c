@@ -4,7 +4,7 @@ void	algebaic_init(t_algebraic *fractol, char type)
 {
 	fractol->max_iter = 255;
 	fractol->type = type;
-	fractol->color_shift = type == 2 ? 2 : 0;
+	fractol->color_shift = type == 2 ? 6 : 0;
 	fractol->draw_a[0] = &mandelbrot;
 	fractol->draw_a[1] = &julia;
 	fractol->draw_a[2] = &burning;
