@@ -4,28 +4,28 @@ void		draw_a(void *data)
 {
 	t_thread	*thread;
 	t_point		cur;
-	t_complex	point;
+	t_complex	cur_z;
 	t_complex	step;
 
 	thread = data;
 	cur = point_init(0, thread->start);
 	step.re = thread->fractol->a.size / thread->fractol->a.img_size;
 	step.im = thread->fractol->a.size / thread->fractol->a.img_size;
-	point.im = thread->fractol->a.min.im + thread->start * step.im;
+	cur_z.im = thread->fractol->a.min.im + thread->start * step.im;
 	while (cur.y < thread->finish)
 	{
 		cur.x = 0;
-		point.re = thread->fractol->a.min.re;
+		cur_z.re = thread->fractol->a.min.re;
 		while (cur.x < thread->fractol->a.img_size)
 		{
 			color_init(cur,\
 			thread->fractol->a.draw_a[(int)thread->fractol->a.type]\
-			(thread->fractol, point), thread->fractol);
+			(thread->fractol, cur_z), thread->fractol);
 			cur.x++;
-			point.re += step.re;
+			cur_z.re += step.re;
 		}
 		cur.y++;
-		point.im += step.im;
+		cur_z.im += step.im;
 	}
 }
 

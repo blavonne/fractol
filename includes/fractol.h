@@ -16,27 +16,35 @@
 # include <stdio.h>
 
 
-struct			s_algebraic;
-struct			s_geometric;
-struct			s_fractol;
-struct			s_thread;
+typedef struct	s_algebraic	t_algebraic;
+typedef struct	s_geometric	t_geometric;
+typedef struct	s_fractol	t_fractol;
+typedef struct	s_thread	t_thread;
+typedef struct	s_map		t_map;
 
-typedef struct	s_algebraic
+struct	s_map
 {
+	t_complex	z[255];
+	int			size;
+};
+
+struct			s_algebraic
+{
+	t_map		point_orbit;//buddah
 	t_complex	z;//julia
 	t_complex	c;//julia
 	t_complex	min;
-	t_complex	max; //не нужной в моей реализации
+	t_complex	max;
 	double 		size;
-	int			(*draw_a[3])(struct s_fractol *fractol, t_complex point);
-	int			color_shift;
+	int			(*draw_a[4])(struct s_fractol *fractol, t_complex point);
+	int			color_shift;//пока не используется
 	int			max_iter;
 	int 		img_size;
 	int			power;
 	char		type;
-}				t_algebraic;
+};
 
-typedef struct	s_geometric
+struct			s_geometric
 {
 	t_argb		argb;
 	t_complex	*kn;
@@ -47,7 +55,7 @@ typedef struct	s_geometric
 	char		sign;
 	void		(*draw_geometric[2])(struct s_fractol *fractol);
 	char		type;
-}				t_geometric;
+};
 
 /*
 ** sign - переключатель нумпада с режима "+" на режим "-"
@@ -56,21 +64,21 @@ typedef struct	s_geometric
 ** kn - координаты
 */
 
-typedef struct	s_fractol
+struct			s_fractol
 {
 	t_algebraic	a;
 	t_geometric	g;
 	t_mlx		mlx;
 	char		type; //какой фрактал выбран
 	char		help; //вызвано ли меню
-}				t_fractol;
+};
 
-typedef struct	s_thread
+struct			s_thread
 {
 	t_fractol	*fractol;
 	int			start;
 	int			finish;
-}				t_thread;
+};
 
 void			put_usage(void);
 void			fractol_init(t_fractol *fractol);
@@ -108,5 +116,9 @@ void			put_img_to_window_a(t_mlx *mlx, int x, int y);
 void			create_koch(t_fractol *fractol);
 void			create_snow(t_fractol *fractol);
 void			draw_line(t_point start, t_point end, t_fractol *fractol);
+
+int		buddah(t_fractol *fractol, t_complex c);
+int	gradient(int start, int finish, double k);
+int	set_color(char type, int iter, int maxiter);
 
 #endif

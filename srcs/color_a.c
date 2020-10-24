@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-static int	gradient(int start, int finish, double k)
+int	gradient(int start, int finish, double k)
 {
 	int		r;
 	int		g;
@@ -33,7 +33,7 @@ static void	set_palette(int *palette, char type)
 ** если цвета в этом коде расположить 01 12 23 34, то будет плавный переход
 */
 
-static int	set_color(char type, int iter, int maxiter)
+int	set_color(char type, int iter, int maxiter)
 {
 	double	k;
 	int		palette[COLORS];
