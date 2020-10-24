@@ -6,6 +6,7 @@ void		draw_a(void *data)
 	t_point		cur;
 	t_complex	cur_z;
 	t_complex	step;
+	int			iter;
 
 	thread = data;
 	cur = point_init(0, thread->start);
@@ -18,9 +19,9 @@ void		draw_a(void *data)
 		cur_z.re = thread->fractol->a.min.re;
 		while (cur.x < thread->fractol->a.img_size)
 		{
-			color_init(cur,\
-			thread->fractol->a.draw_a[(int)thread->fractol->a.type]\
-			(thread->fractol, cur_z), thread->fractol);
+			iter = thread->fractol->a.draw_a[(int)thread->fractol->a.type]\
+			(thread->fractol, cur_z);
+			color_init(cur, iter, thread->fractol);
 			cur.x++;
 			cur_z.re += step.re;
 		}

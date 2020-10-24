@@ -22,7 +22,7 @@ typedef struct	s_fractol	t_fractol;
 typedef struct	s_thread	t_thread;
 typedef struct	s_map		t_map;
 
-struct	s_map
+struct			s_map
 {
 	t_complex	z[255];
 	int			size;
@@ -30,7 +30,6 @@ struct	s_map
 
 struct			s_algebraic
 {
-	t_map		point_orbit;//buddah
 	t_complex	z;//julia
 	t_complex	c;//julia
 	t_complex	min;
@@ -117,8 +116,10 @@ void			create_koch(t_fractol *fractol);
 void			create_snow(t_fractol *fractol);
 void			draw_line(t_point start, t_point end, t_fractol *fractol);
 
-int		buddah(t_fractol *fractol, t_complex c);
-int	gradient(int start, int finish, double k);
-int	set_color(char type, int iter, int maxiter);
+int				buddah_iter(t_fractol *fractol, t_complex c);
+int				buddah(t_fractol *fractol, t_complex c);
+void			buddah_color(unsigned char *img, int size, int maxiter);
+int				gradient(int start, int finish, double k);
+int				set_color(char type, int iter, int maxiter);
 
 #endif

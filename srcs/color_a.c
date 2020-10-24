@@ -61,14 +61,17 @@ void		color_init(t_point cur, int iter, t_fractol *fractol)
 	int		i;
 	int		color;
 
-	i = (cur.y * fractol->a.img_size + cur.x) * (int)sizeof(int);
-	color = set_color(fractol->a.type, iter, fractol->a.max_iter);
-	if (i < fractol->a.img_size * fractol->a.img_size * (int)sizeof(int))
+	if (fractol->type != 3)
 	{
-		fractol->mlx.image.img[i++] = color;
-		fractol->mlx.image.img[i++] = (unsigned)color >> 8u;
-		fractol->mlx.image.img[i++] = (unsigned)color >> 16u;
-		fractol->mlx.image.img[i] = 0;
+		i = (cur.y * fractol->a.img_size + cur.x) * (int)sizeof(int);
+		color = set_color(fractol->a.type, iter, fractol->a.max_iter);
+		if (i < fractol->a.img_size * fractol->a.img_size * (int)sizeof(int))
+		{
+			fractol->mlx.image.img[i++] = color;
+			fractol->mlx.image.img[i++] = (unsigned)color >> 8u;
+			fractol->mlx.image.img[i++] = (unsigned)color >> 16u;
+			fractol->mlx.image.img[i] = 0;
+		}
 	}
 }
 

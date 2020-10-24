@@ -55,6 +55,7 @@ int			read_argv(char *type, t_fractol *fractol)
 		fractol->mlx.image = create_img(&fractol->mlx, fractol->a.img_size,\
 			fractol->a.img_size);
 		buddah(fractol, (t_complex){.re = 0, .im = 0});
+//		rendering(fractol);
 	}
 //	if (!fractol->type)
 //	{
