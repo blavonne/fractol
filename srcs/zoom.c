@@ -28,26 +28,27 @@ int					zoom_a(int key, int x, int y, t_fractol *fractol)
 {
 	t_complex	cursor;
 
-	if (x < (WIDTH - fractol->a.img_size) / 2 || x > (WIDTH +\
-	fractol->a.img_size) / 2)
-		return (0);
-	if (fractol->type)
-		return (0);
-	cursor = screen_to_complex(x, y, fractol);
-	if (key == MOUSE_SCROLL_DOWN)
+	if (fractol->a.type < 3)
 	{
-		fractol->a.min.re = cursor.re + (fractol->a.min.re - cursor.re) * SCALE;
-		fractol->a.min.im = cursor.im + (fractol->a.min.im - cursor.im) * SCALE;
-		fractol->a.size *= SCALE;
-		fractol->a.max_iter + 10 > 0 ? fractol->a.max_iter += 10 : 0;
+		if (x < (WIDTH - fractol->a.img_size) / 2 || x > (WIDTH +\
+			fractol->a.img_size) / 2 || fractol->type || fractol->a.type > 3)
+			return (0);
+		cursor = screen_to_complex(x, y, fractol);
+		if (key == MOUSE_SCROLL_DOWN)
+		{
+			fractol->a.min.re = cursor.re + (fractol->a.min.re - cursor.re) * SCALE;
+			fractol->a.min.im = cursor.im + (fractol->a.min.im - cursor.im) * SCALE;
+			fractol->a.size *= SCALE;
+			fractol->a.max_iter + 10 > 0 ? fractol->a.max_iter += 10 : 0;
+		}
+		if (key == MOUSE_SCROLL_UP)
+		{
+			fractol->a.min.re = cursor.re + (fractol->a.min.re - cursor.re) / SCALE;
+			fractol->a.min.im = cursor.im + (fractol->a.min.im - cursor.im) / SCALE;
+			fractol->a.size /= SCALE;
+			fractol->a.max_iter - 10 > 0 ? fractol->a.max_iter -= 10 : 0;
+		}
+		rendering(fractol);
 	}
-	if (key == MOUSE_SCROLL_UP)
-	{
-		fractol->a.min.re = cursor.re + (fractol->a.min.re - cursor.re) / SCALE;
-		fractol->a.min.im = cursor.im + (fractol->a.min.im - cursor.im) / SCALE;
-		fractol->a.size /= SCALE;
-		fractol->a.max_iter - 10 > 0 ? fractol->a.max_iter -= 10 : 0;
-	}
-	rendering(fractol);
 	return (0);
 }

@@ -15,7 +15,6 @@
 # include <pthread.h>
 # include <stdio.h>
 
-
 typedef struct	s_algebraic	t_algebraic;
 typedef struct	s_geometric	t_geometric;
 typedef struct	s_fractol	t_fractol;
@@ -24,7 +23,7 @@ typedef struct	s_map		t_map;
 
 struct			s_map
 {
-	t_complex	z[255];
+	t_complex	z[2000];
 	int			size;
 };
 
@@ -41,6 +40,7 @@ struct			s_algebraic
 	int 		img_size;
 	int			power;
 	char		type;
+	char		motion_on;
 };
 
 struct			s_geometric
@@ -116,9 +116,8 @@ void			create_koch(t_fractol *fractol);
 void			create_snow(t_fractol *fractol);
 void			draw_line(t_point start, t_point end, t_fractol *fractol);
 
-int				buddah_iter(t_fractol *fractol, t_complex c);
-int				buddah(t_fractol *fractol, t_complex c);
-void			buddah_color(unsigned char *img, int size, int maxiter);
+void			buddah_iter(t_fractol *fractol, char channel, int count);
+int				buddah(t_fractol *fractol);
 int				gradient(int start, int finish, double k);
 int				set_color(char type, int iter, int maxiter);
 

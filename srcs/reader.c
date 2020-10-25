@@ -25,7 +25,7 @@ int			read_argv(char *type, t_fractol *fractol)
 		algebaic_init(&fractol->a, 1);
 		fractol->mlx.image = create_img(&fractol->mlx, fractol->a.img_size,\
 		fractol->a.img_size);
-//		mlx_hook(fractol->mlx.win, 6, 1L << 6, motion, fractol);
+		mlx_hook(fractol->mlx.win, 6, 1L << 6, motion, fractol);
 		rendering(fractol);
 	}
 	else if (ft_strequ(type, "-M"))
@@ -33,7 +33,7 @@ int			read_argv(char *type, t_fractol *fractol)
 		algebaic_init(&fractol->a, 0);
 		fractol->mlx.image = create_img(&fractol->mlx, fractol->a.img_size,\
 		fractol->a.img_size);
-//		rendering(fractol);
+		rendering(fractol);
 	}
 	else if (ft_strequ(type, "-Koch"))
 	{
@@ -54,7 +54,7 @@ int			read_argv(char *type, t_fractol *fractol)
 		algebaic_init(&fractol->a, 3);
 		fractol->mlx.image = create_img(&fractol->mlx, fractol->a.img_size,\
 			fractol->a.img_size);
-		buddah(fractol, (t_complex){.re = 0, .im = 0});
+		buddah(fractol);
 //		rendering(fractol);
 	}
 //	if (!fractol->type)

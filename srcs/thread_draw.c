@@ -32,17 +32,20 @@ void		draw_a(void *data)
 
 int			motion(int x, int y, t_fractol *fractol)
 {
-	t_complex  min;
+	t_complex	min;
 
-	min = fractol->a.min;
-	x = x - (WIDTH - fractol->a.img_size) / 2;
-	y = y - (HEIGHT - fractol->a.img_size) / 2;
-	if (x >= 0 && y >= 0 && x < fractol->a.img_size && y < fractol->a.img_size)
+	if (fractol->a.motion_on && fractol->a.type == 1)
 	{
-		fractol->a.c.re = x * fractol->a.size / fractol->a.img_size + min.re;
-		fractol->a.c.im = y * fractol->a.size / fractol->a.img_size + min.im;
+		min = fractol->a.min;
+		x = x - (WIDTH - fractol->a.img_size) / 2;
+		y = y - (HEIGHT - fractol->a.img_size) / 2;
+		if (x >= 0 && y >= 0 && x < fractol->a.img_size && y < fractol->a.img_size)
+		{
+			fractol->a.c.re = x * fractol->a.size / fractol->a.img_size + min.re;
+			fractol->a.c.im = y * fractol->a.size / fractol->a.img_size + min.im;
+		}
+		rendering(fractol);
 	}
-	rendering(fractol);
 	return (0);
 }
 

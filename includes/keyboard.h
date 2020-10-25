@@ -10,21 +10,24 @@
 # define ARROW_RIGHT		65363
 # define SPACE				32
 
-# define NUM_PLUS		65451
-# define NUM_MINUS		65453
+# define NUM_PLUS			65451
+# define NUM_MINUS			65453
 
-# define MAIN_PLUS		61
-# define MAIN_MINUS		45
+# define MAIN_PLUS			61
+# define MAIN_MINUS			45
 
 # define BLUE				98 //b
 # define RED				114 //r
 # define GREEN				103 //g
 # define ALPHA				116 //t
 # define HELP				105 //i
+# define PAUSE				112 //p
 
 # define ONE				49
 # define TWO				50
 # define THREE				51
+# define FOUR				52
+# define FIVE				53
 # else
 # define ESC				53
 # define MOUSE_SCROLL_UP	4

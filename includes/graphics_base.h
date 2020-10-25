@@ -56,10 +56,9 @@ void				set_color_pixel(unsigned char *img, int i, int argb);
 t_point				point_init(int x, int y);
 t_complex			complex_init(double re, double im);
 t_complex			complex_sum(t_complex z, t_complex c);
-t_complex			abs_square_sum(t_complex z, t_complex c);
 t_complex			complex_multiply(t_complex a, t_complex b);
 t_complex			complex_power(t_complex z, int power);
-
-t_complex	abs_pow_sum(t_complex z, t_complex c, int power);
+t_complex			not_random();
+t_complex			abs_pow_sum(t_complex z, t_complex c, int power);
 
 #endif

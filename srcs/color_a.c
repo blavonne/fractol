@@ -14,19 +14,19 @@ int	gradient(int start, int finish, double k)
 
 static void	set_palette(int *palette, char type)
 {
-	const int	var1[COLORS] = {IRIS, DEEP_BLUE, VIOLET, ROSE, PEACH,\
+	const int	iris_gold[COLORS] = {IRIS, DEEP_BLUE, VIOLET, ROSE, PEACH,\
 	LINDEN, WHITE, JADE};
-	const int	var2[COLORS] = {DUSK, DARK_GOLD, BROWN, ORANGE, GOLD,\
+	const int	burning_sea[COLORS] = {DUSK, DARK_GOLD, BROWN, ORANGE, GOLD,\
 	YELLOW, WHITE, CIAN};
-	const int	var3[COLORS] = {VINE, BROWN, LIGHT_BROWN, ORANGE, GOLD,\
+	const int	red_gold[COLORS] = {VINE, BROWN, LIGHT_BROWN, ORANGE, GOLD,\
 	YELLOW, WHITE, BLOOD};
 
-	if (type == 2)
-		ft_memcpy(palette, var2, sizeof(int) * 8);
+	if (type == 0)
+		ft_memcpy(palette, red_gold, sizeof(int) * 8);
 	else if (type == 1)
-		ft_memcpy(palette, var1, sizeof(int) * 8);
-	else if (type == 0)
-		ft_memcpy(palette, var3, sizeof(int) * 8);
+		ft_memcpy(palette, iris_gold, sizeof(int) * 8);
+	else if (type == 2)
+		ft_memcpy(palette, burning_sea, sizeof(int) * 8);
 }
 
 /*

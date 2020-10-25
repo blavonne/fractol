@@ -1,14 +1,5 @@
 #include "graphics_base.h"
 
-t_complex	complex_init(double re, double im)
-{
-	t_complex	complex;
-
-	complex.re = re;
-	complex.im = im;
-	return (complex);
-}
-
 t_complex	complex_sum(t_complex z, t_complex c)
 {
 	t_complex	sum;
