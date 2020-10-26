@@ -8,8 +8,8 @@ void		check_argv(int argc, char **argv)
 		put_usage();
 	i = 0;
 	if (ft_strequ(argv[1], "-Julia") || ft_strequ(argv[1], "-Mandelbrot") ||\
-	ft_strequ(argv[1], "-Koch") || ft_strequ(argv[1], "-Abuddah") ||\
-	ft_strequ(argv[1], "-Ship") || ft_strequ(argv[1], "-Buddah"))
+	ft_strequ(argv[1], "-Koch") || ft_strequ(argv[1], "-Abuddha") ||\
+	ft_strequ(argv[1], "-Ship") || ft_strequ(argv[1], "-Buddha"))
 		i = 1;
 	(!i) ? put_usage() : 0;
 }
@@ -24,8 +24,8 @@ int			read_argv(char *type, t_fractol *fractol)
 	ft_strequ(type, "-Mandelbrot") ? algebaic_init(&fractol->a, 0) : 0;
 	ft_strequ(type, "-Koch") ? fractol->type = 1 : 0;
 	ft_strequ(type, "-Ship") ? algebaic_init(&fractol->a, 2) : 0;
-	ft_strequ(type, "-Buddah") ? algebaic_init(&fractol->a, 3) : 0;
-	ft_strequ(type, "-Abuddah") ? algebaic_init(&fractol->a, 4) : 0;
+	ft_strequ(type, "-Buddha") ? algebaic_init(&fractol->a, 3) : 0;
+	ft_strequ(type, "-Abuddha") ? algebaic_init(&fractol->a, 4) : 0;
 	if (!fractol->type)
 	{
 		fractol->mlx.image = create_img(&fractol->mlx, fractol->a.img_size,\

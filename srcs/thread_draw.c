@@ -62,7 +62,9 @@ int			rendering(void *data)
 	i = 0;
 	fractol = data;
 	if (fractol->a.type > 2)
-		return (buddah(fractol));
+		return (buddha(fractol));
+	if (fractol->type)
+		return (0);
 	while (i < THREADS)
 	{
 		info[i].fractol = fractol;

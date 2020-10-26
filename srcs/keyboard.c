@@ -82,6 +82,6 @@ int				key_pressed(int key, t_fractol *fractol)
 		rendering(fractol);
 	else if (!fractol->type && (key == NUM_PLUS || key == NUM_MINUS ||\
 	key == FOUR || key == FIVE))
-		buddah(fractol);
+		buddha(fractol);
 	return (0);
 }
