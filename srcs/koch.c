@@ -38,7 +38,7 @@ static void		set_coords(t_point *begin, t_point *end, int i, t_geometric *g)
 static void		fract_koch(t_fractol *fractol, t_complex *coord, t_complex *kn,\
 		int *m)
 {
-	while (m[0] < fractol->g.n)
+	while (m[0] < fractol->g.power)
 	{
 		m[2] = pow(4.0, m[0] + 1);
 		m[1] = 0;
@@ -78,7 +78,7 @@ void			create_koch(t_fractol *fractol)
 	traf(coord[0], coord[1], &fractol->g, 0);
 	fract_koch(fractol, coord, kn, m);
 	m[1] = 0;
-	while (m[1] < 4 * m[2] || (!fractol->g.n && m[1] < 4))
+	while (m[1] < 4 * m[2] || (!fractol->g.power && m[1] < 4))
 	{
 		set_coords(&point[0], &point[1], m[1], &fractol->g);
 		draw_line(point[0], point[1], fractol);
@@ -90,7 +90,7 @@ void			create_koch(t_fractol *fractol)
 
 static void		fract_snow(t_fractol *fractol, t_complex *kn, int *m)
 {
-	while (m[0] < fractol->g.n)
+	while (m[0] < fractol->g.power)
 	{
 		m[2] = 3 * pow(4.0, m[0] + 1);
 		m[1] = 0;
@@ -130,7 +130,7 @@ void			create_snow(t_fractol *fractol)
 	traf(coord[2], coord[1], &fractol->g, 8);
 	fract_snow(fractol, kn, m);
 	m[1] = 0;
-	while (m[1] < 4 * m[2] || (!fractol->g.n && m[1] < 12))
+	while (m[1] < 4 * m[2] || (!fractol->g.power && m[1] < 12))
 	{
 		set_coords(&point[0], &point[1], m[1], &fractol->g);
 		draw_line(point[0], point[1], fractol);

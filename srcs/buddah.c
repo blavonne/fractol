@@ -61,17 +61,18 @@ void		buddah_circle(unsigned char *img, int width, int height, int color)
 	int		x;
 	int		y;
 	int		cur;
+	int		r;
 
 	y = 0;
+	r = width / 2;
 	while (y < height)
 	{
 		x = 0;
 		while (x < width)
 		{
 			cur = (y * width + x) * (int)sizeof(int);
-			if (pow(x, 2) + pow(y, 2) > pow(round(width / 2), 2))
+			if (pow(r - 1, 2) < pow((r - x), 2) + pow((r - y), 2))
 			{
-				printf("x%d y%d ", x, y);
 				img[cur] = color;
 				img[cur + 1] = (unsigned)color >> 8u;
 				img[cur + 2] = (unsigned)color >> 16u;

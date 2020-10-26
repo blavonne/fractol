@@ -29,6 +29,4 @@
 # define PURPLE			0x421e01
 # define ORCHID			0x999999
 
-
-
 #endif

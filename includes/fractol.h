@@ -50,7 +50,7 @@ struct			s_geometric
 	t_point		offset;
 	double		scale;
 	size_t		size;
-	int			n;
+	int			power;
 	char		sign;
 	void		(*draw_geometric[2])(struct s_fractol *fractol);
 	char		type;
@@ -115,6 +115,10 @@ void			put_img_to_window_a(t_mlx *mlx, int x, int y);
 void			create_koch(t_fractol *fractol);
 void			create_snow(t_fractol *fractol);
 void			draw_line(t_point start, t_point end, t_fractol *fractol);
+
+void			help_handler(int key, t_fractol *fractol);
+void			type_handler_a(int key, t_fractol *fractol);
+void			type_handler_g(int key, t_fractol *fractol);
 
 void			buddah_iter(t_fractol *fractol, char channel, int count);
 int				buddah(t_fractol *fractol);

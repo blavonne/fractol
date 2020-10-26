@@ -1,5 +1,12 @@
 #include "fractol.h"
 
+/*
+** channel[0] = transparency;
+** channel[1] = red;
+** channel[2] = green;
+** channel[3] = blue;
+*/
+
 void		geometric_init(t_geometric *fractol)
 {
 	t_complex	*kn;
@@ -9,12 +16,12 @@ void		geometric_init(t_geometric *fractol)
 		exit(1);
 	ft_memset(kn, 0, sizeof(t_complex) * (fractol->size + BUF));
 	fractol->size = BUF;
-	fractol->argb.channel[0] = 0; //a
-	fractol->argb.channel[1] = 120; //r
-	fractol->argb.channel[2] = 167; //g
-	fractol->argb.channel[3] = 242; //b
+	fractol->argb.channel[0] = 0;
+	fractol->argb.channel[1] = 120;
+	fractol->argb.channel[2] = 167;
+	fractol->argb.channel[3] = 242;
 	fractol->kn = kn;
-	fractol->n = 0;
+	fractol->power = 0;
 	fractol->offset.x = 0;
 	fractol->offset.y = 0;
 	fractol->sign = 1;

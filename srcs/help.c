@@ -67,3 +67,18 @@ void			help_a(t_mlx *mlx)
 	mlx->help.ptr, 0, 0);
 	print_text_a(mlx->mlx, mlx->win);
 }
+
+void			help_handler(int key, t_fractol *fractol)
+{
+	if (key == HELP && fractol->help)
+	{
+		fractol->help = 0;
+		mlx_destroy_image(fractol->mlx.mlx, fractol->mlx.help.ptr);
+		fractol->mlx.help.ptr = NULL;
+	}
+	else if (key == HELP && !fractol->help)
+	{
+		fractol->help = 1;
+		fractol->type ? help_g(&fractol->mlx) : help_a(&fractol->mlx);
+	}
+}

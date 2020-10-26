@@ -30,3 +30,9 @@ void			clean_knot(t_fractol *fractol)
 	free(fractol->g.kn);
 	fractol->g.kn = NULL;
 }
+
+int				clean_exit(void *param)
+{
+	destroy_fractol((t_fractol *)param);
+	exit(0);
+}
