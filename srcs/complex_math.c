@@ -50,29 +50,3 @@ t_complex	complex_div(t_complex z1, t_complex z2)
 	pow(z2.im, 2));
 	return (division);
 }
-
-t_complex	complex_sin(t_complex z)
-{
-	t_complex	res;
-
-	res.re = sin(z.re) * cosh(z.im);
-	res.im = -cos(z.re) * sinh(z.im);
-	return (res);
-}
-
-t_complex	complex_cos(t_complex z)
-{
-	t_complex	res;
-
-	res.re = cos(z.re) * cosh(z.im);
-	res.im = -sin(z.re) * sinh(z.im);
-	return (res);
-}
-
-t_complex	complex_tg(t_complex z)
-{
-	t_complex	res;
-
-	res = complex_div(complex_sin(z), complex_cos(z));
-	return (res);
-}

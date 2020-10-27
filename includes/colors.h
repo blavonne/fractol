@@ -26,6 +26,12 @@
 # define VINE			0x380000
 # define BLOOD			0x540d0d
 
+# define GRASS			0x086300
+# define IRELAND		0x7FD515
+# define DARK_GREEN		0x153E04
+# define LEMON			0xE3F91A
+# define DEEP_GREEN		0x0E2F17
+
 # define PURPLE			0x421e01
 # define ORCHID			0x999999
 

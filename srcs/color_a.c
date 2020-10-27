@@ -20,6 +20,8 @@ static void	set_palette(int *palette, char type)
 	YELLOW, WHITE, CIAN};
 	const int	red_gold[COLORS] = {VINE, BROWN, LIGHT_BROWN, ORANGE, GOLD,\
 	YELLOW, WHITE, BLOOD};
+	const int	green_tree[COLORS] = {DEEP_GREEN, GRASS, GOLD, LEMON, YELLOW,\
+	JADE, DARK_GREEN, WHITE};
 
 	if (type == 0)
 		ft_memcpy(palette, red_gold, sizeof(int) * 8);
@@ -28,7 +30,7 @@ static void	set_palette(int *palette, char type)
 	else if (type == 2)
 		ft_memcpy(palette, burning_sea, sizeof(int) * 8);
 	else if (type == 3)
-		ft_memcpy(palette, red_gold, sizeof(int) * 8);
+		ft_memcpy(palette, burning_sea, sizeof(int) * 8);
 }
 
 /*
