@@ -46,12 +46,12 @@ void		buddha_iter(t_fractol *fractol, char channel, int count)
 			r = z.re * z.re + z.im * z.im;
 			if (r > 4 || r == 1./0.)
 			{
-				fractol->a.type == 3 ? update_image(fractol->mlx.image.img,\
+				fractol->a.type == 4 ? update_image(fractol->mlx.image.img,\
 					&map, fractol->a.img_size, channel) : 0;
 				break ;
 			}
 		}
-		fractol->a.type == 4 ? update_image(fractol->mlx.image.img,\
+		fractol->a.type == 5 ? update_image(fractol->mlx.image.img,\
 			&map, fractol->a.img_size, channel) : 0;
 	}
 }

@@ -5,7 +5,7 @@ static void			move_handler(int key, t_fractol *fractol)
 	if (key == ARROW_LEFT || key == ARROW_RIGHT || key == ARROW_UP || key\
 			== ARROW_DOWN)
 	{
-		if (!fractol->type && fractol->a.type < 3)
+		if (!fractol->type && fractol->a.type < 4)
 			move_a(key, fractol);
 		if (fractol->type)
 			move_g(key, fractol);
@@ -78,10 +78,10 @@ int				key_pressed(int key, t_fractol *fractol)
 	help_handler(key, fractol);
 	if (fractol->type)
 		fractol->g.draw_geometric[(int)fractol->g.type](fractol);
-	else if (!fractol->type && fractol->a.type < 3)
+	else if (!fractol->type && fractol->a.type < 4)
 		rendering(fractol);
 	else if (!fractol->type && (key == NUM_PLUS || key == NUM_MINUS ||\
-	key == FOUR || key == FIVE))
+	key == FIVE || key == SIX))
 		buddha(fractol);
 	return (0);
 }

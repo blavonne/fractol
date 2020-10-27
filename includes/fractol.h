@@ -92,6 +92,8 @@ int				mandelbrot(t_fractol *fractol, t_complex c);
 int				julia(t_fractol *fractol, t_complex z);
 int				motion(int x, int y, t_fractol *fractol);
 int				burning(t_fractol *fractol, t_complex c);
+int				man_tg(t_fractol *fractol, t_complex c);
+
 void			color_init(t_point cur, int iter, t_fractol *fractol);
 int				key_pressed(int key, t_fractol *fractol);
 

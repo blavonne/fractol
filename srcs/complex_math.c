@@ -19,17 +19,6 @@ t_complex	complex_sum_abs(t_complex z, t_complex c)
 	return (z);
 }
 
-t_complex	abs_pow_sum(t_complex z, t_complex c, int power)
-{
-	double	t;
-
-	z = complex_power(z, power);
-	t = fabs(z.re + c.re);
-	z.im = fabs(z.im + c.im);
-	z.re = t;
-	return (z);
-}
-
 t_complex	complex_multiply(t_complex a, t_complex b)
 {
 	t_complex	res;
@@ -67,7 +56,7 @@ t_complex	complex_sin(t_complex z)
 	t_complex	res;
 
 	res.re = sin(z.re) * cosh(z.im);
-	res.re = cos(z.re) * sinh(z.im);
+	res.im = -cos(z.re) * sinh(z.im);
 	return (res);
 }
 

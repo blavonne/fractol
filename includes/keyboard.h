@@ -28,6 +28,8 @@
 # define THREE				51
 # define FOUR				52
 # define FIVE				53
+# define SIX				54
+
 # else
 # define ESC				53
 # define MOUSE_SCROLL_UP	4

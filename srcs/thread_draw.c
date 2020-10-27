@@ -61,7 +61,7 @@ int			rendering(void *data)
 
 	i = 0;
 	fractol = data;
-	if (fractol->a.type > 2)
+	if (fractol->a.type > 3)
 		return (buddha(fractol));
 	if (fractol->type)
 		return (0);

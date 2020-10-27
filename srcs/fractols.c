@@ -57,3 +57,24 @@ int			burning(t_fractol *fractol, t_complex c)
 	}
 	return (iter);
 }
+
+int			man_tg(t_fractol *fractol, t_complex c)
+{
+	int			iter;
+	t_complex	z;
+	double		r;
+
+	iter = 0;
+	z = complex_init(0, 0);
+	while (iter < fractol->a.max_iter)
+	{
+		iter++;
+		z = complex_power(z, fractol->a.power);
+		z = complex_sin(complex_div(z, c));
+		z = complex_sum(z, c);
+		r = z.re * z.re + z.im * z.im;
+		if (r > 4)
+			break ;
+	}
+	return (iter);
+}

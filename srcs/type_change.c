@@ -24,21 +24,23 @@ void			type_handler_g(int key, t_fractol *fractol)
 
 void			type_handler_a(int key, t_fractol *fractol)
 {
-	if (!fractol->type && (key >= ONE && key <= THREE))
+	if (!fractol->type && (key >= ONE && key <= FOUR))
 	{
 		fractol->a.type != 1 ? fractol->a.motion_on = 0 : 0;
 		if (key == ONE && fractol->a.type)
 			fractol->a.type = 0;
-		if (key == TWO && fractol->a.type != 1)
+		else if (key == TWO && fractol->a.type != 1)
 			fractol->a.type = 1;
-		if (key == THREE && fractol->type != 2)
+		else if (key == THREE && fractol->type != 2)
 			fractol->a.type = 2;
+		else if (key == FOUR && fractol->type != 3)
+			fractol->a.type = 3;
 		key_pressed(SPACE, fractol);
 	}
-	else if (!fractol->type && (key >= FOUR && key <= FIVE))
+	else if (!fractol->type && (key >= FIVE && key <= SIX))
 	{
-		key == FOUR ? fractol->a.type = 3 : 0;
 		key == FIVE ? fractol->a.type = 4 : 0;
+		key == SIX ? fractol->a.type = 5 : 0;
 		fractol->a.motion_on = 0;
 	}
 }

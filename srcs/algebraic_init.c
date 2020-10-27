@@ -8,6 +8,7 @@ void	algebaic_init(t_algebraic *fractol, char type)
 	fractol->draw_a[0] = &mandelbrot;
 	fractol->draw_a[1] = &julia;
 	fractol->draw_a[2] = &burning;
+	fractol->draw_a[3] = &man_tg;
 	fractol->img_size = ft_min(WIDTH, HEIGHT); // размер реального поля вывода фрактала
 	fractol->min.re = -2.0; //
 	fractol->min.im = -2.0; // координаты левого верхнего угла поля вывода

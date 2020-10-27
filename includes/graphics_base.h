@@ -60,6 +60,10 @@ t_complex			complex_sum_abs(t_complex z, t_complex c);
 t_complex			complex_multiply(t_complex a, t_complex b);
 t_complex			complex_power(t_complex z, int power);
 t_complex			not_random();
-t_complex			abs_pow_sum(t_complex z, t_complex c, int power);
+
+t_complex			complex_tg(t_complex z);
+t_complex			complex_cos(t_complex z);
+t_complex			complex_sin(t_complex z);
+t_complex			complex_div(t_complex z1, t_complex z2);
 
 #endif

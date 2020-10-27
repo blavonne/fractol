@@ -27,6 +27,8 @@ static void	set_palette(int *palette, char type)
 		ft_memcpy(palette, iris_gold, sizeof(int) * 8);
 	else if (type == 2)
 		ft_memcpy(palette, burning_sea, sizeof(int) * 8);
+	else if (type == 3)
+		ft_memcpy(palette, red_gold, sizeof(int) * 8);
 }
 
 /*
