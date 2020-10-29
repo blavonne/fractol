@@ -14,18 +14,18 @@ int	gradient(int start, int finish, double k)
 
 static void	set_palette(int *palette, char schema)
 {
-	const int	iris_gold[COLORS] = {IRIS, DEEP_BLUE, VIOLET, ROSE, PEACH,\
-	LINDEN, WHITE, JADE};
-	const int	burning_sea[COLORS] = {DUSK, DARK_GOLD, BROWN, ORANGE, GOLD,\
-	YELLOW, WHITE, CIAN};
-	const int	red_gold[COLORS] = {VINE, BROWN, LIGHT_BROWN, ORANGE, GOLD,\
-	YELLOW, WHITE, BLOOD};
-	const int	peacock[COLORS] = {DARK_GREEN, GREEN_BLUE, DARK_GOLD, DARK_GOLD, IRELAND,\
-	AZURE, WHITE, DARK_BLUE};
-	const int	leaf[COLORS] = {DARK_GREEN, GREEN_BLUE, DARK_GOLD, DARK_GOLD,\
-	IRELAND, AZURE, LIGHT_JADE, WHITE};
-	const int	cactus[COLORS] = {DEEP_PEACH, DARK_GOLD, GOLD, ORANGE, LIGHT_BROWN,\
-	BROWN, YELLOW, WARM_GREEN};
+	const int	iris_gold[COLORS] = {WHITE,IRIS, DEEP_BLUE, VIOLET, ROSE,\
+	PEACH, LINDEN,  JADE};
+	const int	burning_sea[COLORS] = {WHITE, DUSK, DARK_GOLD, BROWN, ORANGE,\
+	GOLD, YELLOW, CIAN};
+	const int	red_gold[COLORS] = {WHITE, VINE, BROWN, LIGHT_BROWN, ORANGE,\
+	GOLD, YELLOW, BLOOD};
+	const int	peacock[COLORS] = {WHITE, DARK_GREEN, GREEN_BLUE, DARK_GOLD,\
+	DARK_GOLD, IRELAND, AZURE, DARK_BLUE};
+	const int	leaf[COLORS] = {LIGHT_JADE, DARK_GREEN, GREEN_BLUE, DARK_GOLD,\
+	DARK_GOLD, IRELAND, AZURE, WHITE};
+	const int	cactus[COLORS] = {YELLOW, DEEP_PEACH, DARK_GOLD, GOLD, ORANGE,\
+	LIGHT_BROWN, BROWN, WARM_GREEN};
 
 	if (!schema)
 		ft_memcpy(palette, red_gold, sizeof(int) * 8);
@@ -43,6 +43,7 @@ static void	set_palette(int *palette, char schema)
 
 /*
 ** если цвета в этом коде расположить 01 12 23 34, то будет плавный переход
+** 7 - количество секций, можно поставить другое
 */
 
 int	set_color(char schema, int iter, int maxiter)
@@ -53,19 +54,19 @@ int	set_color(char schema, int iter, int maxiter)
 	set_palette(palette, schema);
 	k = (double)maxiter / 7;
 	if (iter < k)
-		return (gradient(palette[6], palette[0], iter / k));
+		return (gradient(palette[0], palette[1], iter / k));
 	else if (iter < 2 * k)
-		return (gradient(palette[0], palette[1], (iter - k) / k));
+		return (gradient(palette[1], palette[2], (iter - k) / k));
 	else if (iter < 3 * k)
-		return (gradient(palette[1], palette[2], (iter - 2 * k) / k));
+		return (gradient(palette[2], palette[3], (iter - 2 * k) / k));
 	else if (iter < 4 * k)
-		return (gradient(palette[2], palette[3], (iter - 3 * k) / k));
+		return (gradient(palette[3], palette[4], (iter - 3 * k) / k));
 	else if (iter < 5 * k)
-		return (gradient(palette[3], palette[4], (iter - 4 * k) / k));
+		return (gradient(palette[4], palette[5], (iter - 4 * k) / k));
 	else if (iter < 6 * k)
-		return (gradient(palette[4], palette[5], (iter - 5 * k) / k));
+		return (gradient(palette[5], palette[6], (iter - 5 * k) / k));
 	else
-		return (gradient(palette[5], palette[7], (iter - 6 * k) / k));
+		return (gradient(palette[6], palette[7], (iter - 6 * k) / k));
 }
 
 void		color_init(t_point cur, int iter, t_fractol *fractol)

@@ -148,7 +148,6 @@ void			help_handler(int key, t_fractol *fractol);
 void			type_handler_a(int *key, t_fractol *fractol);
 void			type_handler_g(int key, t_fractol *fractol);
 
-void			buddha_iter(t_fractol *fractol, char channel, int count);
 int				buddha(t_fractol *fractol);
 int				gradient(int start, int finish, double k);
 int				set_color(char type, int iter, int maxiter);

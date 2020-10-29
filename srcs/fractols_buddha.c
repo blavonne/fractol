@@ -1,6 +1,7 @@
 #include "fractol.h"
 
-void		update_image(unsigned char *img, t_map *map, int size, char channel)
+static void		update_image(unsigned char *img, t_map *map, int size,\
+		char channel)
 {
 	int		x;
 	int		y;
@@ -26,7 +27,7 @@ void		update_image(unsigned char *img, t_map *map, int size, char channel)
 ** type 3 is buddha (outside of Mandelbrot), type 4 is abuddah (inside)
 */
 
-void		buddha_iter(t_fractol *fractol, char channel, int count)
+static void		buddha_iter(t_fractol *fractol, char channel, int count)
 {
 	t_map		map;
 	t_complex	z;
@@ -56,7 +57,8 @@ void		buddha_iter(t_fractol *fractol, char channel, int count)
 	}
 }
 
-void		buddha_circle(unsigned char *img, int width, int height, int color)
+static void		buddha_circle(unsigned char *img, int width, int height,\
+		int color)
 {
 	int		x;
 	int		y;
@@ -90,7 +92,7 @@ void		buddha_circle(unsigned char *img, int width, int height, int color)
 ** count_points is random value (recommended im_w x im_h x 10)
 */
 
-int			buddha(t_fractol *fractol)
+int				buddha(t_fractol *fractol)
 {
 	int		count_points;
 
