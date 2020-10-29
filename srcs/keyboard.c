@@ -1,20 +1,20 @@
 #include "fractol.h"
 
-static void			move_handler(int key, t_fractol *fractol)
+static void		move_handler(int key, t_fractol *fractol)
 {
 	if (key == ARROW_LEFT || key == ARROW_RIGHT || key == ARROW_UP || key\
 			== ARROW_DOWN)
 	{
-		if (!fractol->type && fractol->a.type < 4)
+		if (!fractol->type && fractol->a.type < 10)
 			move_a(key, fractol);
 		if (fractol->type)
 			move_g(key, fractol);
 	}
-	if (key == PAUSE && !fractol->type && fractol->a.type == 1)
+	if (key == MAIN_P && !fractol->type && fractol->a.type == 1)
 		fractol->a.motion_on = (char)(!fractol->a.motion_on);
 }
 
-static void			power_handler(int key, t_fractol *fractol)
+static void		power_handler(int key, t_fractol *fractol)
 {
 	if ((key == NUM_MINUS || key == NUM_PLUS) && !fractol->type)
 	{
@@ -25,7 +25,7 @@ static void			power_handler(int key, t_fractol *fractol)
 		zoom_g(fractol, key);
 }
 
-static void			restore_handler(int key, t_fractol *fractol)
+static void		restore_handler(int key, t_fractol *fractol)
 {
 	if (key == SPACE)
 	{
@@ -54,14 +54,21 @@ static void			restore_handler(int key, t_fractol *fractol)
 	}
 }
 
-static void			color_handler(int key, t_fractol *fractol)
+static void		color_handler(int key, t_fractol *fractol)
 {
 	if (fractol->type)
 	{
-		if (key == BLUE || key == RED || key == GREEN || key == ALPHA)
+		if (key == MAIN_B || key == MAIN_R || key == MAIN_G || key == MAIN_T)
 			increase_img_color(key, fractol);
 		else if (key == NUM_PLUS || key == NUM_MINUS)
 			fractol->g.sign = (key == NUM_PLUS) ? 1 : 0;
+	}
+	if (!fractol->type && key == MAIN_C)
+	{
+		if (fractol->a.color_schema < 5)
+			fractol->a.color_schema++;
+		else if (fractol->a.color_schema == 5)
+			fractol->a.color_schema = 0;
 	}
 }
 
@@ -72,16 +79,17 @@ int				key_pressed(int key, t_fractol *fractol)
 		clean_exit(fractol);
 	move_handler(key, fractol);
 	power_handler(key, fractol);
-	fractol->type ? type_handler_g(key, fractol) : type_handler_a(key, fractol);
+	fractol->type ? type_handler_g(key, fractol) : type_handler_a(&key,\
+	fractol);
 	restore_handler(key, fractol);
 	color_handler(key, fractol);
 	help_handler(key, fractol);
 	if (fractol->type)
 		fractol->g.draw_geometric[(int)fractol->g.type](fractol);
-	else if (!fractol->type && fractol->a.type < 4)
+	else if (!fractol->type && fractol->a.type < 10)
 		rendering(fractol);
 	else if (!fractol->type && (key == NUM_PLUS || key == NUM_MINUS ||\
-	key == FIVE || key == SIX))
+	key == NUM_EIGHT || key == NUM_NINE))
 		buddha(fractol);
 	return (0);
 }

@@ -1,39 +1,44 @@
 #include "fractol.h"
 
-void		check_argv(int argc, char **argv)
+int			check_argv(int argc, char **argv)
 {
 	int		i;
 
+	i = -1;
 	if (argc != 2)
-		put_usage();
-	i = 0;
-	if (ft_strequ(argv[1], "-Julia") || ft_strequ(argv[1], "-Mandelbrot") ||\
-	ft_strequ(argv[1], "-Koch") || ft_strequ(argv[1], "-Abuddha") ||\
-	ft_strequ(argv[1], "-Ship") || ft_strequ(argv[1], "-Buddha") ||\
-	ft_strequ(argv[1], "-Antoshka"))
-		i = 1;
-	(!i) ? put_usage() : 0;
+		return (i);
+	ft_strequ(argv[1], "-Mandelbrot") ? i = 0 : 0;
+	ft_strequ(argv[1], "-Julia") ? i = 1 : 0;
+	ft_strequ(argv[1], "-Ship") ? i = 2 : 0;
+	ft_strequ(argv[1], "-Antoshka") ? i = 3 : 0;
+	ft_strequ(argv[1], "-Trident") ? i = 4 : 0;
+	ft_strequ(argv[1], "-Turtle") ? i = 5 : 0;
+	ft_strequ(argv[1], "-Ring") ? i = 6 : 0;
+	ft_strequ(argv[1], "-Cactus") ? i = 7 : 0;
+	ft_strequ(argv[1], "-Leaf") ? i = 8 : 0;
+	ft_strequ(argv[1], "-Peacock") ? i = 9 : 0;
+	ft_strequ(argv[1], "-Buddha") ? i = 10 : 0;
+	ft_strequ(argv[1], "-Abuddha") ? i = 11 : 0;
+	ft_strequ(argv[1], "-Koch") ? i = 12 : 0;
+	return (i);
 }
 
-int			read_argv(char *type, t_fractol *fractol)
+int			read_argv(int type, t_fractol *fractol)
 {
 	fractol_init(fractol);
 	fractol->mlx.mlx = create_mlx();
-	fractol->mlx.win = create_win(&fractol->mlx, WIDTH, HEIGHT, type);
+	fractol->mlx.win = create_win(&fractol->mlx, WIDTH, HEIGHT, "Fractol");
 	create_background(&fractol->mlx, WIDTH, HEIGHT, 0xffffff);
-	ft_strequ(type, "-Julia") ? algebaic_init(&fractol->a, 1) : 0;
-	ft_strequ(type, "-Mandelbrot") ? algebaic_init(&fractol->a, 0) : 0;
-	ft_strequ(type, "-Koch") ? fractol->type = 1 : 0;
-	ft_strequ(type, "-Ship") ? algebaic_init(&fractol->a, 2) : 0;
-	ft_strequ(type, "-Buddha") ? algebaic_init(&fractol->a, 4) : 0;
-	ft_strequ(type, "-Abuddha") ? algebaic_init(&fractol->a, 5) : 0;
-	ft_strequ(type, "-Antoshka") ? algebaic_init(&fractol->a, 3) : 0;
+	if (type >= 0 && type <= 11)
+		algebaic_init(&fractol->a, (char)type);
+	else
+		fractol->type = 1;
 	if (!fractol->type)
 	{
 		fractol->mlx.image = create_img(&fractol->mlx, fractol->a.img_size,\
 		fractol->a.img_size);
-		fractol->a.type == 1 ? mlx_hook(fractol->mlx.win, 6, 1L << 6, motion,\
-		fractol) : 0;
+		fractol->a.type == 1 ? mlx_hook(fractol->mlx.win, 6, 1L << 6,\
+		julia_motion, fractol) : 0;
 		rendering(fractol);
 	}
 	else if (fractol->type)

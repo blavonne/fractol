@@ -12,7 +12,7 @@ int	gradient(int start, int finish, double k)
 	return ((r << 16) | (g << 8) | b);
 }
 
-static void	set_palette(int *palette, char type)
+static void	set_palette(int *palette, char schema)
 {
 	const int	iris_gold[COLORS] = {IRIS, DEEP_BLUE, VIOLET, ROSE, PEACH,\
 	LINDEN, WHITE, JADE};
@@ -20,29 +20,37 @@ static void	set_palette(int *palette, char type)
 	YELLOW, WHITE, CIAN};
 	const int	red_gold[COLORS] = {VINE, BROWN, LIGHT_BROWN, ORANGE, GOLD,\
 	YELLOW, WHITE, BLOOD};
-	const int	green_tree[COLORS] = {DEEP_GREEN, GRASS, GOLD, LEMON, YELLOW,\
-	JADE, DARK_GREEN, WHITE};
+	const int	peacock[COLORS] = {DARK_GREEN, GREEN_BLUE, DARK_GOLD, DARK_GOLD, IRELAND,\
+	AZURE, WHITE, DARK_BLUE};
+	const int	leaf[COLORS] = {DARK_GREEN, GREEN_BLUE, DARK_GOLD, DARK_GOLD,\
+	IRELAND, AZURE, LIGHT_JADE, WHITE};
+	const int	cactus[COLORS] = {DEEP_PEACH, DARK_GOLD, GOLD, ORANGE, LIGHT_BROWN,\
+	BROWN, YELLOW, WARM_GREEN};
 
-	if (type == 0)
+	if (!schema)
 		ft_memcpy(palette, red_gold, sizeof(int) * 8);
-	else if (type == 1)
+	else if (schema == 1)
 		ft_memcpy(palette, iris_gold, sizeof(int) * 8);
-	else if (type == 2)
+	else if (schema == 2)
 		ft_memcpy(palette, burning_sea, sizeof(int) * 8);
-	else if (type == 3)
-		ft_memcpy(palette, burning_sea, sizeof(int) * 8);
+	else if (schema == 3)
+		ft_memcpy(palette, cactus, sizeof(int) * 8);
+	else if (schema == 4)
+		ft_memcpy(palette, leaf, sizeof(int) * 8);
+	else if (schema == 5)
+		ft_memcpy(palette, peacock, sizeof(int) * 8);
 }
 
 /*
 ** если цвета в этом коде расположить 01 12 23 34, то будет плавный переход
 */
 
-int	set_color(char type, int iter, int maxiter)
+int	set_color(char schema, int iter, int maxiter)
 {
 	double	k;
 	int		palette[COLORS];
 
-	set_palette(palette, type);
+	set_palette(palette, schema);
 	k = (double)maxiter / 7;
 	if (iter < k)
 		return (gradient(palette[6], palette[0], iter / k));
@@ -68,7 +76,7 @@ void		color_init(t_point cur, int iter, t_fractol *fractol)
 	if (fractol->type != 3)
 	{
 		i = (cur.y * fractol->a.img_size + cur.x) * (int)sizeof(int);
-		color = set_color(fractol->a.type, iter, fractol->a.max_iter);
+		color = set_color(fractol->a.color_schema, iter, fractol->a.max_iter);
 		if (i < fractol->a.img_size * fractol->a.img_size * (int)sizeof(int))
 		{
 			fractol->mlx.image.img[i++] = color;

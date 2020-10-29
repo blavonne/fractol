@@ -66,5 +66,6 @@ t_complex			complex_cos(t_complex z);
 t_complex			complex_sin(t_complex z);
 t_complex			complex_div(t_complex z1, t_complex z2);
 t_complex			complex_derivative(t_complex z, int k);
+t_complex			complex_ln(t_complex z);
 
 #endif

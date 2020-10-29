@@ -16,12 +16,13 @@
 # define MAIN_PLUS			61
 # define MAIN_MINUS			45
 
-# define BLUE				98 //b
-# define RED				114 //r
-# define GREEN				103 //g
-# define ALPHA				116 //t
-# define HELP				105 //i
-# define PAUSE				112 //p
+# define MAIN_B				98 //b
+# define MAIN_R				114 //r
+# define MAIN_G				103 //g
+# define MAIN_T				116 //t
+# define MAIN_I				105 //i
+# define MAIN_P				112 //p
+# define MAIN_C				99 //c
 
 # define ONE				49
 # define TWO				50
@@ -29,6 +30,12 @@
 # define FOUR				52
 # define FIVE				53
 # define SIX				54
+# define SEVEN				55
+# define EIGHT				56
+# define NINE				57
+# define NUM_ONE			65436
+# define NUM_EIGHT			65431
+# define NUM_NINE			65434
 
 # else
 # define ESC				53
@@ -48,14 +55,15 @@
 # define MAIN_PLUS		24
 # define MAIN_MINUS		27
 
-# define BLUE				11 //b
-# define RED				15 //r
-# define GREEN				5 //g
-# define ALPHA				17 //t
-# define HELP				34 //i
+# define MAIN_B				11 //b
+# define MAIN_R				15 //r
+# define MAIN_G				5 //g
+# define MAIN_T				17 //t
+# define MAIN_I				34 //i
 
 # define ONE				18
 # define TWO				19
 # define THREE				20
+
 # endif
 #endif

@@ -20,11 +20,30 @@ typedef struct	s_geometric	t_geometric;
 typedef struct	s_fractol	t_fractol;
 typedef struct	s_thread	t_thread;
 typedef struct	s_map		t_map;
+typedef enum	e_types		t_types;
 
 struct			s_map
 {
 	t_complex	z[2000];
 	int			size;
+};
+
+enum			e_types
+{
+	Mandelbrot,
+	Julia,
+	Ship,
+	Antoshka,
+	Trident,
+	Turtle,
+	Cactus,
+	Ring,
+	Leaf,
+	Peacock,
+	Buddha,
+	Abuddha,
+	Koch,
+	Snowflake,
 };
 
 struct			s_algebraic
@@ -34,13 +53,14 @@ struct			s_algebraic
 	t_complex	min;
 	t_complex	max;
 	double 		size;
-	int			(*draw_a[4])(struct s_fractol *fractol, t_complex point);
-	int			color_shift;//пока не используется
+	char		*name;
+	int			(*draw_a[10])(struct s_fractol *fractol, t_complex point);
 	int			max_iter;
 	int 		img_size;
 	int			power;
 	char		type;
 	char		motion_on;
+	char		color_schema;//пока не используется
 };
 
 struct			s_geometric
@@ -84,15 +104,21 @@ void			fractol_init(t_fractol *fractol);
 void			algebaic_init(t_algebraic *fractol, char type);
 void			geometric_init(t_geometric *fractol);
 void			geometric_resize(t_geometric *fractol);
-void			check_argv(int argc, char **str);
-int				read_argv(char *type, t_fractol *fractol);
+int				check_argv(int argc, char **str);
+int				read_argv(int type, t_fractol *fractol);
 void			draw_a(void *info);
 int				rendering(void *data);
 int				mandelbrot(t_fractol *fractol, t_complex c);
 int				julia(t_fractol *fractol, t_complex z);
-int				motion(int x, int y, t_fractol *fractol);
+int				julia_motion(int x, int y, t_fractol *fractol);
 int				burning(t_fractol *fractol, t_complex c);
 int				antoshka(t_fractol *fractol, t_complex c);
+int				trident(t_fractol *fractol, t_complex c);
+int				turtle(t_fractol *fractol, t_complex c);
+int				cactus(t_fractol *fractol, t_complex c);
+int				ring_ring(t_fractol *fractol, t_complex c);
+int				leaf(t_fractol *fractol, t_complex c);
+int				peacock(t_fractol *fractol, t_complex c);
 
 void			color_init(t_point cur, int iter, t_fractol *fractol);
 int				key_pressed(int key, t_fractol *fractol);
@@ -119,7 +145,7 @@ void			create_snow(t_fractol *fractol);
 void			draw_line(t_point start, t_point end, t_fractol *fractol);
 
 void			help_handler(int key, t_fractol *fractol);
-void			type_handler_a(int key, t_fractol *fractol);
+void			type_handler_a(int *key, t_fractol *fractol);
 void			type_handler_g(int key, t_fractol *fractol);
 
 void			buddha_iter(t_fractol *fractol, char channel, int count);

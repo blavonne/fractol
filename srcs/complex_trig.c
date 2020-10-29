@@ -36,3 +36,10 @@ t_complex	complex_derivative(t_complex z, int k)
 	z.im = k * (z.im);
 	return (z);
 }
+
+t_complex	complex_ln(t_complex z)
+{
+	z.re = 0.5 * log(pow(z.re, 2) + pow(z.im, 2));
+	z.im = atan(z.im / z.re) + M_PI;
+	return (z);
+}

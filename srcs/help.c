@@ -27,7 +27,7 @@ void			help_g(t_mlx *mlx)
 	mlx->help = create_img(mlx, width, HEIGHT);
 	while (i < width * HEIGHT * sizeof(int))
 	{
-		set_color_pixel(mlx->help.img, i, ORCHID);
+		set_color_pixel(mlx->help.img, i, GREY);
 		i += 4;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win,\
@@ -59,7 +59,7 @@ void			help_a(t_mlx *mlx)
 		mlx->help = create_img(mlx, width, HEIGHT);
 		while (i < width * HEIGHT * sizeof(int))
 		{
-			set_color_pixel(mlx->help.img, i, ORCHID);
+			set_color_pixel(mlx->help.img, i, GREY);
 			i += 4;
 		}
 	}
@@ -70,13 +70,13 @@ void			help_a(t_mlx *mlx)
 
 void			help_handler(int key, t_fractol *fractol)
 {
-	if (key == HELP && fractol->help)
+	if (key == MAIN_I && fractol->help)
 	{
 		fractol->help = 0;
 		mlx_destroy_image(fractol->mlx.mlx, fractol->mlx.help.ptr);
 		fractol->mlx.help.ptr = NULL;
 	}
-	else if (key == HELP && !fractol->help)
+	else if (key == MAIN_I && !fractol->help)
 	{
 		fractol->help = 1;
 		fractol->type ? help_g(&fractol->mlx) : help_a(&fractol->mlx);
