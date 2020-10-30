@@ -45,6 +45,21 @@ static void		print_text_a(void *m, void *w)
 	mlx_string_put(m, w, 10, 11 * 15, 0, "change power;");
 	mlx_string_put(m, w, 10, 13 * 15, 0, "* Scroll mouse to zoom;");
 	mlx_string_put(m, w, 10, 15 * 15, 0, "* Space to reset;");
+	mlx_string_put(m, w, 10, 17 * 15, 0, "* C to change color-schema;");
+	mlx_string_put(m, w, 10, 19 * 15, 0, "* I to open/close info;");
+	mlx_string_put(m, w, 10, 21 * 15, 0, "* 1 to draw Mandelbrot;");
+	mlx_string_put(m, w, 10, 23 * 15, 0, "* 2 to draw Julia;");
+	mlx_string_put(m, w, 10, 25 * 15, 0, "* P to start/stop Julia;");
+	mlx_string_put(m, w, 10, 27 * 15, 0, "* 3 to draw Burning ship;");
+	mlx_string_put(m, w, 10, 29 * 15, 0, "* 4 to draw Antoshka;");
+	mlx_string_put(m, w, 10, 31 * 15, 0, "* 4 to draw Trident;");
+	mlx_string_put(m, w, 10, 33 * 15, 0, "* 5 to draw Turtle;");
+	mlx_string_put(m, w, 10, 35 * 15, 0, "* 6 to draw Ring;");
+	mlx_string_put(m, w, 10, 37 * 15, 0, "* 7 to draw Cactus;");
+	mlx_string_put(m, w, 10, 39 * 15, 0, "* 9 to draw Leaf;");
+	mlx_string_put(m, w, 10, 41 * 15, 0, "* NUM 1 to draw Peacock;");
+	mlx_string_put(m, w, 10, 43 * 15, 0, "* NUM 8 to draw Buddha;");
+	mlx_string_put(m, w, 10, 45 * 15, 0, "* NUM 9 to draw Abuddha;");
 }
 
 void			help_a(t_mlx *mlx)
