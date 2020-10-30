@@ -115,18 +115,20 @@ int				check_argv(int argc, char **str);
 int				read_argv(int type, t_fractol *fractol);
 void			draw_a(void *info);
 int				rendering(void *data);
-int				mandelbrot(t_fractol *fractol, t_complex c);
-int				newton(t_fractol *fractol, t_complex c);
+
+int				antoshka(t_fractol *fractol, t_complex c);
+int				burning(t_fractol *fractol, t_complex c);
+int				cactus(t_fractol *fractol, t_complex c);
+int				leaf(t_fractol *fractol, t_complex c);
 int				julia(t_fractol *fractol, t_complex z);
 int				julia_motion(int x, int y, t_fractol *fractol);
-int				burning(t_fractol *fractol, t_complex c);
-int				antoshka(t_fractol *fractol, t_complex c);
+int				mandelbrot(t_fractol *fractol, t_complex c);
+int				newton(t_fractol *fractol, t_complex c);
+int				peacock(t_fractol *fractol, t_complex c);
+int				ring_ring(t_fractol *fractol, t_complex c);
 int				trident(t_fractol *fractol, t_complex c);
 int				turtle(t_fractol *fractol, t_complex c);
-int				cactus(t_fractol *fractol, t_complex c);
-int				ring_ring(t_fractol *fractol, t_complex c);
-int				leaf(t_fractol *fractol, t_complex c);
-int				peacock(t_fractol *fractol, t_complex c);
+int				test(t_fractol *fractol, t_complex c);
 
 void			color_init(t_point cur, int iter, t_fractol *fractol);
 int				key_pressed(int key, t_fractol *fractol);

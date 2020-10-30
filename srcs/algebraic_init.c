@@ -2,7 +2,7 @@
 
 static char	set_schema(char type)
 {
-	printf("set_schema type %d\n", type);
+	printf("set_schema type %d\n", type);//del
 	if (type >= 0 && type <= 2)
 		return (type);
 	else if ((type >= 3 && type <= 6) || type == 10)
@@ -23,7 +23,8 @@ void		algebaic_init(t_algebraic *fractol, char type)
 	fractol->color_schema = set_schema(type);
 	fractol->draw_a[0] = &mandelbrot;
 	fractol->draw_a[1] = &julia;
-	fractol->draw_a[2] = &burning;
+//	fractol->draw_a[2] = &burning;
+	fractol->draw_a[2] = &test;
 	fractol->draw_a[3] = &antoshka;
 	fractol->draw_a[4] = &trident;
 	fractol->draw_a[5] = &turtle;
