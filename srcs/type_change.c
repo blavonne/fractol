@@ -2,23 +2,23 @@
 
 void			type_handler_g(int key, t_fractol *fractol)
 {
-	if (fractol->type && (key == ONE || key == TWO))
+	if (fractol->type && (key == ONE || key == TWO || key == THREE))
 	{
 		if ((key == ONE && !fractol->g.type) ||\
-			(key == TWO && fractol->g.type))
+			(key == TWO && fractol->g.type == 1) || (key == THREE &&\
+			fractol->g.type == 2))
 			return ;
 		mlx_destroy_image(fractol->mlx.mlx, fractol->mlx.image.ptr);
-		fractol->g.offset.x = 0;
-		fractol->g.offset.y = 0;
-		if (!(fractol->mlx.image.ptr = mlx_new_image(fractol->mlx.mlx,\
-				WIDTH, HEIGHT)))
-			exit(1);
-		if (!(fractol->mlx.image.img = (unsigned char *)mlx_get_data_addr(\
-				fractol->mlx.image.ptr, &fractol->mlx.image.bps,\
-				&fractol->mlx.image.size_line, &fractol->mlx.image.endian)))
-			exit(1);
-		ft_memset(fractol->mlx.image.img, 255, WIDTH * HEIGHT * sizeof(int));
-		fractol->g.type = (key == ONE) ? 0 : 1;
+		fractol->g.offset = point_init(0 ,0);
+		fractol->mlx.image = create_img(&fractol->mlx, WIDTH, HEIGHT);
+		fractol->g.power = 0;
+		if (key == ONE)
+			fractol->g.type = 0;
+		else if (key == TWO)
+			fractol->g.type = 1;
+		else
+			fractol->g.type = 2;
+		set_color_schema_g(&fractol->g, fractol->g.type);
 	}
 }
 

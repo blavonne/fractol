@@ -25,8 +25,8 @@ t_point		complex_to_screen(t_complex complex, t_complex size, t_complex min,\
 
 	point.x = (int)round(start.x + (WIDTH - 1) / size.re * (complex.re -\
 	min.re));
-	point.y = -((int)round(start.y + HEIGHT - HEIGHT / size.im * (complex.im -\
-	min.im)));
+	point.y = (int)round(start.y - HEIGHT + HEIGHT / size.im * (complex.im -\
+	min.im));
 	return (point);
 }
 

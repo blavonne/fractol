@@ -63,7 +63,7 @@ static void		fract_koch(t_fractol *fractol, t_complex *coord, t_complex *kn,\
 ** http://rosant.ru/index.php/fractal/14-science/80-fractal?showall=&start=1
 */
 
-void			create_koch(t_fractol *fractol)
+void			koch(t_fractol *fractol)
 {
 	t_complex	coord[2];
 	t_point		point[2];
@@ -109,7 +109,7 @@ static void		fract_snow(t_fractol *fractol, t_complex *kn, int *m)
 	}
 }
 
-void			create_snow(t_fractol *fractol)
+void			snow(t_fractol *fractol)
 {
 	t_complex	coord[3];
 	t_point		point[2];

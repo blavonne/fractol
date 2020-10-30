@@ -29,7 +29,6 @@ static void		sketch(t_fractol *fractol, t_point cur, int steep)
 	fractol->mlx.image.size_line);
 	if (i >= 0 && i < WIDTH * HEIGHT * (int)sizeof(int))
 	{
-		//bgra
 		fractol->mlx.image.img[i++] = fractol->g.argb.channel[3];
 		fractol->mlx.image.img[i++] = fractol->g.argb.channel[2];
 		fractol->mlx.image.img[i++] = fractol->g.argb.channel[1];

@@ -75,7 +75,9 @@ struct			s_geometric
 	t_complex	min;
 	t_complex	max;
 	t_complex	size;
-
+	t_complex	top;
+	double		bough_angle;
+	char		bough_count;
 	char		type;
 	char		sign;
 };
@@ -107,6 +109,7 @@ void			put_usage(void);
 void			fractol_init(t_fractol *fractol);
 void			algebaic_init(t_algebraic *fractol, char type);
 void			geometric_init(t_geometric *fractol, char type);
+void			set_color_schema_g(t_geometric *fractol, char type);
 void			geometric_resize(t_geometric *fractol);
 int				check_argv(int argc, char **str);
 int				read_argv(int type, t_fractol *fractol);
@@ -127,12 +130,7 @@ int				peacock(t_fractol *fractol, t_complex c);
 void			color_init(t_point cur, int iter, t_fractol *fractol);
 int				key_pressed(int key, t_fractol *fractol);
 
-void			win_destroy(t_mlx *mlx);
-void			mlx_destroy(t_mlx *mlx);
-void			img_destroy(t_mlx *mlx);
 int				clean_exit(void *param);
-void			clean_knot(t_fractol *fractol);//ДОБАВИТЬ
-void			destroy_fractol(t_fractol *fractol);
 
 void			help_g(t_mlx *mlx);
 void			help_a(t_mlx *mlx);
@@ -144,8 +142,9 @@ void			increase_img_color(int key, t_fractol *fractol);
 void			put_img_to_window_g(t_mlx *mlx, int x, int y);
 void			put_img_to_window_a(t_mlx *mlx, int x, int y);
 
-void			create_koch(t_fractol *fractol);
-void			create_snow(t_fractol *fractol);
+void			koch(t_fractol *fractol);
+void			snow(t_fractol *fractol);
+void			tree(t_fractol *fractol);
 void			draw_line(t_point start, t_point end, t_fractol *fractol);
 
 void			help_handler(int key, t_fractol *fractol);
@@ -156,5 +155,5 @@ int				buddha(t_fractol *fractol);
 int				gradient(int start, int finish, double k);
 int				set_color(char type, int iter, int maxiter);
 
-void			tree(t_fractol *fractol);
+
 #endif

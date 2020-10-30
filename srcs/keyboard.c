@@ -37,19 +37,13 @@ static void		restore_handler(int key, t_fractol *fractol)
 		}
 		if (fractol->type)
 		{
-			fractol->g.offset.x = 0;
-			fractol->g.offset.y = 0;
+			fractol->g.offset = point_init(0, 0);
 			fractol->g.power = 0;
-			fractol->g.argb.channel[0] = 0; //a
-			fractol->g.argb.channel[1] = 120; //r
-			fractol->g.argb.channel[2] = 167; //g
-			fractol->g.argb.channel[3] = 242; //b
+			set_color_schema_g(&fractol->g, fractol->g.type);
 			fractol->g.sign = 1;
 			fractol->g.scale = 1;
 			ft_memset(fractol->mlx.image.img, 255, WIDTH * HEIGHT *\
 			(int)sizeof(int));
-			free(fractol->g.kn);
-			fractol->g.buf_size = 0;
 		}
 	}
 }

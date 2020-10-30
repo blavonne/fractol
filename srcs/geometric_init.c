@@ -11,38 +11,41 @@ static void	create_knot(t_geometric *fractol)
 {
 	t_complex	*kn;
 
-	if (!(kn = (t_complex *)malloc(sizeof(t_complex) * (fractol->buf_size + BUF))))
+	if (!(kn = (t_complex *)malloc(sizeof(t_complex) *\
+	(fractol->buf_size + BUF))))
 		exit(1);
 	ft_memset(kn, 0, sizeof(t_complex) * (fractol->buf_size + BUF));
 	fractol->buf_size = BUF;
 	fractol->kn = kn;
 }
 
-static void	set_color_schema(t_geometric *fractol, char type)
+void		set_color_schema_g(t_geometric *fractol, char type)
 {
 	if (!type || type == 1)
-		fractol->argb = int_to_argb(0x00A8D8E6);
+		fractol->argb = int_to_argb(AZURE);
 	else if (type == 2)
 		fractol->argb = int_to_argb(GRASS);
 }
 
 void		geometric_init(t_geometric *fractol, char type)
 {
-
-	fractol->buf_size = 0;
 	fractol->type = type;
 	fractol->kn = NULL;
 	fractol->buf_size = 0;
-	if (!type)
-		create_knot(fractol);
-	set_color_schema(fractol, type);
+	create_knot(fractol);
+	set_color_schema_g(fractol, type);
+	fractol->min = complex_init(-1, -1);
+	fractol->max = complex_init(1, 1);
+	fractol->size = complex_init(fractol->max.re - fractol->min.re,\
+	fractol->max.im - fractol->min.im);
 	fractol->power = 0;
-	fractol->offset.x = 0;
-	fractol->offset.y = 0;
+	fractol->offset = point_init(0, 0);
 	fractol->sign = 1;
 	fractol->scale = 1;
-	fractol->draw_g[0] = &create_koch;
-	fractol->draw_g[1] = &create_snow;
+	fractol->bough_count = 2;
+	fractol->bough_angle = 0.5;
+	fractol->draw_g[0] = &koch;
+	fractol->draw_g[1] = &snow;
 	fractol->draw_g[2] = &tree;
 }
 
@@ -52,7 +55,8 @@ void		geometric_resize(t_geometric *fractol)
 	size_t		i;
 
 	i = 0;
-	if (!(kn = (t_complex *)malloc(sizeof(t_complex) * (fractol->buf_size + BUF))))
+	if (!(kn = (t_complex *)malloc(sizeof(t_complex) *\
+	(fractol->buf_size + BUF))))
 		exit(1);
 	ft_memset(kn, 0, sizeof(t_complex) * (fractol->buf_size + BUF));
 	while (i <= fractol->buf_size)
