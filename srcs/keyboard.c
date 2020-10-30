@@ -5,7 +5,7 @@ static void		move_handler(int key, t_fractol *fractol)
 	if (key == ARROW_LEFT || key == ARROW_RIGHT || key == ARROW_UP || key\
 			== ARROW_DOWN)
 	{
-		if (!fractol->type && fractol->a.type < 10)
+		if (!fractol->type && fractol->a.type < 16)
 			move_a(key, fractol);
 		if (fractol->type)
 			move_g(key, fractol);
@@ -80,7 +80,7 @@ int				key_pressed(int key, t_fractol *fractol)
 	help_handler(key, fractol);
 	if (fractol->type)
 		fractol->g.draw_g[(int)fractol->g.type](fractol);
-	else if (!fractol->type && fractol->a.type < 10)
+	else if (!fractol->type && fractol->a.type < 16)
 		rendering(fractol);
 	else if (!fractol->type && (key == NUM_PLUS || key == NUM_MINUS ||\
 	key == NUM_EIGHT || key == NUM_NINE))

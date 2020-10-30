@@ -34,6 +34,7 @@
 # define EIGHT				56
 # define NINE				57
 # define NUM_ONE			65436
+# define NUM_TWO			65433
 # define NUM_EIGHT			65431
 # define NUM_NINE			65434
 

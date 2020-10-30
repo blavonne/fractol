@@ -39,7 +39,7 @@ int			rendering(void *data)
 
 	i = 0;
 	fractol = data;
-	if (fractol->a.type > 9 && fractol->a.type < 12)
+	if (fractol->a.type == 16 || fractol->a.type == 17)
 		return (buddha(fractol));
 	if (fractol->type)
 		return (0);

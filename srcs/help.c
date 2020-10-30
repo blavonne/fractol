@@ -14,7 +14,9 @@ static void		print_text_g(void *m, void *w)
 	mlx_string_put(m, w, 10, 19 * 15, 0x000044, "* T to change transparency;");
 	mlx_string_put(m, w, 10, 21 * 15, 0x000044, "* 1 to draw Koch line;");
 	mlx_string_put(m, w, 10, 23 * 15, 0x000044, "* 2 to draw Koch snowflake;");
-	mlx_string_put(m, w, 10, 25 * 15, 0xff, "* Space to restore to default;");
+	mlx_string_put(m, w, 10, 25 * 15, 0x000044, "* 3 to draw Tree;");
+	mlx_string_put(m, w, 10, 27 * 15, 0x000044, "* 4 to draw Pifagor's tree;");
+	mlx_string_put(m, w, 10, 29 * 15, 0xff, "* Space to restore to default;");
 }
 
 void			help_g(t_mlx *mlx)

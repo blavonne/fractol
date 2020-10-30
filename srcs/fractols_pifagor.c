@@ -1,51 +1,60 @@
 #include "fractol.h"
 
-void		calc_vertex(t_complex *vertex, double q)
+/*
+** vertex[0] = A;
+** vertex[1] = B;
+** vertex[2] = C;
+** vertex[3] = D;
+** vertex[4] = E;
+** http://rosant.ru/index.php/fractal/14-science/80-fractal?showall=&start=5
+*/
+
+static void		calc_vertex(t_complex *vertex, double q)
 {
 	vertex[2] = complex_init(vertex[0].re + vertex[0].im - vertex[1].im,\
-	vertex[0].im + vertex[1].re - vertex[0].re);//C
+	vertex[0].im + vertex[1].re - vertex[0].re);
 
 	vertex[3] = complex_init(vertex[1].re + vertex[0].im - vertex[1].im,\
-	vertex[1].im + vertex[1].re - vertex[0].re);//D
+	vertex[1].im + vertex[1].re - vertex[0].re);
 
 	vertex[4] = complex_init((vertex[2].re + vertex[3].re * pow(q, 2) +\
 	(vertex[2].im - vertex[3].im) * q) / (1 + pow(q, 2)), (vertex[2].im +\
 	vertex[3].im * pow(q, 2) + ((vertex[3].re - vertex[2].re) * q)) / (1 +\
-	pow(q, 2)));//E
+	pow(q, 2)));
 }
 
-void		connect_vertex(t_complex *vertex, t_fractol *fractol)
+static void		connect_vertex(t_complex *vertex, t_fractol *fractol)
 {
 	t_point		start;
 	t_point		end;
 
 	start = complex_to_screen(vertex[0], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4, 0));//A
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//A
 	end = complex_to_screen(vertex[1], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4, 0));//B
-	draw_line(start, end, fractol);//AB
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//B
+	draw_line(start, end, fractol);
 	end = complex_to_screen(vertex[2], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4, 0));//C
-	draw_line(start, end, fractol);//AC
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//C
+	draw_line(start, end, fractol);
 	start = end;//C
 	end = complex_to_screen(vertex[3], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4, 0));//D
-	draw_line(start, end, fractol);//CD
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//D
+	draw_line(start, end, fractol);
 	end = complex_to_screen(vertex[4], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4, 0));//E
-	draw_line(start, end, fractol);//CE
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//E
+	draw_line(start, end, fractol);
 	start = end;//E
 	end = complex_to_screen(vertex[3], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4, 0));//D
-	draw_line(start, end, fractol);//ED
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));;//D
+	draw_line(start, end, fractol);
 	start = end;//D
 	end = complex_to_screen(vertex[1], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4, 0));//B
-	draw_line(start, end, fractol);//DB
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//B
+	draw_line(start, end, fractol);
 }
 
-void		draw_pif(t_complex *base, t_fractol *fractol, t_complex *vertex,\
-		int n)
+static void		draw_pif(t_complex *base, t_fractol *fractol,\
+		t_complex *vertex, int n)
 {
 	t_complex	tmp[5];
 
@@ -65,6 +74,10 @@ void		draw_pif(t_complex *base, t_fractol *fractol, t_complex *vertex,\
 	}
 }
 
+/*
+** base is base (AB) of square (ABCD)
+*/
+
 void		pifagor(t_fractol *fractol)
 {
 	t_complex	vertex[5];
@@ -75,8 +88,8 @@ void		pifagor(t_fractol *fractol)
 	fractol->g.bough_angle = 1;
 	fractol->g.size = complex_init(fractol->g.max.re - fractol->g.min.re,\
 	fractol->g.max.im - fractol->g.min.im);
-	base[0] = complex_init(-0.15, -0.5);//A
-	base[1] = complex_init(0.15, -0.5);//B
+	base[0] = complex_init(-0.15, -0.5);
+	base[1] = complex_init(0.15, -0.5);
 	draw_pif(base, fractol, vertex, n);
 	put_img_to_window_g(&fractol->mlx, 0, 0);
 	fractol->help ? help_g(&fractol->mlx) : 0;

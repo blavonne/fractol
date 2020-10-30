@@ -54,7 +54,7 @@ struct			s_algebraic
 	t_complex	max;
 	double 		size;
 	char		*name;
-	int			(*draw_a[10])(struct s_fractol *fractol, t_complex point);
+	int			(*draw_a[11])(struct s_fractol *fractol, t_complex point);
 	int			max_iter;
 	int 		img_size;
 	int			power;
@@ -116,6 +116,7 @@ int				read_argv(int type, t_fractol *fractol);
 void			draw_a(void *info);
 int				rendering(void *data);
 int				mandelbrot(t_fractol *fractol, t_complex c);
+int				newton(t_fractol *fractol, t_complex c);
 int				julia(t_fractol *fractol, t_complex z);
 int				julia_motion(int x, int y, t_fractol *fractol);
 int				burning(t_fractol *fractol, t_complex c);

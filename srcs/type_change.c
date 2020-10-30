@@ -25,33 +25,40 @@ void			type_handler_g(int key, t_fractol *fractol)
 	}
 }
 
+static int		set_type2(int key, t_fractol *fractol)
+{
+	if (key == NUM_TWO && fractol->type != 10)
+		return (fractol->a.type = 10);
+	else if (key == NUM_EIGHT && fractol->type != 16)
+		return (fractol->a.type = 16);
+	else if (key == NUM_NINE && fractol->type != 17)
+		return (fractol->a.type = 17);
+	return (-1);
+}
+
 static int		set_type(int key, t_fractol *fractol)
 {
 	if (key == ONE && fractol->a.type)
-		fractol->a.type = 0;
+		return (fractol->a.type = 0);
 	else if (key == TWO && fractol->a.type != 1)
-		fractol->a.type = 1;
+		return (fractol->a.type = 1);
 	else if (key == THREE && fractol->type != 2)
-		fractol->a.type = 2;
+		return (fractol->a.type = 2);
 	else if (key == FOUR && fractol->type != 3)
-		fractol->a.type = 3;
+		return (fractol->a.type = 3);
 	else if (key == FIVE && fractol->type != 4)
-		fractol->a.type = 4;
+		return (fractol->a.type = 4);
 	else if (key == SIX && fractol->type != 5)
-		fractol->a.type = 5;
+		return (fractol->a.type = 5);
 	else if (key == SEVEN && fractol->type != 6)
-		fractol->a.type = 6;
+		return (fractol->a.type = 6);
 	else if (key == EIGHT && fractol->type != 7)
-		fractol->a.type = 7;
+		return (fractol->a.type = 7);
 	else if (key == NINE && fractol->type != 8)
-		fractol->a.type = 8;
+		return (fractol->a.type = 8);
 	else if (key == NUM_ONE && fractol->type != 9)
-		fractol->a.type = 9;
-	else if (key == NUM_EIGHT && fractol->type != 10)
-		fractol->a.type = 10;
-	else if (key == NUM_NINE && fractol->type != 11)
-		fractol->a.type = 11;
-	return (-1);
+		return (fractol->a.type = 9);
+	return (set_type2(key, fractol));
 }
 
 void			type_handler_a(int *key, t_fractol *fractol)
@@ -62,11 +69,11 @@ void			type_handler_a(int *key, t_fractol *fractol)
 	old_type = (int)fractol->a.type;
 	if (!fractol->type)
 	{
-		if (*key >= ONE && *key <= NINE || *key == NUM_ONE || *key ==\
-		NUM_NINE || *key == NUM_EIGHT)
+		if ((*key >= ONE && *key <= NINE) || *key == NUM_ONE || *key == NUM_TWO\
+		|| *key == NUM_NINE || *key == NUM_EIGHT)
 		{
 			set_type(*key, fractol);
-			if (fractol->a.type != old_type && fractol->a.type < 10)
+			if (fractol->a.type != old_type && fractol->a.type < 16)
 				*key = SPACE;
 		}
 	}

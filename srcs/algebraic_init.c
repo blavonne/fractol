@@ -5,7 +5,7 @@ static char	set_schema(char type)
 	printf("set_schema type %d\n", type);
 	if (type >= 0 && type <= 2)
 		return (type);
-	else if (type >= 3 && type <= 6)
+	else if ((type >= 3 && type <= 6) || type == 10)
 		return (2);
 	else if (type == 7)
 		return (3);
@@ -31,6 +31,7 @@ void		algebaic_init(t_algebraic *fractol, char type)
 	fractol->draw_a[7] = &cactus;
 	fractol->draw_a[8] = &leaf;
 	fractol->draw_a[9] = &peacock;
+	fractol->draw_a[10] = &newton;
 	fractol->img_size = ft_min(WIDTH, HEIGHT); // размер реального поля вывода фрактала
 	fractol->min.re = -2.0; //
 	fractol->min.im = -2.0; // координаты левого верхнего угла поля вывода
