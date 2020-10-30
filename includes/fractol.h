@@ -69,11 +69,15 @@ struct			s_geometric
 	t_complex	*kn;
 	t_point		offset;
 	double		scale;
-	size_t		size;
+	size_t		buf_size;
+	void		(*draw_g[3])(struct s_fractol *fractol);
 	int			power;
-	char		sign;
-	void		(*draw_geometric[2])(struct s_fractol *fractol);
+	t_complex	min;
+	t_complex	max;
+	t_complex	size;
+
 	char		type;
+	char		sign;
 };
 
 /*
@@ -102,7 +106,7 @@ struct			s_thread
 void			put_usage(void);
 void			fractol_init(t_fractol *fractol);
 void			algebaic_init(t_algebraic *fractol, char type);
-void			geometric_init(t_geometric *fractol);
+void			geometric_init(t_geometric *fractol, char type);
 void			geometric_resize(t_geometric *fractol);
 int				check_argv(int argc, char **str);
 int				read_argv(int type, t_fractol *fractol);
@@ -152,4 +156,5 @@ int				buddha(t_fractol *fractol);
 int				gradient(int start, int finish, double k);
 int				set_color(char type, int iter, int maxiter);
 
+void			tree(t_fractol *fractol);
 #endif

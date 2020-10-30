@@ -20,6 +20,8 @@ int			check_argv(int argc, char **argv)
 	ft_strequ(argv[1], "-Buddha") ? i = 10 : 0;
 	ft_strequ(argv[1], "-Abuddha") ? i = 11 : 0;
 	ft_strequ(argv[1], "-Koch") ? i = 12 : 0;
+	ft_strequ(argv[1], "-Snow") ? i = 13 : 0;
+	ft_strequ(argv[1], "-Tree") ? i = 14 : 0;
 	return (i);
 }
 
@@ -43,9 +45,9 @@ int			read_argv(int type, t_fractol *fractol)
 	}
 	else if (fractol->type)
 	{
-		geometric_init(&fractol->g);
+		geometric_init(&fractol->g, (char)(type % 12));
 		fractol->mlx.image = create_img(&fractol->mlx, WIDTH, HEIGHT);
-		fractol->g.draw_geometric[(int)fractol->g.type](fractol);
+		fractol->g.draw_g[(int)fractol->g.type](fractol);
 	}
 	return (1);
 }

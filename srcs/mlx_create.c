@@ -11,26 +11,6 @@ void			create_background(t_mlx *mlx, int width, int height, int color)
 	colorize(mlx->background.img, width, height, color);
 }
 
-void			colorize(unsigned char *img, int width, int heigh,\
-		unsigned int color)
-{
-	t_argb	argb;
-	int		i;
-	
-	i = 0;
-	argb.channel[0] = color >> 24u;
-	argb.channel[1] = color >> 16u;
-	argb.channel[2] = color >> 8u;
-	argb.channel[3] = color;
-	while (i < width * heigh * (int)sizeof(int))
-	{
-		img[i++] = argb.channel[3];
-		img[i++] = argb.channel[2];
-		img[i++] = argb.channel[1];
-		img[i++] = argb.channel[0];
-	}
-}
-
 void			*create_mlx(void)
 {
 	void		*mlx;

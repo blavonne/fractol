@@ -49,7 +49,7 @@ static void		restore_handler(int key, t_fractol *fractol)
 			ft_memset(fractol->mlx.image.img, 255, WIDTH * HEIGHT *\
 			(int)sizeof(int));
 			free(fractol->g.kn);
-			fractol->g.size = 0;
+			fractol->g.buf_size = 0;
 		}
 	}
 }
@@ -85,7 +85,7 @@ int				key_pressed(int key, t_fractol *fractol)
 	color_handler(key, fractol);
 	help_handler(key, fractol);
 	if (fractol->type)
-		fractol->g.draw_geometric[(int)fractol->g.type](fractol);
+		fractol->g.draw_g[(int)fractol->g.type](fractol);
 	else if (!fractol->type && fractol->a.type < 10)
 		rendering(fractol);
 	else if (!fractol->type && (key == NUM_PLUS || key == NUM_MINUS ||\

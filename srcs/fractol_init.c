@@ -12,6 +12,6 @@ void		fractol_init(t_fractol *fractol)
 	fractol->mlx.background.ptr = NULL;
 	fractol->mlx.help.ptr = NULL;
 	fractol->mlx.help.img = NULL;
-	fractol->g.draw_geometric[0] = NULL;
-	fractol->g.draw_geometric[1] = NULL;
+	fractol->g.draw_g[0] = NULL;
+	fractol->g.draw_g[1] = NULL;
 }

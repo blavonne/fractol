@@ -52,5 +52,5 @@ void		move_g(int key, t_fractol *fractol)
 		fractol->g.offset.y -= 5;
 	else if (key == ARROW_UP)
 		fractol->g.offset.y += 5;
-//	fractol->g.draw_geometric[fractol->g.type](fractol);
+//	fractol->g.draw_g[fractol->g.type](fractol);
 }

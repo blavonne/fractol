@@ -13,7 +13,7 @@ void				zoom_g(t_fractol *fractol, int key)
 	}
 }
 
-static t_complex	screen_to_complex(int x, int y, t_fractol *fractol)
+static t_complex	view_shift(int x, int y, t_fractol *fractol)
 {
 	t_complex	cursor;
 
@@ -33,7 +33,7 @@ int					zoom_a(int key, int x, int y, t_fractol *fractol)
 		if (x < (WIDTH - fractol->a.img_size) / 2 || x > (WIDTH +\
 			fractol->a.img_size) / 2)
 			return (0);
-		cursor = screen_to_complex(x, y, fractol);
+		cursor = view_shift(x, y, fractol);
 		if (key == MOUSE_SCROLL_DOWN)
 		{
 			fractol->a.min.re = cursor.re + (fractol->a.min.re - cursor.re) * SCALE;
