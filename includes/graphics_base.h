@@ -54,7 +54,6 @@ void				colorize(unsigned char *img, int width, int height,\
 					unsigned int color);
 t_argb				int_to_argb(unsigned int value);
 void				set_color_pixel(unsigned char *img, int i, int argb);
-
 t_point				point_init(int x, int y);
 t_point				complex_to_screen(t_complex complex, t_complex size,\
 					t_complex min, t_point start);

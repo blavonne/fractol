@@ -2,22 +2,25 @@
 
 void			type_handler_g(int key, t_fractol *fractol)
 {
-	if (fractol->type && (key == ONE || key == TWO || key == THREE))
+	if (fractol->type && (key >= ONE && key <= FOUR))
 	{
 		if ((key == ONE && !fractol->g.type) ||\
 			(key == TWO && fractol->g.type == 1) || (key == THREE &&\
-			fractol->g.type == 2))
+			fractol->g.type == 2) || key == FOUR && fractol->g.type == 3)
 			return ;
 		mlx_destroy_image(fractol->mlx.mlx, fractol->mlx.image.ptr);
 		fractol->g.offset = point_init(0 ,0);
 		fractol->mlx.image = create_img(&fractol->mlx, WIDTH, HEIGHT);
 		fractol->g.power = 0;
+		fractol->g.bough_angle = 0.6;
 		if (key == ONE)
 			fractol->g.type = 0;
 		else if (key == TWO)
 			fractol->g.type = 1;
-		else
+		else if (key == THREE)
 			fractol->g.type = 2;
+		else
+			fractol->g.type = 3;
 		set_color_schema_g(&fractol->g, fractol->g.type);
 	}
 }

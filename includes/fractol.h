@@ -70,7 +70,7 @@ struct			s_geometric
 	t_point		offset;
 	double		scale;
 	size_t		buf_size;
-	void		(*draw_g[3])(struct s_fractol *fractol);
+	void		(*draw_g[4])(struct s_fractol *fractol);
 	int			power;
 	t_complex	min;
 	t_complex	max;
@@ -145,6 +145,7 @@ void			put_img_to_window_a(t_mlx *mlx, int x, int y);
 void			koch(t_fractol *fractol);
 void			snow(t_fractol *fractol);
 void			tree(t_fractol *fractol);
+void			pifagor(t_fractol *fractol);
 void			draw_line(t_point start, t_point end, t_fractol *fractol);
 
 void			help_handler(int key, t_fractol *fractol);

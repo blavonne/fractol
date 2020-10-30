@@ -18,7 +18,7 @@ static void	destroy_fractol(t_fractol *fractol)
 {
 	img_destroy(&fractol->mlx);
 	mlx_destroy_window(fractol->mlx.mlx, fractol->mlx.win);
-	mlx_destroy_display(fractol->mlx.mlx);
+	mlx_destroy_display(fractol->mlx.mlx);//проверить работу крестика?
 	if (fractol->type)
 		clean_knot(fractol);
 }

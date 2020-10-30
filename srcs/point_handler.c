@@ -9,6 +9,15 @@ t_complex	complex_init(double re, double im)
 	return (complex);
 }
 
+t_point		point_init(int x, int y)
+{
+	t_point	point;
+
+	point.x = x;
+	point.y = y;
+	return (point);
+}
+
 t_complex	not_random()
 {
 	t_complex	c;
@@ -23,10 +32,10 @@ t_point		complex_to_screen(t_complex complex, t_complex size, t_complex min,\
 {
 	t_point		point;
 
-	point.x = (int)round(start.x + (WIDTH - 1) / size.re * (complex.re -\
-	min.re));
-	point.y = (int)round(start.y - HEIGHT + HEIGHT / size.im * (complex.im -\
-	min.im));
+	point.x = (int)round(start.x + ((WIDTH - 1) / size.re * (complex.re -\
+	min.re)));
+	point.y = ((int)round(start.y - HEIGHT + HEIGHT / size.im * (complex.im -\
+	min.im)));
 	return (point);
 }
 

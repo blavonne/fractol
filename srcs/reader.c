@@ -22,6 +22,7 @@ int			check_argv(int argc, char **argv)
 	ft_strequ(argv[1], "-Koch") ? i = 12 : 0;
 	ft_strequ(argv[1], "-Snow") ? i = 13 : 0;
 	ft_strequ(argv[1], "-Tree") ? i = 14 : 0;
+	ft_strequ(argv[1], "-Pifagor") ? i = 15 : 0;
 	return (i);
 }
 

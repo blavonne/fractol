@@ -2,17 +2,20 @@
 
 void				zoom_g(t_fractol *fractol, int key)
 {
-	if (fractol->g.power < 9 && fractol->g.power > -1)
+	if (fractol->g.power < 11 && fractol->g.power > -1)
 	{
 		ft_memset(fractol->mlx.image.img, 255, WIDTH * HEIGHT * sizeof(int));
-		if (key == MAIN_PLUS && fractol->g.power < 5 && fractol->g.type < 2)
-			fractol->g.power++;
-		else if (key == MAIN_PLUS && fractol->g.power < 8 && fractol->g.type\
-		> 1)
-			fractol->g.power++;
+		if (key == MAIN_PLUS)
+		{
+			if (fractol->g.power < 5 && fractol->g.type < 2)
+				fractol->g.power++;
+			else if (fractol->g.power < 8 && fractol->g.type == 2)
+				fractol->g.power++;
+			else if (fractol->g.power < 10 && fractol->g.type == 3)
+				fractol->g.power++;
+		}
 		else if (key == MAIN_MINUS && fractol->g.power > 0)
 			fractol->g.power--;
-		printf("zoom: %d\n", fractol->g.power);
 	}
 }
 

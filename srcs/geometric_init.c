@@ -23,7 +23,7 @@ void		set_color_schema_g(t_geometric *fractol, char type)
 {
 	if (!type || type == 1)
 		fractol->argb = int_to_argb(AZURE);
-	else if (type == 2)
+	else if (type == 2 || type == 3)
 		fractol->argb = int_to_argb(GRASS);
 }
 
@@ -35,7 +35,7 @@ void		geometric_init(t_geometric *fractol, char type)
 	create_knot(fractol);
 	set_color_schema_g(fractol, type);
 	fractol->min = complex_init(-1, -1);
-	fractol->max = complex_init(1, 1);
+	fractol->max = complex_init(2, 1);
 	fractol->size = complex_init(fractol->max.re - fractol->min.re,\
 	fractol->max.im - fractol->min.im);
 	fractol->power = 0;
@@ -47,6 +47,7 @@ void		geometric_init(t_geometric *fractol, char type)
 	fractol->draw_g[0] = &koch;
 	fractol->draw_g[1] = &snow;
 	fractol->draw_g[2] = &tree;
+	fractol->draw_g[3] = &pifagor;
 }
 
 void		geometric_resize(t_geometric *fractol)
