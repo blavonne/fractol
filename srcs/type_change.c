@@ -80,9 +80,10 @@ void			type_handler_a(int *key, t_fractol *fractol)
 	if (!fractol->type)
 	{
 		if ((*key >= ONE && *key <= NINE) || *key >= NUM_SEVEN && *key <=\
-		NUM_FIVE)
+			NUM_FIVE)
 		{
-			set_type(*key, fractol);
+			if (set_type(*key, fractol) < 0)
+				clean_exit(fractol);
 			if (fractol->a.type != old_type && fractol->a.type < 16)
 				*key = SPACE;
 		}

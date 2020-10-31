@@ -37,11 +37,11 @@ add_executable(fractol_unix main.c includes/fractol.h srcs/keyboard.c
         srcs/fractols_buddha.c
         srcs/complex_trig.c
         srcs/constructor.c
-        srcs/fractols_al.c
+        srcs/fractols_ac.c
         srcs/fractols_tree.c
         srcs/mlx_color.c
         srcs/fractols_pifagor.c
-        srcs/fractols_rt.c)
+        srcs/fractols_gr.c srcs/fractols_tw.c)
 target_link_libraries(fractol_unix
         ~/CLionProjects/fractol_unix/minilibx/libmlx.a
         ~/CLionProjects/fractol_unix/libft/libft.a)

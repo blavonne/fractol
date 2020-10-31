@@ -21,16 +21,13 @@ static void		print_text_g(void *m, void *w)
 
 void			help_g(t_mlx *mlx)
 {
-	int		i;
 	int		width;
 
-	i = 0;
 	width = (int)(WIDTH - ft_min(WIDTH, HEIGHT)) / 2;
-	mlx->help = create_img(mlx, width, HEIGHT);
-	while (i < width * HEIGHT * sizeof(int))
+	if (!mlx->help.ptr)
 	{
-		set_color_pixel(mlx->help.img, i, GREY);
-		i += 4;
+		mlx->help = create_img(mlx, width, HEIGHT);
+		colorize(mlx->help.img, width, HEIGHT, GREY);
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win,\
 	mlx->help.ptr, 0, 0);
@@ -66,19 +63,13 @@ static void		print_text_a(void *m, void *w)
 
 void			help_a(t_mlx *mlx)
 {
-	int		i;
 	int		width;
 
-	i = 0;
 	width = (int)(WIDTH - ft_min(WIDTH, HEIGHT)) / 2;
 	if (!mlx->help.ptr)
 	{
 		mlx->help = create_img(mlx, width, HEIGHT);
-		while (i < width * HEIGHT * sizeof(int))
-		{
-			set_color_pixel(mlx->help.img, i, GREY);
-			i += 4;
-		}
+		colorize(mlx->help.img, width, HEIGHT, GREY);
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win,\
 	mlx->help.ptr, 0, 0);

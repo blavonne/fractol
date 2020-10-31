@@ -13,6 +13,12 @@ static char	set_schema(char type)
 		return (4);
 	else if (type == 9)
 		return (5);
+	else if (type == 11 || type == 15)
+		return (6);
+	else if (type == 12)
+		return (7);
+	else if (type == 13 || type == 14)
+		return (8);
 	return (0);
 }
 
@@ -33,7 +39,7 @@ void		algebaic_init(t_algebraic *fractol, char type)
 	fractol->draw_a[9] = &peacock;
 	fractol->draw_a[10] = &newton;
 	fractol->draw_a[11] = &web;
-	fractol->draw_a[12] = &web2;
+	fractol->draw_a[12] = &butterfly;
 	fractol->draw_a[13] = &graffiti;
 	fractol->draw_a[14] = &circle;
 	fractol->draw_a[15] = &batman;

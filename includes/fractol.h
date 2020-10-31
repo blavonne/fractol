@@ -111,7 +111,7 @@ int				test(t_fractol *fractol, t_complex c);
 int				web(t_fractol *fractol, t_complex c);
 int				graffiti(t_fractol *fractol, t_complex c);
 int				circle(t_fractol *fractol, t_complex c);
-int				web2(t_fractol *fractol, t_complex c);
+int				butterfly(t_fractol *fractol, t_complex c);
 int				batman(t_fractol *fractol, t_complex c);
 
 

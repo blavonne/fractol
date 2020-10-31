@@ -10,6 +10,7 @@
 # define WHITE			0xffffff
 # define BLACK			0x000000
 # define GREY			0x999999
+# define DARK_GREY		0x444444
 
 /*
 ** violet-blue------------------

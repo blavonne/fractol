@@ -59,9 +59,9 @@ static void		color_handler(int key, t_fractol *fractol)
 	}
 	if (!fractol->type && key == MAIN_C)
 	{
-		if (fractol->a.color_schema < 5)
+		if (fractol->a.color_schema < 8)
 			fractol->a.color_schema++;
-		else if (fractol->a.color_schema == 5)
+		else if (fractol->a.color_schema == 8)
 			fractol->a.color_schema = 0;
 	}
 }

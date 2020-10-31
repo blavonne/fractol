@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-int	gradient(int start, int finish, double k)
+int			gradient(int start, int finish, double k)
 {
 	int		r;
 	int		g;
@@ -12,6 +12,29 @@ int	gradient(int start, int finish, double k)
 	return ((r << 16) | (g << 8) | b);
 }
 
+
+static void	set_palette2(int *palette, char schema)
+{
+	const int	peacock[COLORS] = {WHITE, DARK_GREEN, GREEN_BLUE, DARK_GOLD,\
+	DARK_GOLD, IRELAND, AZURE, DARK_BLUE};
+	const int	web[COLORS] = {BLACK, WHITE, DARK_GREY, DARK_GREY,\
+	BLACK, WHITE, DARK_GREY, DARK_GREY};
+	const int	garden[COLORS] = {ROSE, BLOOD, GRASS, YELLOW,\
+	AZURE, GOLD, BLACK, WHITE};
+	const int	graffiti[COLORS] = {WHITE, YELLOW, GRASS, LEMON,\
+	DARK_GOLD, GOLD, ORANGE, CIAN};
+
+	if (schema == 5)
+		ft_memcpy(palette, peacock, sizeof(int) * 8);
+	else if (schema == 6)
+		ft_memcpy(palette, web, sizeof(int) * 8);
+	else if (schema == 7)
+		ft_memcpy(palette, garden, sizeof(int) * 8);
+	else if (schema == 8)
+		ft_memcpy(palette, graffiti, sizeof(int) * 8);
+}
+
+
 static void	set_palette(int *palette, char schema)
 {
 	const int	iris_gold[COLORS] = {WHITE,IRIS, DEEP_BLUE, VIOLET, ROSE,\
@@ -20,8 +43,6 @@ static void	set_palette(int *palette, char schema)
 	GOLD, YELLOW, CIAN};
 	const int	red_gold[COLORS] = {WHITE, VINE, BROWN, LIGHT_BROWN, ORANGE,\
 	GOLD, YELLOW, BLOOD};
-	const int	peacock[COLORS] = {WHITE, DARK_GREEN, GREEN_BLUE, DARK_GOLD,\
-	DARK_GOLD, IRELAND, AZURE, DARK_BLUE};
 	const int	leaf[COLORS] = {LIGHT_JADE, DARK_GREEN, GREEN_BLUE, DARK_GOLD,\
 	DARK_GOLD, IRELAND, AZURE, WHITE};
 	const int	cactus[COLORS] = {YELLOW, DEEP_PEACH, DARK_GOLD, GOLD, ORANGE,\
@@ -37,8 +58,8 @@ static void	set_palette(int *palette, char schema)
 		ft_memcpy(palette, cactus, sizeof(int) * 8);
 	else if (schema == 4)
 		ft_memcpy(palette, leaf, sizeof(int) * 8);
-	else if (schema == 5)
-		ft_memcpy(palette, peacock, sizeof(int) * 8);
+	else
+		set_palette2(palette, schema);
 }
 
 /*
@@ -46,7 +67,7 @@ static void	set_palette(int *palette, char schema)
 ** 7 - количество секций, можно поставить другое
 */
 
-int	set_color(char schema, int iter, int maxiter)
+int			set_color(char schema, int iter, int maxiter)
 {
 	double	k;
 	int		palette[COLORS];
@@ -86,12 +107,4 @@ void		color_init(t_point cur, int iter, t_fractol *fractol)
 			fractol->mlx.image.img[i] = 0;
 		}
 	}
-}
-
-void		set_color_pixel(unsigned char *img, int i, int argb)
-{
-	img[i] = (char)argb;
-	img[i + 1] = (char)((unsigned)argb >> 8u);
-	img[i + 2] = (char)((unsigned)argb >> 16u);
-	img[i + 3] = (char)((unsigned)argb >> 24u);
 }
