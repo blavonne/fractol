@@ -1,5 +1,25 @@
 #include "fractol.h"
 
+
+static int	check_argv2(char **argv)
+{
+	int		i;
+
+	i = -1;
+	ft_strequ(argv[1], "-Web") ? i = 11 : 0;
+	ft_strequ(argv[1], "-Butterfly") ? i = 12 : 0;
+	ft_strequ(argv[1], "-Circle") ? i = 13 : 0;
+	ft_strequ(argv[1], "-Graffiti") ? i = 14 : 0;
+	ft_strequ(argv[1], "-Batman") ? i = 15 : 0;
+	ft_strequ(argv[1], "-Buddha") ? i = 16 : 0;
+	ft_strequ(argv[1], "-Abuddha") ? i = 17 : 0;
+	ft_strequ(argv[1], "-Koch") ? i = 18 : 0;
+	ft_strequ(argv[1], "-Snow") ? i = 19 : 0;
+	ft_strequ(argv[1], "-Tree") ? i = 20 : 0;
+	ft_strequ(argv[1], "-Pifagor") ? i = 21 : 0;
+	return (i);
+}
+
 int			check_argv(int argc, char **argv)
 {
 	int		i;
@@ -18,17 +38,8 @@ int			check_argv(int argc, char **argv)
 	ft_strequ(argv[1], "-Leaf") ? i = 8 : 0;
 	ft_strequ(argv[1], "-Peacock") ? i = 9 : 0;
 	ft_strequ(argv[1], "-Newton") ? i = 10 : 0;
-	ft_strequ(argv[1], "-Web") ? i = 11 : 0;
-	ft_strequ(argv[1], "-Web2") ? i = 12 : 0;
-	ft_strequ(argv[1], "-Circle") ? i = 13 : 0;
-	ft_strequ(argv[1], "-Graffiti") ? i = 14 : 0;
-	ft_strequ(argv[1], "-Batman") ? i = 15 : 0;
-	ft_strequ(argv[1], "-Buddha") ? i = 16 : 0;
-	ft_strequ(argv[1], "-Abuddha") ? i = 17 : 0;
-	ft_strequ(argv[1], "-Koch") ? i = 18 : 0;
-	ft_strequ(argv[1], "-Snow") ? i = 19 : 0;
-	ft_strequ(argv[1], "-Tree") ? i = 20 : 0;
-	ft_strequ(argv[1], "-Pifagor") ? i = 21 : 0;
+	if (i < 0)
+		return (check_argv2(argv));
 	return (i);
 }
 

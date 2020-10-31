@@ -34,9 +34,19 @@ void			help_g(t_mlx *mlx)
 	print_text_g(mlx->mlx, mlx->win);
 }
 
+static void		print_text_a2(void *m, void *w)
+{
+	mlx_string_put(m, w, 10, 47 * 15, 0, "* NUM 4 to draw Butterfly;");
+	mlx_string_put(m, w, 10, 49 * 15, 0, "* NUM 5 to draw Circle;");
+	mlx_string_put(m, w, 10, 51 * 15, 0, "* NUM 6 to draw Graffiti;");
+	mlx_string_put(m, w, 10, 53 * 15, 0, "* NUM 7 to draw Batman;");
+	mlx_string_put(m, w, 10, 55 * 15, 0, "* NUM 8 to draw Buddha;");
+	mlx_string_put(m, w, 10, 57 * 15, 0, "* NUM 9 to draw Abuddha;");
+}
+
 static void		print_text_a(void *m, void *w)
 {
-	mlx_string_put(m, w, 10, 15, 0, "Algebraic usage:");
+	mlx_string_put(m, w, 10, 15, 0x990000, "Algebraic usage:");
 	mlx_string_put(m, w, 10, 3 * 15, 0, "* Arrows to move;");
 	mlx_string_put(m, w, 10, 5 * 15, 0, "* Main \"-\" and \"+\" to");
 	mlx_string_put(m, w, 10, 7 * 15, 0, "change iteration's count;");
@@ -51,14 +61,15 @@ static void		print_text_a(void *m, void *w)
 	mlx_string_put(m, w, 10, 25 * 15, 0, "* P to start/stop Julia;");
 	mlx_string_put(m, w, 10, 27 * 15, 0, "* 3 to draw Burning ship;");
 	mlx_string_put(m, w, 10, 29 * 15, 0, "* 4 to draw Antoshka;");
-	mlx_string_put(m, w, 10, 31 * 15, 0, "* 4 to draw Trident;");
-	mlx_string_put(m, w, 10, 33 * 15, 0, "* 5 to draw Turtle;");
-	mlx_string_put(m, w, 10, 35 * 15, 0, "* 6 to draw Ring;");
-	mlx_string_put(m, w, 10, 37 * 15, 0, "* 7 to draw Cactus;");
+	mlx_string_put(m, w, 10, 31 * 15, 0, "* 5 to draw Trident;");
+	mlx_string_put(m, w, 10, 33 * 15, 0, "* 6 to draw Turtle;");
+	mlx_string_put(m, w, 10, 35 * 15, 0, "* 7 to draw Ring;");
+	mlx_string_put(m, w, 10, 37 * 15, 0, "* 8 to draw Cactus;");
 	mlx_string_put(m, w, 10, 39 * 15, 0, "* 9 to draw Leaf;");
 	mlx_string_put(m, w, 10, 41 * 15, 0, "* NUM 1 to draw Peacock;");
-	mlx_string_put(m, w, 10, 43 * 15, 0, "* NUM 8 to draw Buddha;");
-	mlx_string_put(m, w, 10, 45 * 15, 0, "* NUM 9 to draw Abuddha;");
+	mlx_string_put(m, w, 10, 43 * 15, 0, "* NUM 2 to draw Newton;");
+	mlx_string_put(m, w, 10, 45 * 15, 0, "* NUM 3 to draw Web;");
+	print_text_a2(m, w);
 }
 
 void			help_a(t_mlx *mlx)
