@@ -20,7 +20,6 @@ typedef struct	s_geometric	t_geometric;
 typedef struct	s_fractol	t_fractol;
 typedef struct	s_thread	t_thread;
 typedef struct	s_map		t_map;
-typedef enum	e_types		t_types;
 
 struct			s_map
 {
@@ -28,33 +27,13 @@ struct			s_map
 	int			size;
 };
 
-enum			e_types
-{
-	Mandelbrot,
-	Julia,
-	Ship,
-	Antoshka,
-	Trident,
-	Turtle,
-	Cactus,
-	Ring,
-	Leaf,
-	Peacock,
-	Buddha,
-	Abuddha,
-	Koch,
-	Snowflake,
-};
-
 struct			s_algebraic
 {
-	t_complex	z;//julia
 	t_complex	c;//julia
 	t_complex	min;
 	t_complex	max;
 	double 		size;
-	char		*name;
-	int			(*draw_a[11])(struct s_fractol *fractol, t_complex point);
+	int			(*draw_a[16])(struct s_fractol *fractol, t_complex point);
 	int			max_iter;
 	int 		img_size;
 	int			power;
@@ -129,6 +108,12 @@ int				ring_ring(t_fractol *fractol, t_complex c);
 int				trident(t_fractol *fractol, t_complex c);
 int				turtle(t_fractol *fractol, t_complex c);
 int				test(t_fractol *fractol, t_complex c);
+int				web(t_fractol *fractol, t_complex c);
+int				graffiti(t_fractol *fractol, t_complex c);
+int				circle(t_fractol *fractol, t_complex c);
+int				web2(t_fractol *fractol, t_complex c);
+int				batman(t_fractol *fractol, t_complex c);
+
 
 void			color_init(t_point cur, int iter, t_fractol *fractol);
 int				key_pressed(int key, t_fractol *fractol);

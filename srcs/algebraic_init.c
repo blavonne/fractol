@@ -23,8 +23,7 @@ void		algebaic_init(t_algebraic *fractol, char type)
 	fractol->color_schema = set_schema(type);
 	fractol->draw_a[0] = &mandelbrot;
 	fractol->draw_a[1] = &julia;
-//	fractol->draw_a[2] = &burning;
-	fractol->draw_a[2] = &test;
+	fractol->draw_a[2] = &burning;
 	fractol->draw_a[3] = &antoshka;
 	fractol->draw_a[4] = &trident;
 	fractol->draw_a[5] = &turtle;
@@ -33,6 +32,11 @@ void		algebaic_init(t_algebraic *fractol, char type)
 	fractol->draw_a[8] = &leaf;
 	fractol->draw_a[9] = &peacock;
 	fractol->draw_a[10] = &newton;
+	fractol->draw_a[11] = &web;
+	fractol->draw_a[12] = &web2;
+	fractol->draw_a[13] = &graffiti;
+	fractol->draw_a[14] = &circle;
+	fractol->draw_a[15] = &batman;
 	fractol->img_size = ft_min(WIDTH, HEIGHT); // размер реального поля вывода фрактала
 	fractol->min.re = -2.0; //
 	fractol->min.im = -2.0; // координаты левого верхнего угла поля вывода

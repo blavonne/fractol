@@ -94,7 +94,7 @@ int			web(t_fractol *fractol, t_complex c)
 	return (iter);
 }
 
-int			fraffiti(t_fractol *fractol, t_complex c)
+int			graffiti(t_fractol *fractol, t_complex c)
 {
 	int			iter;
 	t_complex	z;
@@ -123,7 +123,65 @@ int			fraffiti(t_fractol *fractol, t_complex c)
 	return (iter);
 }
 
-int			test(t_fractol *fractol, t_complex c)
+int			circle(t_fractol *fractol, t_complex c)
+{
+	int			iter;
+	t_complex	z;
+	t_complex	tmp;
+	t_complex	der;
+	double		r;
+
+	iter = 0;
+	z = c;
+	while (iter < fractol->a.max_iter)
+	{
+		iter++;
+		z = complex_power(z, 4);
+		tmp = complex_sin(z);
+		tmp.re -= 1;
+		der = complex_cos(z);
+		der = complex_div(tmp, der);
+		der.re = -der.re;
+		der.im = -der.im;
+		z = complex_sum(z, der);
+		r = z.re * z.re + z.im * z.im;
+		if (r > 200 || r == 1. / 0. || r == 0. / 0.)
+			break ;
+	}
+	return (iter);
+}
+
+int			web2(t_fractol *fractol, t_complex c)
+{
+	int			iter;
+	t_complex	z;
+	t_complex	tmp;
+	t_complex	der;
+	double		r;
+
+	iter = 0;
+	z = c;
+	while (iter < fractol->a.max_iter)
+	{
+		iter++;
+		z = complex_power(z, 4);
+		tmp = complex_tg(z);
+		tmp.re -= 1;
+		der = complex_div((t_complex){.re = 1, .im = 0}, complex_multiply
+		(complex_cos(z), complex_cos(z)));
+		der = complex_div(tmp, der);
+		der.re = -der.re;
+		der.im = -der.im;
+		z = complex_sum(z, der);
+		z = complex_sum(z, c);
+		r = z.re * z.re + z.im * z.im;
+		if (r > 100 || r == 1. / 0. || r == 0. / 0.)
+			break ;
+	}
+	return (iter);
+}
+
+int			batman(t_fractol *fractol, t_complex c)
 {
 	int			iter;
 	t_complex	z;
@@ -136,15 +194,18 @@ int			test(t_fractol *fractol, t_complex c)
 	while (iter < fractol->a.max_iter)
 	{
 		iter++;
-		z = complex_sum(z, c);
-		tmp = complex_multiply(z, complex_cos(z));
-		tmp2 = complex_sin(z);
+		z = complex_power(z, 5);
+		tmp = complex_sin(z);
+		tmp2 = tmp;
+		tmp.re -= 1;
 		tmp2.re = -tmp2.re;
 		tmp2.im = -tmp2.im;
-		tmp = complex_sum(tmp, tmp2);
-		tmp.re += 1;
-		z = complex_sum(complex_div(tmp, complex_cos(z)), c);
-		if (r > 2)
+		tmp2 = complex_sum(complex_multiply(z, complex_cos(z)), tmp2);
+		tmp2.re += 1;
+		z = complex_div(tmp2, complex_cos(z));
+		z = complex_sum(z, c);
+		r = z.re * z.re + z.im * z.im;
+		if (r > 4 || r == 1. / 0. || r == 0. / 0.)
 			break ;
 	}
 	return (iter);

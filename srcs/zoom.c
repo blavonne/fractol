@@ -30,6 +30,11 @@ static t_complex	view_shift(int x, int y, t_fractol *fractol)
 	return (cursor);
 }
 
+/*
+** cur means cursor
+*/
+
+
 int					zoom_a(int key, int x, int y, t_fractol *fractol)
 {
 	t_complex	cur;

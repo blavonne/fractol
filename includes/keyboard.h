@@ -35,6 +35,11 @@
 # define NINE				57
 # define NUM_ONE			65436
 # define NUM_TWO			65433
+# define NUM_THREE			65435
+# define NUM_FOUR			65430
+# define NUM_FIVE			65437
+# define NUM_SIX			65432
+# define NUM_SEVEN			65429
 # define NUM_EIGHT			65431
 # define NUM_NINE			65434
 

@@ -29,6 +29,16 @@ static int		set_type2(int key, t_fractol *fractol)
 {
 	if (key == NUM_TWO && fractol->type != 10)
 		return (fractol->a.type = 10);
+	else if (key == NUM_THREE && fractol->type != 11)
+		return (fractol->a.type = 11);
+	else if (key == NUM_FOUR && fractol->type != 12)
+		return (fractol->a.type = 12);
+	else if (key == NUM_FIVE && fractol->type != 13)
+		return (fractol->a.type = 13);
+	else if (key == NUM_SIX && fractol->type != 14)
+		return (fractol->a.type = 14);
+	else if (key == NUM_SEVEN && fractol->type != 15)
+		return (fractol->a.type = 15);
 	else if (key == NUM_EIGHT && fractol->type != 16)
 		return (fractol->a.type = 16);
 	else if (key == NUM_NINE && fractol->type != 17)
@@ -69,8 +79,8 @@ void			type_handler_a(int *key, t_fractol *fractol)
 	old_type = (int)fractol->a.type;
 	if (!fractol->type)
 	{
-		if ((*key >= ONE && *key <= NINE) || *key == NUM_ONE || *key == NUM_TWO\
-		|| *key == NUM_NINE || *key == NUM_EIGHT)
+		if ((*key >= ONE && *key <= NINE) || *key >= NUM_SEVEN && *key <=\
+		NUM_FIVE)
 		{
 			set_type(*key, fractol);
 			if (fractol->a.type != old_type && fractol->a.type < 16)
