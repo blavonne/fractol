@@ -38,27 +38,27 @@ static void		connect_vertex(t_complex *vertex, t_fractol *fractol)
 	t_point		point[2];
 
 	point[0] = complex_to_screen(vertex[0], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	point_init(WIDTH / 6 + fractol->g.offset.x, 0 + fractol->g.offset.y));
 	point[1] = complex_to_screen(vertex[1], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	point_init(WIDTH / 6 + fractol->g.offset.x, 0 + fractol->g.offset.y));
 	draw_line(point[0], point[1], fractol);
 	point[1] = complex_to_screen(vertex[2], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	point_init(WIDTH / 6 + fractol->g.offset.x, 0 + fractol->g.offset.y));
 	draw_line(point[0], point[1], fractol);
 	point[0] = point[1];
 	point[1] = complex_to_screen(vertex[3], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	point_init(WIDTH / 6 + fractol->g.offset.x, 0 + fractol->g.offset.y));
 	draw_line(point[0], point[1], fractol);
 	point[1] = complex_to_screen(vertex[4], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	point_init(WIDTH / 6 + fractol->g.offset.x, 0 + fractol->g.offset.y));
 	draw_line(point[0], point[1], fractol);
 	point[0] = point[1];
 	point[1] = complex_to_screen(vertex[3], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	point_init(WIDTH / 6 + fractol->g.offset.x, 0 + fractol->g.offset.y));
 	draw_line(point[0], point[1], fractol);
 	point[0] = point[1];
 	point[1] = complex_to_screen(vertex[1], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	point_init(WIDTH / 6 + fractol->g.offset.x, 0 + fractol->g.offset.y));
 	draw_line(point[0], point[1], fractol);
 }
 

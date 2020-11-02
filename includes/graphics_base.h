@@ -13,8 +13,8 @@
 #ifndef GRAPHICS_BASE_H
 # define GRAPHICS_BASE_H
 
-# define WIDTH			1600
-# define HEIGHT			1024
+# define WIDTH			1024
+# define HEIGHT			512
 
 # include <stdlib.h>
 # include "mlx.h"

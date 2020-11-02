@@ -83,9 +83,9 @@ void			koch(t_fractol *fractol)
 
 	ft_bzero(m, sizeof(int) * 3);
 	coord[0].re = 0.0;
-	coord[0].im = -(double)HEIGHT / 2 - 1;
+	coord[0].im = -(double)HEIGHT / 4 * 3;
 	coord[1].re = (double)WIDTH - 1;
-	coord[1].im = -(double)HEIGHT / 2 - 1;
+	coord[1].im = -(double)HEIGHT / 4 * 3;
 	traf(coord[0], coord[1], &fractol->g, 0);
 	fract_koch(fractol, coord, kn, m);
 	m[1] = 0;

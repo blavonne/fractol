@@ -41,8 +41,8 @@ void				snow(t_fractol *fractol)
 	int			m[3];
 
 	ft_bzero(m, sizeof(int) * 3);
-	coord[0] = complex_init((double)0 + 380, -(double)HEIGHT / 2 - 240);
-	coord[1] = complex_init((double)WIDTH - 380, -(double)HEIGHT / 2 - 240);
+	coord[0] = complex_init((double)0 + 380, -(double)HEIGHT / 4 * 3);
+	coord[1] = complex_init((double)WIDTH - 380, -(double)HEIGHT / 4 * 3);
 	coord[2].re = (coord[1].re + coord[0].re) / 2 +\
 	(coord[0].im - coord[1].im) * sqrt(3.0) / 2;
 	coord[2].im = (coord[1].im + coord[0].im) / 2 +\
