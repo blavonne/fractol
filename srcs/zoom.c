@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   zoom.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 16:43:38 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 16:43:46 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void				zoom_g(t_fractol *fractol, int key)
@@ -33,7 +45,6 @@ static t_complex	view_shift(int x, int y, t_fractol *fractol)
 /*
 ** cur means cursor
 */
-
 
 int					zoom_a(int key, int x, int y, t_fractol *fractol)
 {

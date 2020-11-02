@@ -45,4 +45,9 @@ do_cp	:
 
 
 clean	:
-	rm -f $(OBJ) $(NAME) libmlx_$(HT).a *~ core *.core
+	rm -f $(OBJ) libmlx_$(HT).a *~ core *.core
+
+fclean: clean
+	rm $(NAME)
+
+re: fclean all

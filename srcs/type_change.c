@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   type_change.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 16:42:12 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 16:43:15 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void			type_handler_g(int key, t_fractol *fractol)
@@ -6,10 +18,10 @@ void			type_handler_g(int key, t_fractol *fractol)
 	{
 		if ((key == ONE && !fractol->g.type) ||\
 			(key == TWO && fractol->g.type == 1) || (key == THREE &&\
-			fractol->g.type == 2) || key == FOUR && fractol->g.type == 3)
+			fractol->g.type == 2) || (key == FOUR && fractol->g.type == 3))
 			return ;
 		mlx_destroy_image(fractol->mlx.mlx, fractol->mlx.image.ptr);
-		fractol->g.offset = point_init(0 ,0);
+		fractol->g.offset = point_init(0, 0);
 		fractol->mlx.image = create_img(&fractol->mlx, WIDTH, HEIGHT);
 		fractol->g.power = 0;
 		fractol->g.bough_angle = 0.6;
@@ -75,13 +87,16 @@ void			type_handler_a(int *key, t_fractol *fractol)
 {
 	int		old_type;
 
-	fractol->a.motion_on = 0;
 	old_type = (int)fractol->a.type;
 	if (!fractol->type)
 	{
-		if ((*key >= ONE && *key <= NINE) || *key >= NUM_SEVEN && *key <=\
-			NUM_FIVE)
+		if (*key == ONE || *key == TWO || *key == THREE || *key == FOUR ||\
+		*key == FIVE || *key == SIX || *key == SEVEN || *key == EIGHT ||\
+		*key == NINE || *key == NUM_ONE || *key == NUM_NINE || *key == NUM_TWO\
+		|| *key == NUM_THREE || *key == NUM_FOUR || *key == NUM_FIVE\
+		|| *key == NUM_SIX || *key == NUM_SEVEN || *key == NUM_EIGHT)
 		{
+			fractol->a.motion_on = 0;
 			if (set_type(*key, fractol) < 0)
 				clean_exit(fractol);
 			if (fractol->a.type != old_type && fractol->a.type < 16)

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractols_tw.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 16:24:32 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 16:24:33 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-int			trident(t_fractol *fractol, t_complex c)//trident
+int			trident(t_fractol *fractol, t_complex c)
 {
 	int			iter;
 	t_complex	z;
@@ -21,7 +33,7 @@ int			trident(t_fractol *fractol, t_complex c)//trident
 	return (iter);
 }
 
-int			turtle(t_fractol *fractol, t_complex c)//turtle
+int			turtle(t_fractol *fractol, t_complex c)
 {
 	int			iter;
 	t_complex	z;

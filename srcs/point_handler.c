@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   point_handler.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 16:29:17 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 16:29:26 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "graphics_base.h"
 
 t_complex	complex_init(double re, double im)
@@ -18,7 +30,7 @@ t_point		point_init(int x, int y)
 	return (point);
 }
 
-t_complex	not_random()
+t_complex	not_random(void)
 {
 	t_complex	c;
 

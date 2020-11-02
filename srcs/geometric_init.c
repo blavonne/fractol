@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   geometric_init.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 16:14:51 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 16:24:52 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 /*
@@ -60,7 +72,7 @@ void		geometric_resize(t_geometric *fractol)
 	(fractol->buf_size + BUF))))
 		exit(1);
 	ft_memset(kn, 0, sizeof(t_complex) * (fractol->buf_size + BUF));
-	while (i <= fractol->buf_size)
+	while (i < fractol->buf_size)
 	{
 		kn[i].im = fractol->kn[i].im;
 		kn[i].re = fractol->kn[i].re;

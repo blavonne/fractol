@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractols_ac.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 15:56:10 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 15:57:35 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int			antoshka(t_fractol *fractol, t_complex c)
@@ -31,9 +43,8 @@ int			batman(t_fractol *fractol, t_complex c)
 
 	iter = 0;
 	z = c;
-	while (iter < fractol->a.max_iter)
+	while (iter++ < fractol->a.max_iter)
 	{
-		iter++;
 		z = complex_power(z, 5);
 		tmp = complex_sin(z);
 		tmp2 = tmp;
@@ -80,7 +91,7 @@ int			butterfly(t_fractol *fractol, t_complex c)
 	return (iter);
 }
 
-int			cactus(t_fractol *fractol, t_complex c)//cactus
+int			cactus(t_fractol *fractol, t_complex c)
 {
 	int			iter;
 	t_complex	z;

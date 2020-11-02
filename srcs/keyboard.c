@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 16:27:52 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 16:27:54 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 static void		move_handler(int key, t_fractol *fractol)
@@ -68,7 +80,6 @@ static void		color_handler(int key, t_fractol *fractol)
 
 int				key_pressed(int key, t_fractol *fractol)
 {
-	printf("deal_key %d\n", key);//del
 	if (key == ESC)
 		clean_exit(fractol);
 	move_handler(key, fractol);
@@ -80,6 +91,8 @@ int				key_pressed(int key, t_fractol *fractol)
 	help_handler(key, fractol);
 	if (fractol->type)
 		fractol->g.draw_g[(int)fractol->g.type](fractol);
+	else if (!fractol->type && fractol->a.type == 1 && fractol->a.motion_on)
+		mlx_hook(fractol->mlx.win, 6, 1L << 6, julia_motion, fractol);
 	else if (!fractol->type && fractol->a.type < 16)
 		rendering(fractol);
 	else if (!fractol->type && (key == NUM_PLUS || key == NUM_MINUS ||\

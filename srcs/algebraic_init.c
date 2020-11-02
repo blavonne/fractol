@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algebraic_init.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 15:47:52 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 15:52:00 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 static char	set_schema(char type)
 {
-	printf("set_schema type %d\n", type);//del
 	if (type >= 0 && type <= 2)
 		return (type);
 	else if ((type >= 3 && type <= 6) || type == 10)
@@ -22,11 +33,8 @@ static char	set_schema(char type)
 	return (0);
 }
 
-void		algebaic_init(t_algebraic *fractol, char type)
+static void	set_func(t_algebraic *fractol)
 {
-	fractol->max_iter = 255;
-	fractol->type = type;
-	fractol->color_schema = set_schema(type);
 	fractol->draw_a[0] = &mandelbrot;
 	fractol->draw_a[1] = &julia;
 	fractol->draw_a[2] = &burning;
@@ -43,13 +51,21 @@ void		algebaic_init(t_algebraic *fractol, char type)
 	fractol->draw_a[13] = &graffiti;
 	fractol->draw_a[14] = &circle;
 	fractol->draw_a[15] = &batman;
-	fractol->img_size = ft_min(WIDTH, HEIGHT); // размер реального поля вывода фрактала
-	fractol->min.re = -2.0; //
-	fractol->min.im = -2.0; // координаты левого верхнего угла поля вывода
+}
+
+void		algebaic_init(t_algebraic *fractol, char type)
+{
+	fractol->max_iter = 255;
+	fractol->type = type;
+	fractol->color_schema = set_schema(type);
+	set_func(fractol);
+	fractol->img_size = ft_min(WIDTH, HEIGHT);
+	fractol->min.re = -2.0;
+	fractol->min.im = -2.0;
 	fractol->max.re = 2.0;
 	fractol->max.im = 2.0;
 	fractol->power = 2;
-	fractol->size = fractol->max.re - fractol->min.re; // размер поля вывода
+	fractol->size = fractol->max.re - fractol->min.re;
 	fractol->c = complex_init(-0.55, -0.55);
 	fractol->motion_on = 0;
 }

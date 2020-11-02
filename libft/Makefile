@@ -94,7 +94,7 @@ OS = $(SRC:%.c=%.o)
 FLAGS = -Wall -Werror -Wextra
 INCLUDES = ./
 
-all: $(NAME)
+all: $(NAME) $(SRC)
 $(NAME): $(OS) $(INCLUDES)libft.h
 	ar rcs $(NAME) $(OS)
 %.o: %.c $(INCLUDES)libft.h

@@ -1,5 +1,16 @@
-#include "fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reader.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 16:35:15 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 16:35:24 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "fractol.h"
 
 static int	check_argv2(char **argv)
 {
@@ -57,8 +68,6 @@ int			read_argv(int type, t_fractol *fractol)
 	{
 		fractol->mlx.image = create_img(&fractol->mlx, fractol->a.img_size,\
 		fractol->a.img_size);
-		fractol->a.type == 1 ? mlx_hook(fractol->mlx.win, 6, 1L << 6,\
-		julia_motion, fractol) : 0;
 		rendering(fractol);
 	}
 	else if (fractol->type)

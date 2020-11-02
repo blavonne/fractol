@@ -1,18 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_line.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 15:48:53 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 15:48:55 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 static void		prepare_coords(t_point *start, t_point *end, int *steep)
 {
 	end->y = -end->y;
 	start->y = -start->y;
-	//OY up+ down-
 	*steep = (abs(end->y - start->y) > abs(end->x - start->x)) ? 1 : 0;
-	//OY is longer than OX
-	if (*steep) //if OY is longer than reverse coords
+	if (*steep)
 	{
 		ft_swap(&start->x, &start->y);
 		ft_swap(&end->x, &end->y);
 	}
-	if (start->x > end->x) //if directory is negative than reverse directory
+	if (start->x > end->x)
 	{
 		ft_swap(&start->x, &end->x);
 		ft_swap(&start->y, &end->y);

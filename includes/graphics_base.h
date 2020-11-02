@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphics_base.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 15:41:58 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 15:42:59 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GRAPHICS_BASE_H
 # define GRAPHICS_BASE_H
 
@@ -20,7 +32,7 @@ typedef struct		s_image
 	void			*ptr;
 	unsigned char	*img;
 	int				endian;
-	int				size_line; //number of bytes used to store one line of image
+	int				size_line;
 	int				bps;
 }					t_image;
 
@@ -34,7 +46,6 @@ typedef struct		s_argb
 {
 	unsigned char	channel[4];
 }					t_argb;
-
 
 typedef struct		s_mlx
 {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractols_gr.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 16:04:42 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 16:06:08 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int			graffiti(t_fractol *fractol, t_complex c)
@@ -29,7 +41,7 @@ int			graffiti(t_fractol *fractol, t_complex c)
 	return (iter);
 }
 
-int			leaf(t_fractol *fractol, t_complex c)//leaf
+int			leaf(t_fractol *fractol, t_complex c)
 {
 	int			iter;
 	t_complex	z;
@@ -84,14 +96,14 @@ int			newton(t_fractol *fractol, t_complex c)
 	return (iter);
 }
 
-int			peacock(t_fractol *fractol, t_complex c)//peacock
+int			peacock(t_fractol *fractol, t_complex c)
 {
 	int			iter;
 	t_complex	z;
 	double		r;
 
 	iter = 0;
-	z =  complex_init(0 ,0);
+	z = complex_init(0, 0);
 	while (iter < fractol->a.max_iter)
 	{
 		iter++;
@@ -105,7 +117,7 @@ int			peacock(t_fractol *fractol, t_complex c)//peacock
 	return (iter);
 }
 
-int			ring_ring(t_fractol *fractol, t_complex c)//ring_ring
+int			ring_ring(t_fractol *fractol, t_complex c)
 {
 	int			iter;
 	t_complex	z;

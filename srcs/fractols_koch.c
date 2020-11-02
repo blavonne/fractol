@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractols_koch.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 16:08:14 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 16:10:50 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-static void			traf(t_complex start, t_complex end, t_geometric *g,\
-		size_t r)
+void			traf(t_complex start, t_complex end, t_geometric *g, size_t r)
 {
 	if (r > g->buf_size - 1)
 		geometric_resize(g);
@@ -19,7 +30,7 @@ static void			traf(t_complex start, t_complex end, t_geometric *g,\
 	sqrt(3.0));
 	if (r + 3 > g->buf_size - 1)
 		geometric_resize(g);
-	g->kn[r + 3].re =  (start.re + 2 * end.re) / 3;
+	g->kn[r + 3].re = (start.re + 2 * end.re) / 3;
 	g->kn[r + 3].im = (start.im + 2 * end.im) / 3;
 	if (r + 4 > g->buf_size - 1)
 		geometric_resize(g);
@@ -27,7 +38,7 @@ static void			traf(t_complex start, t_complex end, t_geometric *g,\
 	g->kn[r + 4].im = end.im;
 }
 
-static void		set_coords(t_point *begin, t_point *end, int i, t_geometric *g)
+void			set_coords(t_point *begin, t_point *end, int i, t_geometric *g)
 {
 	begin->x = (int)round(g->kn[i].re * g->scale) + g->offset.x;
 	begin->y = (int)round(g->kn[i].im * g->scale) + g->offset.y;
@@ -35,8 +46,8 @@ static void		set_coords(t_point *begin, t_point *end, int i, t_geometric *g)
 	end->y = (int)round(g->kn[i + 1].im * g->scale) + g->offset.y;
 }
 
-static void		fract_koch(t_fractol *fractol, t_complex *coord, t_complex *kn,\
-		int *m)
+static void		fract_koch(t_fractol *fractol, t_complex *coord,\
+		t_complex *kn, int *m)
 {
 	while (m[0] < fractol->g.power)
 	{
@@ -79,58 +90,6 @@ void			koch(t_fractol *fractol)
 	fract_koch(fractol, coord, kn, m);
 	m[1] = 0;
 	while (m[1] < 4 * m[2] || (!fractol->g.power && m[1] < 4))
-	{
-		set_coords(&point[0], &point[1], m[1], &fractol->g);
-		draw_line(point[0], point[1], fractol);
-		m[1]++;
-	}
-	put_img_to_window_g(&fractol->mlx, 0, 0);
-	fractol->help ? help_g(&fractol->mlx) : 0;
-}
-
-static void		fract_snow(t_fractol *fractol, t_complex *kn, int *m)
-{
-	while (m[0] < fractol->g.power)
-	{
-		m[2] = 3 * pow(4.0, m[0] + 1);
-		m[1] = 0;
-		while (m[1] <= m[2])
-		{
-			kn[m[1]] = fractol->g.kn[m[1]];
-			m[1]++;
-		}
-		m[1] = 0;
-		while (m[1] < m[2])
-		{
-			traf(kn[m[1]], kn[m[1] + 1], &fractol->g, 4 * m[1]);
-			m[1]++;
-		}
-		m[0]++;
-	}
-}
-
-void			snow(t_fractol *fractol)
-{
-	t_complex	coord[3];
-	t_point		point[2];
-	t_complex	kn[4096];
-	int			m[3];
-
-	ft_bzero(m, sizeof(int) * 3);
-	coord[0].re = (double)0 + 380;
-	coord[0].im = -(double)HEIGHT / 2 - 240;
-	coord[1].re = (double)WIDTH - 380;
-	coord[1].im = -(double)HEIGHT / 2 - 240;
-	coord[2].re = (coord[1].re + coord[0].re) / 2 +\
-			(coord[0].im - coord[1].im) * sqrt(3.0) / 2;
-	coord[2].im = (coord[1].im + coord[0].im) / 2 +\
-			(coord[1].re - coord[0].re) * sqrt(3.0) / 2;
-	traf(coord[1], coord[0], &fractol->g, 0);
-	traf(coord[0], coord[2], &fractol->g, 4);
-	traf(coord[2], coord[1], &fractol->g, 8);
-	fract_snow(fractol, kn, m);
-	m[1] = 0;
-	while (m[1] < 4 * m[2] || (!fractol->g.power && m[1] < 12))
 	{
 		set_coords(&point[0], &point[1], m[1], &fractol->g);
 		draw_line(point[0], point[1], fractol);

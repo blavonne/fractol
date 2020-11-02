@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_a.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 15:48:20 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 15:48:22 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int			gradient(int start, int finish, double k)
@@ -11,7 +23,6 @@ int			gradient(int start, int finish, double k)
 	b = (start & 0xFF) * (1 - k) + (finish & 0xFF) * k + 0.5;
 	return ((r << 16) | (g << 8) | b);
 }
-
 
 static void	set_palette2(int *palette, char schema)
 {
@@ -34,11 +45,10 @@ static void	set_palette2(int *palette, char schema)
 		ft_memcpy(palette, graffiti, sizeof(int) * 8);
 }
 
-
 static void	set_palette(int *palette, char schema)
 {
-	const int	iris_gold[COLORS] = {WHITE,IRIS, DEEP_BLUE, VIOLET, ROSE,\
-	PEACH, LINDEN,  JADE};
+	const int	iris_gold[COLORS] = {WHITE, IRIS, DEEP_BLUE, VIOLET, ROSE,\
+	PEACH, LINDEN, JADE};
 	const int	burning_sea[COLORS] = {WHITE, DUSK, DARK_GOLD, BROWN, ORANGE,\
 	GOLD, YELLOW, CIAN};
 	const int	red_gold[COLORS] = {WHITE, VINE, BROWN, LIGHT_BROWN, ORANGE,\

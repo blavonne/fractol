@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractols_buddha.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 15:58:31 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 16:01:57 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 static void		update_image(unsigned char *img, t_map *map, int size,\
@@ -30,29 +42,28 @@ static void		update_image(unsigned char *img, t_map *map, int size,\
 static void		buddha_iter(t_fractol *fractol, char channel, int count)
 {
 	t_map		map;
-	t_complex	z;
-	t_complex	c;
+	t_complex	z[2];
 	double		r;
 
 	while (count-- > 0)
 	{
-		z = complex_init(0, 0);
+		z[0] = complex_init(0, 0);
 		map.size = 0;
-		c = not_random();
+		z[1] = not_random();
 		while (map.size < fractol->a.max_iter)
 		{
-			map.z[map.size++] = z;
-			z = complex_power(z, fractol->a.power);
-			z = complex_sum(z, c);
-			r = z.re * z.re + z.im * z.im;
-			if (r > 4 || r == 1./0.)
+			map.z[map.size++] = z[0];
+			z[0] = complex_power(z[0], fractol->a.power);
+			z[0] = complex_sum(z[0], z[1]);
+			r = z[0].re * z[0].re + z[0].im * z[0].im;
+			if (r > 4 || r == 1. / 0.)
 			{
-				fractol->a.type == 10 ? update_image(fractol->mlx.image.img,\
+				fractol->a.type == 16 ? update_image(fractol->mlx.image.img,\
 					&map, fractol->a.img_size, channel) : 0;
 				break ;
 			}
 		}
-		fractol->a.type == 11 ? update_image(fractol->mlx.image.img,\
+		fractol->a.type == 17 ? update_image(fractol->mlx.image.img,\
 			&map, fractol->a.img_size, channel) : 0;
 	}
 }

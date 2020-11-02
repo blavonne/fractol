@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractols_pifagor.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 16:21:05 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 16:21:08 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 /*
@@ -13,10 +25,8 @@ static void		calc_vertex(t_complex *vertex, double q)
 {
 	vertex[2] = complex_init(vertex[0].re + vertex[0].im - vertex[1].im,\
 	vertex[0].im + vertex[1].re - vertex[0].re);
-
 	vertex[3] = complex_init(vertex[1].re + vertex[0].im - vertex[1].im,\
 	vertex[1].im + vertex[1].re - vertex[0].re);
-
 	vertex[4] = complex_init((vertex[2].re + vertex[3].re * pow(q, 2) +\
 	(vertex[2].im - vertex[3].im) * q) / (1 + pow(q, 2)), (vertex[2].im +\
 	vertex[3].im * pow(q, 2) + ((vertex[3].re - vertex[2].re) * q)) / (1 +\
@@ -25,32 +35,31 @@ static void		calc_vertex(t_complex *vertex, double q)
 
 static void		connect_vertex(t_complex *vertex, t_fractol *fractol)
 {
-	t_point		start;
-	t_point		end;
+	t_point		point[2];
 
-	start = complex_to_screen(vertex[0], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//A
-	end = complex_to_screen(vertex[1], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//B
-	draw_line(start, end, fractol);
-	end = complex_to_screen(vertex[2], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//C
-	draw_line(start, end, fractol);
-	start = end;//C
-	end = complex_to_screen(vertex[3], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//D
-	draw_line(start, end, fractol);
-	end = complex_to_screen(vertex[4], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//E
-	draw_line(start, end, fractol);
-	start = end;//E
-	end = complex_to_screen(vertex[3], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));;//D
-	draw_line(start, end, fractol);
-	start = end;//D
-	end = complex_to_screen(vertex[1], fractol->g.size, fractol->g.min,\
-	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));//B
-	draw_line(start, end, fractol);
+	point[0] = complex_to_screen(vertex[0], fractol->g.size, fractol->g.min,\
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	point[1] = complex_to_screen(vertex[1], fractol->g.size, fractol->g.min,\
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	draw_line(point[0], point[1], fractol);
+	point[1] = complex_to_screen(vertex[2], fractol->g.size, fractol->g.min,\
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	draw_line(point[0], point[1], fractol);
+	point[0] = point[1];
+	point[1] = complex_to_screen(vertex[3], fractol->g.size, fractol->g.min,\
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	draw_line(point[0], point[1], fractol);
+	point[1] = complex_to_screen(vertex[4], fractol->g.size, fractol->g.min,\
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	draw_line(point[0], point[1], fractol);
+	point[0] = point[1];
+	point[1] = complex_to_screen(vertex[3], fractol->g.size, fractol->g.min,\
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	draw_line(point[0], point[1], fractol);
+	point[0] = point[1];
+	point[1] = complex_to_screen(vertex[1], fractol->g.size, fractol->g.min,\
+	point_init(HEIGHT / 4 + fractol->g.offset.x, 0 + fractol->g.offset.y));
+	draw_line(point[0], point[1], fractol);
 }
 
 static void		draw_pif(t_complex *base, t_fractol *fractol,\
@@ -78,7 +87,7 @@ static void		draw_pif(t_complex *base, t_fractol *fractol,\
 ** base is base (AB) of square (ABCD)
 */
 
-void		pifagor(t_fractol *fractol)
+void			pifagor(t_fractol *fractol)
 {
 	t_complex	vertex[5];
 	t_complex	base[2];

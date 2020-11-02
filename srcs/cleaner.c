@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cleaner.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blavonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/31 15:48:11 by blavonne          #+#    #+#             */
+/*   Updated: 2020/10/31 15:48:13 by blavonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 static void	img_destroy(t_mlx *mlx)
@@ -18,7 +30,7 @@ static void	destroy_fractol(t_fractol *fractol)
 {
 	img_destroy(&fractol->mlx);
 	mlx_destroy_window(fractol->mlx.mlx, fractol->mlx.win);
-	mlx_destroy_display(fractol->mlx.mlx);//проверить работу крестика?
+	free(fractol->mlx.mlx);
 	if (fractol->type)
 		clean_knot(fractol);
 }
