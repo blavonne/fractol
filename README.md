@@ -33,5 +33,5 @@
 * Enable to change argb color in geometric fractals (R\G\B\T MAIN)  
 * Enable to change color-schema in algebraic fractals  
 * Enable to move fractals with arrows  
-* Switch fractal's type in one window by 1-9 MAIN and 0-9 NUM  
+* Switch fractal's type in one window by 1-9 MAIN and 1-9 NUM  
 * Call info-menu by press I
