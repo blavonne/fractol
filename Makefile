@@ -1,15 +1,26 @@
 NAME = fractol
-#-------------------------------------------------------------------------------
+#BASE---------------------------------------------------------------------------
 SRC_DIR = ./srcs/
 INC_DIR = ./includes/
-#-------------------------------------------------------------------------------
+#LIBFT--------------------------------------------------------------------------
 LIBFT = ./libft/libft.a
 L_ROOT = ./libft/
 L_LIB = -L $(L_ROOT) -lft
-#-------------------------------------------------------------------------------
-MLX = ./minilibx/libmlx.a
-MLX_ROOT = ./minilibx/
-MLX_LIB = -L $(MLX_ROOT) -lmlx
+#MLX&FLAGS----------------------------------------------------------------------
+CUR_OS = $(shell sh -c 'uname 2>/dev/null || echo Unknown')
+ifeq ($(CUR_OS), Darwin)
+	MLX = ./minilibx_mac/libmlx.a
+	MLX_ROOT = ./minilibx_mac/
+	MLX_LIB = -L $(MLX_ROOT) -lmlx
+	LIBS = -framework OpenGl -framework Appkit
+	FLAGS = -Wall -Werror -Wextra
+else
+	MLX = ./minilibx/libmlx.a
+	MLX_ROOT = ./minilibx/
+	MLX_LIB = -L $(MLX_ROOT) -lmlx
+	LIBS = -lX11 -lXext -pthread -lm
+	FLAGS = -Wall -Werror -Wextra -fsanitize=leak
+endif
 #-------------------------------------------------------------------------------
 SRC = main.c\
 	$(SRC_DIR)algebraic_init.c\
@@ -44,37 +55,36 @@ SRC = main.c\
 	$(SRC_DIR)type_change.c\
 	$(SRC_DIR)zoom.c
 OBJ = $(SRC:%.c=%.o)
-# flags-------------------------------------------------------------------------
-FLAGS = -Wall -Werror -Wextra
-I_FLAGS = -I $(INC_DIR) -I $(MLX_ROOT) -I $(L_ROOT)
-# libs--------------------------------------------------------------------------
-LIBS = -lX11 -lXext -pthread -lm
+#headers------------------------------------------------------------------------
+HEADERS = -I $(INC_DIR) -I $(MLX_ROOT) -I $(L_ROOT)
+#builder------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
-# builder-----------------------------------------------------------------------
-#-------------------------------------------------------------------------------
-all: $(LIBFT) $(MLX) $(NAME)
+all: $(NAME)
+-include $(OBJ:.o=.d)
 # build external libraries------------------------------------------------------
-$(LIBFT):
+$(LIBFT): make_libft
+make_libft:
 	$(MAKE) -C $(L_ROOT)
-$(MLX):
+$(MLX): make_mlx
+make_mlx:
 	$(MAKE) -C $(MLX_ROOT)
 
 # build fractol-----------------------------------------------------------------
-$(NAME): $(LIBFT) $(MLX) $(OBJ)
-	gcc -o $(NAME) $(OBJ) $(I_FLAGS) $(FLAGS) $(L_LIB) $(MLX_LIB) $(LIBS)
-%.o: %.c $(INC_DIR)fractol.h $(INC_DIR)keyboard.h $(INC_DIR)graphics_base.h \
-$(INC_DIR)colors.h
-	gcc -c $< -o $@ $(I_FLAGS) $(FLAGS)
+$(NAME): $(OBJ) $(LIBFT) $(MLX)
+	gcc -o $(NAME) $(OBJ) $(HEADERS) $(FLAGS) $(L_LIB) $(MLX_LIB) $(LIBS)
+%.o: %.c $(LIBFT) $(MLX)
+	gcc -c $< -o $@ $(HEADERS) $(FLAGS) -MMD
 
 # clean section-----------------------------------------------------------------
 clean:
 	$(MAKE) -C $(L_ROOT) clean
 	$(MAKE) -C $(MLX_ROOT) clean
 	rm -rf $(OBJ)
+	rm -rf $(OBJ:.o=.d)
 fclean: clean
 	$(MAKE) -C $(L_ROOT) fclean
 	$(MAKE) -C $(MLX_ROOT) fclean
 	rm -rf $(NAME)
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re make_libft make_mlx

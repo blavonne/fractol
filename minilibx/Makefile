@@ -14,9 +14,12 @@
 all	: do_configure
 
 do_configure	:
-	./configure
+	@./configure
 
 clean	:
-	./configure clean
+	@./configure clean
 
-re	: clean all
+fclean:
+	@./configure fclean
+
+re	: fclean all

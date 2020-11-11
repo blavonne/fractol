@@ -18,7 +18,9 @@ $(NAME)	:$(OBJ)
 	$(CC) -o $(NAME) $(OBJ) -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd
 
 clean	:
-	rm -f $(NAME) $(OBJ) *~ core *.core
+	rm -f $(OBJ) *~ core *.core
 
+fclean: clean
+	rm -f $(NAME)
 
-re	: clean all
+re	: fclean all

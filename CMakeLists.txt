@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 99)
 include_directories(minilibx)
 include_directories(includes)
 include_directories(libft)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lX11 -lXext -pthread -lm")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lX11 -lXext -pthread -lm -fsanitize=leak")
 
 add_executable(fractol_unix
         includes/fractol.h

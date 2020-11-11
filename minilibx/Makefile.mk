@@ -39,15 +39,12 @@ all	: $(NAME) $(DOCP)
 $(NAME)	: $(OBJ)
 	ar -r $(NAME) $(OBJ)
 	ranlib $(NAME)
-
-do_cp	:
 	cp $(NAME) libmlx_$(HT).a
-
 
 clean	:
 	rm -f $(OBJ) libmlx_$(HT).a *~ core *.core
 
 fclean: clean
-	rm $(NAME)
+	rm -f *.a
 
 re: fclean all
