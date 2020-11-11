@@ -45,5 +45,5 @@ add_executable(fractol_unix
         srcs/type_change.c
         srcs/zoom.c)
 target_link_libraries(fractol_unix
-        ~/CLionProjects/fractol_unix/minilibx/libmlx.a
-        ~/CLionProjects/fractol_unix/libft/libft.a)
+        ~/CLionProjects/fractol/minilibx/libmlx.a
+        ~/CLionProjects/fractol/libft/libft.a)

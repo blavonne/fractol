@@ -41,19 +41,19 @@ static int		set_type2(int key, t_fractol *fractol)
 {
 	if (key == NUM_TWO && fractol->type != 10)
 		return (fractol->a.type = 10);
-	else if (key == NUM_THREE && fractol->type != 11)
+	else if (key == NUM_THREE && fractol->a.type != 11)
 		return (fractol->a.type = 11);
-	else if (key == NUM_FOUR && fractol->type != 12)
+	else if (key == NUM_FOUR && fractol->a.type != 12)
 		return (fractol->a.type = 12);
-	else if (key == NUM_FIVE && fractol->type != 13)
+	else if (key == NUM_FIVE && fractol->a.type != 13)
 		return (fractol->a.type = 13);
-	else if (key == NUM_SIX && fractol->type != 14)
+	else if (key == NUM_SIX && fractol->a.type != 14)
 		return (fractol->a.type = 14);
-	else if (key == NUM_SEVEN && fractol->type != 15)
+	else if (key == NUM_SEVEN && fractol->a.type != 15)
 		return (fractol->a.type = 15);
-	else if (key == NUM_EIGHT && fractol->type != 16)
+	else if (key == NUM_EIGHT && fractol->a.type != 16)
 		return (fractol->a.type = 16);
-	else if (key == NUM_NINE && fractol->type != 17)
+	else if (key == NUM_NINE && fractol->a.type != 17)
 		return (fractol->a.type = 17);
 	return (-1);
 }
@@ -64,21 +64,21 @@ static int		set_type(int key, t_fractol *fractol)
 		return (fractol->a.type = 0);
 	else if (key == TWO && fractol->a.type != 1)
 		return (fractol->a.type = 1);
-	else if (key == THREE && fractol->type != 2)
+	else if (key == THREE && fractol->a.type != 2)
 		return (fractol->a.type = 2);
-	else if (key == FOUR && fractol->type != 3)
+	else if (key == FOUR && fractol->a.type != 3)
 		return (fractol->a.type = 3);
-	else if (key == FIVE && fractol->type != 4)
+	else if (key == FIVE && fractol->a.type != 4)
 		return (fractol->a.type = 4);
-	else if (key == SIX && fractol->type != 5)
+	else if (key == SIX && fractol->a.type != 5)
 		return (fractol->a.type = 5);
-	else if (key == SEVEN && fractol->type != 6)
+	else if (key == SEVEN && fractol->a.type != 6)
 		return (fractol->a.type = 6);
-	else if (key == EIGHT && fractol->type != 7)
+	else if (key == EIGHT && fractol->a.type != 7)
 		return (fractol->a.type = 7);
-	else if (key == NINE && fractol->type != 8)
+	else if (key == NINE && fractol->a.type != 8)
 		return (fractol->a.type = 8);
-	else if (key == NUM_ONE && fractol->type != 9)
+	else if (key == NUM_ONE && fractol->a.type != 9)
 		return (fractol->a.type = 9);
 	return (set_type2(key, fractol));
 }
@@ -98,7 +98,7 @@ void			type_handler_a(int *key, t_fractol *fractol)
 		{
 			fractol->a.motion_on = 0;
 			if (set_type(*key, fractol) < 0)
-				clean_exit(fractol);
+				return ;
 			if (fractol->a.type != old_type && fractol->a.type < 16)
 				*key = SPACE;
 		}
